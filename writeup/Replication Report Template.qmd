@@ -1,9 +1,9 @@
 ---
-title: "Replication of Study X by Sample & Sample (20xx, Psychological Science)"
-author: "Replication Author[s] (contact information)"
+title: "Replication of _The Efficacy of Seven Gratitude Interventions for Promoting Subjective Well-Being_ by Dang et al. (2025, _Journal of Positive Psychology_)"
+author: "Hew Yeh (mayeh@ucsd.edu)"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 format:
-  html:
+  pdf:
     toc: true
     toc_depth: 3
 ---
@@ -12,14 +12,39 @@ format:
 
 ## Introduction
 
-[No abstract is needed.]  Each replication project will have a straightforward, no frills report of the study and results.  These reports will be publicly available as supplementary material for the aggregate report(s) of the project as a whole.  Also, to maximize project integrity, the intro and methods will be written and critiqued in advance of data collection.  Introductions can be just 1-2 paragraphs clarifying the main idea of the original study, the target finding for replication, and any other essential information. You will likely contact the authors of the original study, so this should be professional and forward facing. It will NOT have a literature review -- that is in the original publication. You can write both the introduction and the methods in past tense.  
+\[No abstract is needed.\] Each replication project will have a straightforward, no frills report of the study and results. These reports will be publicly available as supplementary material for the aggregate report(s) of the project as a whole. Also, to maximize project integrity, the intro and methods will be written and critiqued in advance of data collection. Introductions can be just 1-2 paragraphs clarifying the main idea of the original study, the target finding for replication, and any other essential information. You will likely contact the authors of the original study, so this should be professional and forward facing. It will NOT have a literature review -- that is in the original publication. You can write both the introduction and the methods in past tense.
 
+***Relevance to Research Interests.*** In my personal research, I am interested in testing low-cost, accessible, and portable single-session interventions that can improve subjective well-being as well as the mechanisms which underlie these changes to subjective well-being, particularly in student populations. Students represent a unique population with higher rates of depression and anxiety as well as potentially limited financial resources to seek help. My research seeks to thus find preventative practices that can be used to buffer against the stressors of big life changes, coursework, and future career planning. This Dang et al. (2025) experiment that I am aiming to replicate has found that writing a gratitude letter (and not sending it to the person you are writing about) has a sizable impact on increasing subjective well-being across a variety of outcomes including positive affect. Interventions such as these are precisely the kinds of interventions I hope to design or expand upon and test due to its brevity and lack of financial barriers.
+
+***Description of Stimuli and Procedures/Challenges.*** The original Dang et al. (2025) experiment tested 7 different interventions; however, I am most interested in the first 2 conditions (writing a gratitude list and a gratitude letter).
+
+In the interest of replication, I will use the same instructions that were provided in the original study (Dang et al., 2025; Emmons & McCullough, 2003; Walsh et al., 2022):
+
+- **Gratitude Condition:** "There are many things in our lives, both large and small, that we might be grateful for. Think back over the past week and write down five things in your life that you are grateful for."
+
+- **Gratitude Letter:** "In our daily lives, we often thank people for both large and small things. However, it can sometimes be difficult to make time to express our gratitude more deeply. Today, we want you to write a letter of gratitude to someone who has done something for which you are extremely grateful. Please do not share your letter with this person or anyone else."
+
+- **Control Condition:** Simply measure their state positive affect.
+
+In this study, participants will be randomized into one of the three conditions. The same wording as the original paper will be used to direct participants:
+
+> As you write, don’t worry about perfect grammar and spelling, and remember that anything you write will remain strictly confidential. Should an experimenter read this entry in the future, it will be identifiable only by a participant number and not by your name’. (Dang et al., 2025).
+
+Some potential challenges of replicating this study will be ensuring that participants actually complete the task, especially since data collection will occur online without supervision. I am particularly concerned that students may use a large language model (e.g., ChatGPT, etc.) to write their letters and thus not gain the benefit of the intervention. This would yield massively biased estimates of the treatment effect.
+
+Dang, A. V., Coles, N. A., Oishi, S., & McCullough, M. E. (2026). The efficacy of seven gratitude interventions for promoting subjective well-being. *The Journal of Positive Psychology*, *21*(3), 517–535. https://doi.org/10.1080/17439760.2025.2502483
+
+Emmons, R. A., & McCullough, M. E. (2003). Counting blessings versus burdens: An experimental investigation of gratitude and subjective well-being in daily life. *Journal of Personality & Social Psychology*, *84*(2), 377–389. <https://doi.org/10.1037/> 0022-3514.84.2.377
+
+Walsh, L. C., Regan, A., Twenge, J. M., & Lyubomirsky, S. (2022). What is the optimal way to give thanks? comparing the effects of gratitude expressed privately, one-to-one via text, or publicly on social media. *Affective Science*, *4*(1), 82–91. <https://doi.org/10.1007/s42761-022-00150-5>
+
+*\*\*\*\**
 
 ## Methods
 
 ### Power Analysis
 
-Original effect size, power analysis for samples to achieve 80%, 90%, 95% power to detect that effect size.  Considerations of feasibility for selecting planned sample size.
+Original effect size, power analysis for samples to achieve 80%, 90%, 95% power to detect that effect size. Considerations of feasibility for selecting planned sample size.
 
 ### Planned Sample
 
@@ -27,40 +52,40 @@ Planned sample size and/or termination rule, sampling frame, known demographics 
 
 ### Materials
 
-All materials - can quote directly from original article - just put the text in quotations and note that this was followed precisely.  Or, quote directly and just point out exceptions to what was described in the original article.
+All materials - can quote directly from original article - just put the text in quotations and note that this was followed precisely. Or, quote directly and just point out exceptions to what was described in the original article.
 
-### Procedure	
+### Procedure
 
-Can quote directly from original article - just put the text in quotations and note that this was followed precisely.  Or, quote directly and just point out exceptions to what was described in the original article.
+Can quote directly from original article - just put the text in quotations and note that this was followed precisely. Or, quote directly and just point out exceptions to what was described in the original article.
 
 ### Analysis Plan
 
-Can also quote directly, though it is less often spelled out effectively for an analysis strategy section.  The key is to report an analysis strategy that is as close to the original - data cleaning rules, data exclusion rules, covariates, etc. - as possible.  
+Can also quote directly, though it is less often spelled out effectively for an analysis strategy section. The key is to report an analysis strategy that is as close to the original - data cleaning rules, data exclusion rules, covariates, etc. - as possible.
 
-**Clarify key analysis of interest here**  You can also pre-specify additional analyses you plan to do.
+**Clarify key analysis of interest here** You can also pre-specify additional analyses you plan to do.
 
 ### Differences from Original Study
 
-Explicitly describe known differences in sample, setting, procedure, and analysis plan from original study.  The goal, of course, is to minimize those differences, but differences will inevitably occur.  Also, note whether such differences are anticipated to make a difference based on claims in the original article or subsequent published research on the conditions for obtaining the effect.
+Explicitly describe known differences in sample, setting, procedure, and analysis plan from original study. The goal, of course, is to minimize those differences, but differences will inevitably occur. Also, note whether such differences are anticipated to make a difference based on claims in the original article or subsequent published research on the conditions for obtaining the effect.
 
 ### Methods Addendum (Post Data Collection)
 
 You can comment this section out prior to final report with data collection.
 
 #### Actual Sample
-  Sample size, demographics, data exclusions based on rules spelled out in analysis plan
+
+Sample size, demographics, data exclusions based on rules spelled out in analysis plan
 
 #### Differences from pre-data collection methods plan
-  Any differences from what was described as the original plan, or “none”.
 
+Any differences from what was described as the original plan, or “none”.
 
 ## Results
-
 
 ### Data preparation
 
 Data preparation following the analysis plan.
-	
+
 ```{r include=F}
 ### Data Preparation
 
@@ -75,20 +100,20 @@ Data preparation following the analysis plan.
 
 ### Confirmatory analysis
 
-The analyses as specified in the analysis plan.  
+The analyses as specified in the analysis plan.
 
 *Side-by-side graph with original graph is ideal here*
 
 ### Exploratory analyses
 
-Any follow-up analyses desired (not required).  
+Any follow-up analyses desired (not required).
 
 ## Discussion
 
 ### Summary of Replication Attempt
 
-Open the discussion section with a paragraph summarizing the primary result from the confirmatory analysis and the assessment of whether it replicated, partially replicated, or failed to replicate the original result.  
+Open the discussion section with a paragraph summarizing the primary result from the confirmatory analysis and the assessment of whether it replicated, partially replicated, or failed to replicate the original result.
 
 ### Commentary
 
-Add open-ended commentary (if any) reflecting (a) insights from follow-up exploratory analysis, (b) assessment of the meaning of the replication (or not) - e.g., for a failure to replicate, are the differences between original and present study ones that definitely, plausibly, or are unlikely to have been moderators of the result, and (c) discussion of any objections or challenges raised by the current and original authors about the replication attempt.  None of these need to be long.
+Add open-ended commentary (if any) reflecting (a) insights from follow-up exploratory analysis, (b) assessment of the meaning of the replication (or not) - e.g., for a failure to replicate, are the differences between original and present study ones that definitely, plausibly, or are unlikely to have been moderators of the result, and (c) discussion of any objections or challenges raised by the current and original authors about the replication attempt. None of these need to be long.
