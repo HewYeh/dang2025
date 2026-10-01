@@ -1,5 +1,4 @@
 ---
-f---
 title: "Replication of _The Efficacy of Seven Gratitude Interventions for Promoting Subjective Well-Being_ by Dang et al. (2025, _Journal of Positive Psychology_)"
 author: "Hew Yeh (mayeh@ucsd.edu)"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
@@ -35,7 +34,7 @@ Some potential challenges of replicating this study will be ensuring that partic
 
 Another problem would be sample size given a limited data collection period. One way I hope to mitigate this is to collect demographical variables and potentially trait positive affect and control for these as covariates. This can potentially control for unlucky correlations caused by randomization with small groups.
 
-Dang, A. V., Coles, N. A., Oishi, S., & McCullough, M. E. (2026). The efficacy of seven gratitude interventions for promoting subjective well-being. *The Journal of Positive Psychology*, *21*(3), 517–535. https://doi.org/10.1080/17439760.2025.2502483
+Dang, A. V., Coles, N. A., Oishi, S., & McCullough, M. E. f(2026). The efficacy of seven gratitude interventions for promoting subjective well-being. *The Journal of Positive Psychology*, *21*(3), 517–535. https://doi.org/10.1080/17439760.2025.2502483
 
 Emmons, R. A., & McCullough, M. E. (2003). Counting blessings versus burdens: An experimental investigation of gratitude and subjective well-being in daily life. *Journal of Personality & Social Psychology*, *84*(2), 377–389. <https://doi.org/10.1037/> 0022-3514.84.2.377
 
