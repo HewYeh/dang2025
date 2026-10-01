@@ -1,4 +1,5 @@
 ---
+f---
 title: "Replication of _The Efficacy of Seven Gratitude Interventions for Promoting Subjective Well-Being_ by Dang et al. (2025, _Journal of Positive Psychology_)"
 author: "Hew Yeh (mayeh@ucsd.edu)"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
@@ -14,7 +15,7 @@ format:
 
 \[No abstract is needed.\] Each replication project will have a straightforward, no frills report of the study and results. These reports will be publicly available as supplementary material for the aggregate report(s) of the project as a whole. Also, to maximize project integrity, the intro and methods will be written and critiqued in advance of data collection. Introductions can be just 1-2 paragraphs clarifying the main idea of the original study, the target finding for replication, and any other essential information. You will likely contact the authors of the original study, so this should be professional and forward facing. It will NOT have a literature review -- that is in the original publication. You can write both the introduction and the methods in past tense.
 
-***Relevance to Research Interests.*** In my personal research, I am interested in testing low-cost, accessible, and portable single-session interventions that can improve subjective well-being as well as the mechanisms which underlie these changes to subjective well-being, particularly in student populations. Students represent a unique population with higher rates of depression and anxiety as well as potentially limited financial resources to seek help. My research seeks to thus find preventative practices that can be used to buffer against the stressors of big life changes, coursework, and future career planning. This Dang et al. (2025) experiment that I am aiming to replicate has found that writing a gratitude letter (and not sending it to the person you are writing about) has a sizable impact on increasing subjective well-being across a variety of outcomes including positive affect. Interventions such as these are precisely the kinds of interventions I hope to design or expand upon and test due to its brevity and lack of financial barriers.
+***Relevance to Research Interests.*** In my personal research, I am interested in testing low-cost, accessible, and portable single-session interventions that can improve subjective well-being as well as uncover the mechanisms which underlie these changes to subjective well-being, particularly in student populations. Students represent a unique population with higher rates of depression and anxiety as well as potentially limited financial resources to seek help. My research seeks to thus find preventative practices that can be used to buffer against the stressors of big life changes, coursework, and future career planning. This Dang et al. (2025) experiment that I am aiming to replicate has found that writing a gratitude letter (and not sending it to the person you are writing about) has a sizable impact on increasing subjective well-being across a variety of outcomes including positive affect. Interventions such as these are precisely the kinds of interventions I hope to design or expand upon and test due to its brevity and lack of monetary requirements.
 
 ***Description of Stimuli and Procedures/Challenges.*** The original Dang et al. (2025) experiment tested 7 different interventions; however, I am most interested in the first 2 conditions (writing a gratitude list and a gratitude letter).
 
@@ -26,11 +27,13 @@ In the interest of replication, I will use the same instructions that were provi
 
 - **Control Condition:** Simply measure their state positive affect.
 
-In this study, participants will be randomized into one of the three conditions. The same wording as the original paper will be used to direct participants:
+In this study, participants will be randomized into one of the three conditions. The same wording as the original paper will be used to direct participants in the gratitude conditions:
 
 > As you write, don’t worry about perfect grammar and spelling, and remember that anything you write will remain strictly confidential. Should an experimenter read this entry in the future, it will be identifiable only by a participant number and not by your name’. (Dang et al., 2025).
 
-Some potential challenges of replicating this study will be ensuring that participants actually complete the task, especially since data collection will occur online without supervision. I am particularly concerned that students may use a large language model (e.g., ChatGPT, etc.) to write their letters and thus not gain the benefit of the intervention. This would yield massively biased estimates of the treatment effect.
+Some potential challenges of replicating this study will be ensuring that participants actually complete the task, especially since data collection will occur online without supervision. I am particularly concerned that students on SONA may use a large language model (e.g., ChatGPT, etc.) to write their letters and thus not gain the benefit of the intervention. This could yield biased underestimates of the treatment effect because the participants in the study are actually not thoughtfully engaging in the condition.
+
+Another problem would be sample size given a limited data collection period. One way I hope to mitigate this is to collect demographical variables and potentially trait positive affect and control for these as covariates. This can potentially control for unlucky correlations caused by randomization with small groups.
 
 Dang, A. V., Coles, N. A., Oishi, S., & McCullough, M. E. (2026). The efficacy of seven gratitude interventions for promoting subjective well-being. *The Journal of Positive Psychology*, *21*(3), 517–535. https://doi.org/10.1080/17439760.2025.2502483
 
