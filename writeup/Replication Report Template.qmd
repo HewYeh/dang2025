@@ -12,13 +12,107 @@ format:
 
 ## Introduction
 
-\[No abstract is needed.\] Each replication project will have a straightforward, no frills report of the **study and results.** These reports will be publicly available as supplementary material for the aggregate report(s) of the project as a whole. Also, to maximize project integrity, the intro and methods will be written and critiqued in advance of data collection. **Introductions can be just 1-2 paragraphs clarifying the main idea of the original study, the target finding for replication, and any other essential information.** You will likely contact the authors of the original study, so this should be professional and forward facing. It will NOT have a literature review -- that is in the original publication. You can write both the introduction and the methods in past tense.
+<!-- \[No abstract is needed.\] Each replication project will have a straightforward, no frills report of the **study and results.** These reports will be publicly available as supplementary material for the aggregate report(s) of the project as a whole. Also, to maximize project integrity, the intro and methods will be written and critiqued in advance of data collection. **Introductions can be just 1-2 paragraphs clarifying the main idea of the original study, the target finding for replication, and any other essential information.** You will likely contact the authors of the original study, so this should be professional and forward facing. It will NOT have a literature review -- that is in the original publication. You can write both the introduction and the methods in past tense. -->
 
-## Experimental Paradigm
+<!--Here is going to be the 1 paragraph clarifying the main idea. + target finding -->
 
-The paper by Dang et al. (2026) sought to test 7 gratitude interventions that are used in positive psychology to improve subjective well-being. These interventions included intrapersonal, interpersonal, and gratitude-to-God interventions. A key strength of this experiment is that most studies in the past used different measures of subjective well-being and only compared a few of the interventions against each other at one time which made it hard to make comparisons across interventions. By including a comprehensive battery of interventions and standardized outcome measures of state gratitude, state positive/negative affect, and life satisfaction, this experiment allows for a direct comparison between gratitude interventions and can inform recommendations for everyday people to incorporate into their lives.
+Dang et al. (2026) sought to test 7 gratitude interventions that are used in positive psychology to improve subjective well-being. These interventions included intrapersonal, interpersonal, and gratitude-to-God interventions. A key strength of this experiment is that most studies in the past used different measures of subjective well-being and only compared a few of the interventions against each other which made it impossible to make comparisons across interventions. By contrast, by including a comprehensive battery of interventions and standardized outcome measures (i.e., state gratitude, state positive/negative affect, and life satisfaction), this experiment allows for a direct comparison between gratitude interventions and can inform gratitude practices for the general public to incorporate into their lives.
+
+In Study 1, it was found that writing a private gratitude letter was the most effective intervention in increasing positive affect. In this replication report, I want to replicate this finding and hope to find a similarly large Hedges' $g$ of around $.40$ when comparing this intervention to an active control in a student population. This will hopefully expand the generalizability of the study and offer a new technique for students to try to increase their well-being.
+
+## Methods
+
+### Power Analysis
+
+The key effect size for this replication (gratitude letter vs. events list) is Hedges' *g* = .41. Many power analysis programs only offer Cohen's *d* power estimates. With larger samples, the difference between Hedges' *g* and Cohen's *d* becomes minimal as the $J(x)$ correction factor applied to Cohen's *d* approaches 1 with large *n*. The conversion is as follows below:
+
+Using the Hedges' *g* to Cohen's *d* conversion, we can divide Hedges' $g$ by the $J(x)$ correction factor to recover Cohen's *d*, where $x=n_1+n_2-2$ for the correction factor $J$. In Study 1, both conditions had exactly $n=126$ participants, therefore $x = 126+126-2=250$.
+
+$$
+\begin{aligned}
+J(x) \cdot d &=g \\
+d &= \frac{g}{J(x)}\\d & = \frac{g}{\dfrac{\Gamma(x/2)}{\sqrt{x/2}\times\Gamma((x-1)/2)}}\\\\
+&\# \text{Substitute $J(x) = J(250)$}\\
+d&=g\times 
+\frac{\sqrt{250/2}\times \Gamma((250-1)/2)}{\Gamma(250/2)}\\d&=g\times \frac{\sqrt{125}\times \Gamma(124.5)}{\Gamma(125)}\\d&=g\times 1.003013...
+\end{aligned}
+$$
+
+```{r}
+# Calculate Correction Factor
+J_250 <- sqrt(125) * gamma(124.5) / gamma(125)
+J_250
+```
+
+```{r}
+ComputedCohens_d = 0.41 * J_250
+ComputedCohens_d
+```
+
+Now that we have the appropriate effect size of interest (`{r} ComputedCohens_d`), we can use the `pwr` package to do a power analysis and calculate the required sample size for 80%, 90%, and 95% power.
+
+```{r}
+# Step 1: Set CRAN as the source to install `pwr`
+options(repos = c(CRAN = "https://cloud.r-project.org"))
+
+# Step 2: Install `pwr`
+install.packages("pwr")
+
+# Step 3: Load `pwr` into the current session
+library(pwr)
+```
+
+#### 80% Power
+
+```{r}
+Power80 = pwr.t.test(d = ComputedCohens_d,
+           sig.level = .05,
+           power = .80,
+           type = "two.sample",
+           alternative = "two.sided")
+```
+
+```{r}
+Power80$n
+```
+
+At an alpha level of .05, for 80% power, we are going to need `{r} Power80$n` participants per group. In total, that will be `{r} ceiling( 2 * Power80$n )` participants.
+
+#### 90% Power
+
+```{r}
+Power90 = pwr.t.test(d = ComputedCohens_d,
+           sig.level = .05,
+           power = .90,
+           type = "two.sample",
+           alternative = "two.sided")
+```
+
+```{r}
+Power90$n
+```
+
+At an alpha level of .05, for 90% power, we are going to need `{r} Power90$n` participants per group. In total, that will be `{r} ceiling( 2 * Power90$n )` participants.
+
+#### 95% Power
+
+```{r}
+Power95 = pwr.t.test(d = ComputedCohens_d,
+           sig.level = .05,
+           power = .95,
+           type = "two.sample",
+           alternative = "two.sided")
+```
+
+At an alpha level of .05, for 95% power, we are going to need `{r} Power95$n` participants per group. In total, that will be `{r} ceiling( 2 * Power95$n )` participants.
+
+<!-- Original effect size, power analysis for samples to achieve 80%, 90%, 95% power to detect that effect size. Considerations of feasibility for selecting planned sample size. -->
+
+::: callout-caution
+### This Section Was From Earlier Checkpoint. Can Skip Over This.
 
 ***Relevance to Research Interests.*** In my personal research, I am interested in testing low-cost, accessible, and portable single-session interventions that can improve subjective well-being as well as uncover the mechanisms which underlie these changes to subjective well-being, particularly in student populations. Students represent a unique population with higher rates of depression and anxiety as well as potentially limited financial resources to seek help. My research seeks to thus find preventative practices that can be used to buffer against the stressors of big life changes, coursework, and future career uncertainty. This experiment by Dang et al. (2025) has found that privately writing a gratitude letter that does not get shared with anyone has a sizeable impact on subjective well-being across a variety of outcomes including increasing gratitude and positive affect, as well as reducing negative affect. Interventions such as these are precisely the kinds of interventions I hope to design, expand upon, and test due to its brevity and financial accessibility.
+:::
 
 ***Description of Stimuli and Procedures/Challenges.*** The original Dang et al. (2025) experiment tested 7 different interventions; however, I am most interested in the effect that the gratitude letter (vs. writing an events list active control) has on state positive affect. There was a larger effect of the gratitude intervention when compared to only measuring state positive affect in the control (Hedges' *g* = .61); however, as Haoyu suggested, having an active control that would be able to control for the effects that writing may have on positive affect would strengthen our ability to conclude that it was the gratitude aspect of writing that letter than lead to increases in happiness. This effect (gratitude letter vs. writing a list of events) was smaller but still quite large (Hedges' *g* = .41).
 
@@ -61,35 +155,6 @@ I also hope this project will give me another experience with pre-registering hy
 ## Methods
 
 ### Power Analysis
-
-Original effect size, power analysis for samples to achieve 80%, 90%, 95% power to detect that effect size. Considerations of feasibility for selecting planned sample size.
-
-The key effect size for this replication (gratitude letter vs. events list) is Hedges' *g* = .41. Many power analysis programs only offer Cohen's *d* power estimates. With larger samples, the difference between Hedges' *g* and Cohen's *d* becomes more minimal as the $J(x)$ correction factor applied to Cohen's *d* approaches 1 with large *n*.
-
-Using the Hedges' *g* to Cohen's *d* conversion, we can divide the $J(x)$ correction factor to recover Cohen's *d* where $x=n_1+n_2-2$. In Study 1, both conditions had exactly $n=126$, therefore $x = 126+126-2=250$.
-
-$$
-\begin{aligned}J(x) \cdot d &=g \\d &= \frac{g}{J(x)}\\d & = \frac{g}{\dfrac{\Gamma(x/2)}{\sqrt{x/2}\times\Gamma((x-1)/2)}}\\\\&\# \text{Substitute J(X) = J(250)}\\d&=g\times \frac{\sqrt{250/2}\times \Gamma((250-1)/2)}{\Gamma(250/2)}\\d&=g\times \frac{\sqrt{125}\times \Gamma(124.5)}{\Gamma(125)}\\d&=g\times 1.003013...\end{aligned}
-$$
-
-```{r}
-# Hedges' g Multiplied Against J(250)
-GToCohensD = 0.41 * (sqrt(125)*gamma(124.5))/(gamma(125))
-```
-
-```{r}
-options(repos = c(CRAN = "https://cloud.r-project.org"))
-install.packages("pwr")
-library(pwr)
-# 80% Power Needs 93.79 (94) participants per group for a two-sided test at alpha = .05. This is 188 participants total.
-pwr.t.test(d = GToCohensD, sig.level = 0.05, power = 0.80, type = "two.sample", alternative = "two.sided")
-
-# At 90% power, you need about 125 participants per group (total  = 250)
-pwr.t.test(d = GToCohensD, sig.level = 0.05, power =.90, type = "two.sample", alternative = "two.sided")
-
-# At 90% power, you need about 155 participants per group (total  = 310)
-pwr.t.test(d = GToCohensD, sig.level = 0.05, power =.95, type = "two.sample", alternative = "two.sided")
-```
 
 ### Planned Sample
 
