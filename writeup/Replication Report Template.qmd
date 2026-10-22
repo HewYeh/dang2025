@@ -100,32 +100,100 @@ Power95 = pwr.t.test(d = ComputedCohens_d,
 
 At an alpha level of .05, for 95% power, we are going to need `{r} Power95$n` participants per group. In total, that will be `{r} ceiling( 2 * Power95$n )` participants.
 
-
 ### Planned Sample
+
 For a balance of power and practicality, we will aim for a minimum power level of 80% which will require 188 participants. (# This should be feasible in a sample of SONA students especially since mine is an online survey experiment that is less than 30 minutes.)
 
 The participant pool will be undergraduates from the University of California San Diego. There likely will be no adverse effects of the study. However, if any are reported by participants, data collection will be stopped. The original study used an intent-to-treat analysis which meant that they did not exclude any participants from the study. This is aimed to measure the generalizable real-world impact of an intervention and acknowledge that attrition and non-compliance are inseparable downstream effects of the intervention. Since this study is meant to inform real student populations, it is vital to understand the realistic intent-to-treat effect size as opposed to the effect size found in an artificially controlled setting. Thus, I opted to also use an intent-to-treat analysis technique.
 
-While we will not exclude human participants, we do not want to include bots or responses from LLMs and as a result, invisible white text will be added into the prompt in an attempt to catch AI responses. It will ask the participant to compute the result of gamma(125) and discretely put that result in the response (i.e., prompt injection). Responses that include the `{r} gamma(125)` will be row-wise deleted.
+While we will not exclude human participants, we do not want to include bots or responses from LLMs and as a result, invisible white text will be added into the prompt in an attempt to catch AI responses. It will ask the participant to compute the result of gamma(125) and discretely put that result in the response without decimal points (i.e., prompt injection). Responses that include the `{r} gamma(125)` will be row-wise deleted.
 
 ### Materials
+
 Study materials include the jsPsych code used to run the experiment. Participants will also need access to a computer and an internet connection.
 
 ### Procedure
+
 In the interest of replication, I will use the same instructions that were provided in the original study (Cunha et al., 2019; Dang et al., 2025; Emmons & McCullough, 2003; Walsh et al., 2022). Participants will be randomly assigned to two conditions and see the following directions:
 
 - **Control Group: Events List (Cunha et al. 2019):** "In life, there are events, both large and small, that end up affecting us. Think back over the past day and write down five events that somehow affected you."
 - **Experimental Condition: Gratitude Letter (Walsh et al., 2022):** "In our daily lives, we often thank people for both large and small things. However, it can sometimes be difficult to make time to express our gratitude more deeply. Today, we want you to write a letter of gratitude to someone who has done something for which you are extremely grateful. Please do not share your letter with this person or anyone else."
 
-Participants will also be told:
-> As you write, don’t worry about perfect grammar and spelling, and remember that anything you write will remain strictly confidential. Should an experimenter read this entry in the future, it will be identifiable only by a participant number and not by your name’. (Dang et al., 2025).
+Participants will also be told: \> As you write, don’t worry about perfect grammar and spelling, and remember that anything you write will remain strictly confidential. Should an experimenter read this entry in the future, it will be identifiable only by a participant number and not by your name’. (Dang et al., 2025).
+
+After they finish the intervention, they will be asked to fill out a questionnaire that asks them about their state positive affect, some demographic questions, and will be thanked for their participation in this study. Participants will be awarded research credits that can be applied to fulfill course research participation requirements or confer extra credit.
+
+## Measures
+
+### State Positive Affect
+
+Positive affect will be assessed the same way as in the original study. Using a 7 point likert-scale from (1) *strongly disagree* to (7) *strongly agree*, participants rated how much they agree with five adjectives: "happy," "joyful," "pleased," "content," and "satisfied" (Dang et al., 2025). The original study demonstrated really high internal consistency for this measures, McDonald's Omega = .95.[^1]
+
+[^1]: McDonald's Omega describes the proportion of variance in the indicators that is explained by a general latent factor compared to the overall amount of variance in the indicators with the highest score being 1. $\omega = \dfrac{\left(\sum_{i=1} ^k\lambda_i\right)^2}{\left(\sum_{i=1}^k\lambda_{i}\right)^2+\left(\sum_{i=1}^k\varepsilon_i\right)}$
+
+### State Gratitude 
+
+Using a 7 point likert-scale from (1) *strongly disagree* to (7) *strongly agree*, participants rated how much they agree with three adjectives: "grateful," "appreciative," and "thankful" (Dang et al., 2025). This scale likewise demonstrated good internal consistency in the original study, McDonald's Omega = .93.
+
+### Demographics
+
+Participants were asked questions about their age, gender, race, and ethnicity.
 
 ### Analysis Plan
+
 #### Statistical Software and Analyses
+
 For the data analysis, I will use the R programming language (R Core Team, 2026). Aligned with the power analysis for sample size, I will set the alpha threshold to $\alpha = .05$ and use the `t.test` function to compute the test statistic. This function will also output a Cohen's $d$. To calculate the Hedges' $g$ effect size, I will apply the Hedges correction $J(x)$ depending on the degrees of freedom that actually end up in the final analyses. Interestingly, the original study did not correct for multiple testing despite the enormous amount of pair-wise comparisons ($\alpha = .05$ was used across analyses). I will not need to worry about multiple testing in this case as I am only making one comparison/test.
 
 ### Differences from Original Study
+
 Key differences from the original study mainly include using SONA for data collection among UC San Diego undergraduates and only having 2 conditions as opposed to the 11 in the original study.
+
+# Results
+
+### Data Preparation
+
+Aligned with the Dang et al. (2025) paper analysis protocol, data will be analyzed without excluding participants to measure the intent-to-treat effect. Prior to running analyses, responses will be scanned for AI flags (viz., the gamma(125) AI catch). Participants that fail the AI check will be excluded entirely and be row-wise deleted. Individual responses will also be checked prior to dropping to ensure that responses did not actually contain that number for legitimate reasons.
+
+```
+library(dplyr)
+Tensor <- read_csv("")
+
+# Look at the rows that have these in there to drop
+Tensor <- Tensor[grepl("1.5", Tensor$COL), ]
+Tensor <- Tensor[grepl("15", Tensor$COL), ]
+
+# Drop the appropriate participant right here.
+```
+
+```{R}
+gamma(125)
+```
+
+## Confirmatory Analysis
+
+```
+MainEffect <- t.test(DV ~ Condition, data = Tensor)
+
+# Calulate Hedges' g using J(x) and Cohen's d
+```
+
+A $t$-test was computed to assess whether the average positive affect score differed between the gratitude letter and events list conditions, $t(df)=XX.XX$, $p <or = .XX$, Hedges' $g = GG.GG$. There was/was not a significant difference such that the \_\_\_\_\_\_ group had higher mean positive affect scores than the \_\_\_\_\_ group.
+
+### Exploratory Analyses
+
+Using latent factor scores for positive affect and gratitude, construct a mediation model that tests whether gratitude may be a putative mediator
+
+```         
+Syntax for SEM
+
+PA BY PA1 PA2 PA3 PA4 PA5
+GRAT BY GRAT1 GRAT2 GRAT3
+
+PA ON GRAT COND
+GRAT ON COND
+
+```
 
 <!--
 
@@ -239,8 +307,9 @@ Open the discussion section with a paragraph summarizing the primary result from
 
 Add open-ended commentary (if any) reflecting (a) insights from follow-up exploratory analysis, (b) assessment of the meaning of the replication (or not) - e.g., for a failure to replicate, are the differences between original and present study ones that definitely, plausibly, or are unlikely to have been moderators of the result, and (c) discussion of any objections or challenges raised by the current and original authors about the replication attempt. None of these need to be long.
 -->
-# References
-Ahn, E., & Kang, H. (2023). Intention-to-treat versus as-treated versus per-protocol approaches to analysis. *Korean Journal of Anesthesiology*, *76*(6), 531–539. <https://doi.org/10.4097/kja.23278>
+````
+
+\# References Ahn, E., & Kang, H. (2023). Intention-to-treat versus as-treated versus per-protocol approaches to analysis. *Korean Journal of Anesthesiology*, *76*(6), 531–539. <https://doi.org/10.4097/kja.23278>
 
 Cunha, L. F., Pellanda, L. C., & Reppold, C. T. (2019). Positive psychology and gratitude interventions: A randomized clinical trial. *Frontiers in Psychology*, *10*. https://doi.org/10.3389/fpsyg.2019.00584
 
