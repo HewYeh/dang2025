@@ -8,25 +8,19 @@ format:
     toc_depth: 3
 ---
 
-<!-- Replication reports should all use this template to standardize reporting across projects.  These reports will be public supplementary materials that accompany the summary report(s) of the aggregate results. -->
-
 ## Introduction
 
-<!-- \[No abstract is needed.\] Each replication project will have a straightforward, no frills report of the **study and results.** These reports will be publicly available as supplementary material for the aggregate report(s) of the project as a whole. Also, to maximize project integrity, the intro and methods will be written and critiqued in advance of data collection. **Introductions can be just 1-2 paragraphs clarifying the main idea of the original study, the target finding for replication, and any other essential information.** You will likely contact the authors of the original study, so this should be professional and forward facing. It will NOT have a literature review -- that is in the original publication. You can write both the introduction and the methods in past tense. -->
+Dang et al. (2025) sought to test 7 gratitude interventions that are used in positive psychology to improve subjective well-being. These interventions included intrapersonal, interpersonal, and gratitude-to-God interventions. While studies in the literature have examined these interventions before, such studies are heterogeneous in their selection of outcome measures for subjective well-being and only compare a few interventions against each other, making comparisons across excluded interventions difficult. By contrast, this study included a comprehensive battery of interventions and standardized outcome measures (i.e., state gratitude, state positive/negative affect, and life satisfaction). As a result, this experiment allows for a direct comparison between the efficacy of gratitude interventions and can inform what gratitude practices are most helpful for the general public to incorporate into their lives.
 
-<!--Here is going to be the 1 paragraph clarifying the main idea. + target finding -->
-
-Dang et al. (2026) sought to test 7 gratitude interventions that are used in positive psychology to improve subjective well-being. These interventions included intrapersonal, interpersonal, and gratitude-to-God interventions. A key strength of this experiment is that most studies in the past used different measures of subjective well-being and only compared a few of the interventions against each other which made it impossible to make comparisons across interventions. By contrast, by including a comprehensive battery of interventions and standardized outcome measures (i.e., state gratitude, state positive/negative affect, and life satisfaction), this experiment allows for a direct comparison between gratitude interventions and can inform gratitude practices for the general public to incorporate into their lives.
-
-In Study 1, it was found that writing a private gratitude letter was the most effective intervention in increasing positive affect. In this replication report, I want to replicate this finding and hope to find a similarly large Hedges' $g$ of around $.40$ when comparing this intervention to an active control in a student population. This will hopefully expand the generalizability of the study and offer a new technique for students to try to increase their well-being.
+In Study 1, Dang et al. (2025) found that writing a private gratitude letter was the most effective intervention in increasing positive affect. In this replication report, I wanted to replicate this finding and hoped to find a similarly large Hedges' $g$ of around $0.41$ when comparing this intervention to an active control. An important difference between this replication and the original study is that this effect was tested in a student population rather than US adults from Prolific. This was aimed to increase the generalizability of the original study and offer guidance for students to improve their well-being.
 
 ## Methods
 
 ### Power Analysis
 
-The key effect size for this replication (gratitude letter vs. events list) is Hedges' *g* = .41. Many power analysis programs only offer Cohen's *d* power estimates. With larger samples, the difference between Hedges' *g* and Cohen's *d* becomes minimal as the $J(x)$ correction factor applied to Cohen's *d* approaches 1 with large *n*. The conversion is as follows below:
+The key effect size for this replication (gratitude letter vs. events list) was a Hedges' $g = 0.41$. Hedges' $g$ can be thought of as a bias-corrected form of Cohen's $d$ which is used because Cohen's $d$ is upwardly biased (especially in small samples). While the Dang et al. (2025) study reported the unbiased Hedges' $g$, many power analysis programs only offer sample size estimates based on Cohen's $d$. With larger samples, the difference between Hedges' $g$ and Cohen's $d$ becomes minimal as the $J(x)$ correction factor applied to Cohen's $d$ approaches 1 with large $n$ . However, for the sake of precision, the Hedges' $g$ was converted to a Cohen's $d$ for the power/sample size analysis. The conversion is explained below:
 
-Using the Hedges' *g* to Cohen's *d* conversion, we can divide Hedges' $g$ by the $J(x)$ correction factor to recover Cohen's *d*, where $x=n_1+n_2-2$ for the correction factor $J$. In Study 1, both conditions had exactly $n=126$ participants, therefore $x = 126+126-2=250$.
+Using the Hedges' $g$ to Cohen's $d$ conversion, we can divide Hedges' $g$ by the $J(x)$ correction factor to recover Cohen's $d$, where $x=n_1+n_2-2$ for the correction factor $J(x)$. In Study 1, both conditions had exactly $n_1=n_2=126$ participants, therefore $x = 126+126-2=250$.
 
 $$
 \begin{aligned}
@@ -49,7 +43,7 @@ ComputedCohens_d = 0.41 * J_250
 ComputedCohens_d
 ```
 
-Now that we have the appropriate effect size of interest (`{r} ComputedCohens_d`), we can use the `pwr` package to do a power analysis and calculate the required sample size for 80%, 90%, and 95% power.
+Now that the Cohen's $d$ has been computed ($d$ = `{r} ComputedCohens_d`), we used the `pwr` package in R to perform a sample size analysis for 80%, 90%, and 95% power.
 
 ```{r}
 # Step 1: Set CRAN as the source to install `pwr`
@@ -106,7 +100,34 @@ Power95 = pwr.t.test(d = ComputedCohens_d,
 
 At an alpha level of .05, for 95% power, we are going to need `{r} Power95$n` participants per group. In total, that will be `{r} ceiling( 2 * Power95$n )` participants.
 
-<!-- Original effect size, power analysis for samples to achieve 80%, 90%, 95% power to detect that effect size. Considerations of feasibility for selecting planned sample size. -->
+
+### Planned Sample
+For a balance of power and practicality, we will aim for a minimum power level of 80% which will require 188 participants. (# This should be feasible in a sample of SONA students especially since mine is an online survey experiment that is less than 30 minutes.)
+
+The participant pool will be undergraduates from the University of California San Diego. There likely will be no adverse effects of the study. However, if any are reported by participants, data collection will be stopped. The original study used an intent-to-treat analysis which meant that they did not exclude any participants from the study. This is aimed to measure the generalizable real-world impact of an intervention and acknowledge that attrition and non-compliance are inseparable downstream effects of the intervention. Since this study is meant to inform real student populations, it is vital to understand the realistic intent-to-treat effect size as opposed to the effect size found in an artificially controlled setting. Thus, I opted to also use an intent-to-treat analysis technique.
+
+While we will not exclude human participants, we do not want to include bots or responses from LLMs and as a result, invisible white text will be added into the prompt in an attempt to catch AI responses. It will ask the participant to compute the result of gamma(125) and discretely put that result in the response (i.e., prompt injection). Responses that include the `{r} gamma(125)` will be row-wise deleted.
+
+### Materials
+Study materials include the jsPsych code used to run the experiment. Participants will also need access to a computer and an internet connection.
+
+### Procedure
+In the interest of replication, I will use the same instructions that were provided in the original study (Cunha et al., 2019; Dang et al., 2025; Emmons & McCullough, 2003; Walsh et al., 2022). Participants will be randomly assigned to two conditions and see the following directions:
+
+- **Control Group: Events List (Cunha et al. 2019):** "In life, there are events, both large and small, that end up affecting us. Think back over the past day and write down five events that somehow affected you."
+- **Experimental Condition: Gratitude Letter (Walsh et al., 2022):** "In our daily lives, we often thank people for both large and small things. However, it can sometimes be difficult to make time to express our gratitude more deeply. Today, we want you to write a letter of gratitude to someone who has done something for which you are extremely grateful. Please do not share your letter with this person or anyone else."
+
+Participants will also be told:
+> As you write, don’t worry about perfect grammar and spelling, and remember that anything you write will remain strictly confidential. Should an experimenter read this entry in the future, it will be identifiable only by a participant number and not by your name’. (Dang et al., 2025).
+
+### Analysis Plan
+#### Statistical Software and Analyses
+For the data analysis, I will use the R programming language (R Core Team, 2026). Aligned with the power analysis for sample size, I will set the alpha threshold to $\alpha = .05$ and use the `t.test` function to compute the test statistic. This function will also output a Cohen's $d$. To calculate the Hedges' $g$ effect size, I will apply the Hedges correction $J(x)$ depending on the degrees of freedom that actually end up in the final analyses. Interestingly, the original study did not correct for multiple testing despite the enormous amount of pair-wise comparisons ($\alpha = .05$ was used across analyses). I will not need to worry about multiple testing in this case as I am only making one comparison/test.
+
+### Differences from Original Study
+Key differences from the original study mainly include using SONA for data collection among UC San Diego undergraduates and only having 2 conditions as opposed to the 11 in the original study.
+
+<!--
 
 ::: callout-caution
 ### This Section Was From Earlier Checkpoint. Can Skip Over This.
@@ -132,17 +153,7 @@ The key test in this study is a independent samples *t*-test. The Hedges' *g* wi
 
 ### Reference List
 
-Ahn, E., & Kang, H. (2023). Intention-to-treat versus as-treated versus per-protocol approaches to analysis. *Korean Journal of Anesthesiology*, *76*(6), 531–539. <https://doi.org/10.4097/kja.23278>
 
-Cunha, L. F., Pellanda, L. C., & Reppold, C. T. (2019). Positive psychology and gratitude interventions: A randomized clinical trial. *Frontiers in Psychology*, *10*. https://doi.org/10.3389/fpsyg.2019.00584
-
-Dang, A. V., Coles, N. A., Oishi, S., & McCullough, M. E. f(2026). The efficacy of seven gratitude interventions for promoting subjective well-being. *The Journal of Positive Psychology*, *21*(3), 517–535. https://doi.org/10.1080/17439760.2025.2502483
-
-de Leeuw, J. R., Gilbert, R. A., & Luchterhandt, B. (2023). jsPsych: Enabling an open-source collaborative ecosystem of behavioral experiments. *Journal of Open Source Software*, *8*(85), Article 5351, <https://joss.theoj.org/papers/10.21105/joss.05351.>
-
-Emmons, R. A., & McCullough, M. E. (2003). Counting blessings versus burdens: An experimental investigation of gratitude and subjective well-being in daily life. *Journal of Personality & Social Psychology*, *84*(2), 377–389. https://doi.org/10.1037/0022-3514.84.2.377
-
-Walsh, L. C., Regan, A., Twenge, J. M., & Lyubomirsky, S. (2022). What is the optimal way to give thanks? comparing the effects of gratitude expressed privately, one-to-one via text, or publicly on social media. *Affective Science*, *4*(1), 82–91. https://doi.org/10.1007/s42761-022-00150-5
 
 # Learning Goals
 
@@ -226,4 +237,19 @@ Open the discussion section with a paragraph summarizing the primary result from
 
 ### Commentary
 
-Add open-ended commentary (if any) reflecting (a) insights from follow-up exploratory analysis, (b) assessment of the meaning of the replication (or not) - e.g., for a failure to replicate, are the differences between original and present study ones that definitely, plausibly, or are unlikely to have been moderators of the result, and (c) discussion of any objections or challenges raised by the current and original authors about the replication attempt. None of these need to be long.f
+Add open-ended commentary (if any) reflecting (a) insights from follow-up exploratory analysis, (b) assessment of the meaning of the replication (or not) - e.g., for a failure to replicate, are the differences between original and present study ones that definitely, plausibly, or are unlikely to have been moderators of the result, and (c) discussion of any objections or challenges raised by the current and original authors about the replication attempt. None of these need to be long.
+-->
+# References
+Ahn, E., & Kang, H. (2023). Intention-to-treat versus as-treated versus per-protocol approaches to analysis. *Korean Journal of Anesthesiology*, *76*(6), 531–539. <https://doi.org/10.4097/kja.23278>
+
+Cunha, L. F., Pellanda, L. C., & Reppold, C. T. (2019). Positive psychology and gratitude interventions: A randomized clinical trial. *Frontiers in Psychology*, *10*. https://doi.org/10.3389/fpsyg.2019.00584
+
+Dang, A. V., Coles, N. A., Oishi, S., & McCullough, M. E. f(2026). The efficacy of seven gratitude interventions for promoting subjective well-being. *The Journal of Positive Psychology*, *21*(3), 517–535. https://doi.org/10.1080/17439760.2025.2502483
+
+de Leeuw, J. R., Gilbert, R. A., & Luchterhandt, B. (2023). jsPsych: Enabling an open-source collaborative ecosystem of behavioral experiments. *Journal of Open Source Software*, *8*(85), Article 5351, <https://joss.theoj.org/papers/10.21105/joss.05351.>
+
+Emmons, R. A., & McCullough, M. E. (2003). Counting blessings versus burdens: An experimental investigation of gratitude and subjective well-being in daily life. *Journal of Personality & Social Psychology*, *84*(2), 377–389. https://doi.org/10.1037/0022-3514.84.2.377
+
+R Core Team. (2026). *R: A language and environment for statistical computing*. R Foundation for Statistical Computing. https://www.R-project.org/
+
+Walsh, L. C., Regan, A., Twenge, J. M., & Lyubomirsky, S. (2022). What is the optimal way to give thanks? comparing the effects of gratitude expressed privately, one-to-one via text, or publicly on social media. *Affective Science*, *4*(1), 82–91. https://doi.org/10.1007/s42761-022-00150-5
