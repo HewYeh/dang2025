@@ -108,6 +108,8 @@ The participant pool will be undergraduates from the University of California Sa
 
 While we will not exclude human participants, we do not want to include bots or responses from LLMs and as a result, invisible white text will be added into the prompt in an attempt to catch AI responses. It will ask the participant to compute the result of gamma(125) and discretely put that result in the response without decimal points (i.e., prompt injection). Responses that include the `{r} gamma(125)` will be row-wise deleted.
 
+Additionally, if a SONA sample is not possible for 188 people, we can use prolific instead. A way to increase our power would also be to have a prettest posttest design where we ask for state emotions before and after. This would allow us to compute the original effect and also compute the effect after regressing out prettest scores.
+
 ### Materials
 
 Study materials include the jsPsych code used to run the experiment. Participants will also need access to a computer and an internet connection.
@@ -127,7 +129,7 @@ After they finish the intervention, they will be asked to fill out a questionnai
 
 #### State Positive Affect
 
-Positive affect will be assessed the same way as in the original study. Using a 7 point likert-scale from (1) *strongly disagree* to (7) *strongly agree*, participants rated how much they agree with five adjectives: "happy," "joyful," "pleased," "content," and "satisfied" (Dang et al., 2025). The original study demonstrated really high internal consistency for this measures, McDonald's Omega = .95.[^1]
+Positive affect will be assessed the same way as in the original study. Using a 7 point likert-scale from (1) *strongly disagree* to (7) *strongly agree*, participants rated how much they agree with five adjectives: "happy," "joyful," "pleased," "content," and "satisfied" (Dang et al., 2025). The original study demonstrated really high internal consistency for this measures, McDonald's Omega = .95.[^1] Positive affect was chosen as one dimension of subjective well-being to measure; however, theoretically speaking, negative affect and overall life satisfaction are other key components to subjective well-being (Diener et al., 2022).
 
 [^1]: McDonald's Omega describes the proportion of variance in the indicators that is explained by a general latent factor compared to the overall amount of variance in the indicators with the highest score being 1. $\omega = \dfrac{\left(\sum_{i=1} ^k\lambda_i\right)^2}{\left(\sum_{i=1}^k\lambda_{i}\right)^2+\left(\sum_{i=1}^k\varepsilon_i\right)}$
 
@@ -328,6 +330,8 @@ Cunha, L. F., Pellanda, L. C., & Reppold, C. T. (2019). Positive psychology and 
 Dang, A. V., Coles, N. A., Oishi, S., & McCullough, M. E. f(2026). The efficacy of seven gratitude interventions for promoting subjective well-being. *The Journal of Positive Psychology*, *21*(3), 517–535. https://doi.org/10.1080/17439760.2025.2502483
 
 de Leeuw, J. R., Gilbert, R. A., & Luchterhandt, B. (2023). jsPsych: Enabling an open-source collaborative ecosystem of behavioral experiments. *Journal of Open Source Software*, *8*(85), Article 5351, <https://joss.theoj.org/papers/10.21105/joss.05351.>
+
+Diener, E., Oishi, S., & Lucas, R. E. (2002). Subjective well-being: The science of happiness and life satisfaction. *Handbook of Positive Psychology*, 463–473. <https://doi.org/10.1093/> oxfordhb/9780195187243.013.0017
 
 Emmons, R. A., & McCullough, M. E. (2003). Counting blessings versus burdens: An experimental investigation of gratitude and subjective well-being in daily life. *Journal of Personality & Social Psychology*, *84*(2), 377–389. https://doi.org/10.1037/0022-3514.84.2.377
 
