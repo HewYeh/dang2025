@@ -135,6 +135,8 @@ Positive affect will be assessed the same way as in the original study. Using a 
 
 Using a 7 point likert-scale from (1) *strongly disagree* to (7) *strongly agree*, participants rated how much they agree with three adjectives: "grateful," "appreciative," and "thankful" (Dang et al., 2025). This scale likewise demonstrated good internal consistency in the original study, McDonald's Omega = .93.
 
+Both state positive affect and state gratitude questions will be entered into a emotion response matrix that asks: "At this moment, to what degree are you feeling each of the following emotions? (1 to 7)" (Dang et al., 2025).
+
 #### Demographics
 
 Participants were asked questions about their age, gender, race, and ethnicity.
