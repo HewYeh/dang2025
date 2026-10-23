@@ -131,7 +131,7 @@ Positive affect will be assessed the same way as in the original study. Using a 
 
 [^1]: McDonald's Omega describes the proportion of variance in the indicators that is explained by a general latent factor compared to the overall amount of variance in the indicators with the highest score being 1. $\omega = \dfrac{\left(\sum_{i=1} ^k\lambda_i\right)^2}{\left(\sum_{i=1}^k\lambda_{i}\right)^2+\left(\sum_{i=1}^k\varepsilon_i\right)}$
 
-#### State Gratitude 
+#### State Gratitude
 
 Using a 7 point likert-scale from (1) *strongly disagree* to (7) *strongly agree*, participants rated how much they agree with three adjectives: "grateful," "appreciative," and "thankful" (Dang et al., 2025). This scale likewise demonstrated good internal consistency in the original study, McDonald's Omega = .93.
 
@@ -157,7 +157,7 @@ Key differences from the original study mainly include using SONA for data colle
 
 Aligned with the Dang et al. (2025) paper analysis protocol, data will be analyzed without excluding participants to measure the intent-to-treat effect. Prior to running analyses, responses will be scanned for AI flags (viz., the gamma(125) AI catch). Participants that fail the AI check will be excluded entirely and be row-wise deleted. Individual responses will also be checked prior to dropping to ensure that responses did not actually contain that number for legitimate reasons.
 
-```
+```         
 library(dplyr)
 Tensor <- read_csv("")
 
@@ -174,7 +174,7 @@ gamma(125)
 
 ### Confirmatory Analysis
 
-```
+```         
 MainEffect <- t.test(DV ~ Condition, data = Tensor)
 
 # Calulate Hedges' g using J(x) and Cohen's d
@@ -184,19 +184,25 @@ A $t$-test was computed to assess whether the average positive affect score diff
 
 ### Exploratory Analyses
 
-Using latent factor scores for positive affect and gratitude, construct a mediation model that tests whether gratitude may be a putative mediator.
+Using latent factor scores for positive affect and gratitude, construct a mediation model that tests whether gratitude may be a putative mediator and if this explains the effect beyond making someone feel more connected when writing a letter.
+
+![Proposed Structural Equation Model With Dual Putative Mediators. Measurement Paths are in Gray. Structural Paths are in Green.](PutativeMediation.png){fig-align="center"}
 
 ```         
 Syntax for SEM
 
-PA BY PA1 PA2 PA3 PA4 PA5
-GRAT BY GRAT1 GRAT2 GRAT3
+# Measurement 
+PA          BY PA1 PA2 PA3 PA4 PA5
+GRAT        BY GRAT1 GRAT2 GRAT3
+CONNECTION  BY ITEMS
 
-PA ON GRAT COND
-GRAT ON CONDf
-
+# Structural Regression
+PA          ON GRAT COND CONNECTION
+GRAT        ON COND
+CONNECTION  ON COND
 ```
 
+````{=html}
 <!--
 
 ::: callout-caution
@@ -309,6 +315,8 @@ Open the discussion section with a paragraph summarizing the primary result from
 
 Add open-ended commentary (if any) reflecting (a) insights from follow-up exploratory analysis, (b) assessment of the meaning of the replication (or not) - e.g., for a failure to replicate, are the differences between original and present study ones that definitely, plausibly, or are unlikely to have been moderators of the result, and (c) discussion of any objections or challenges raised by the current and original authors about the replication attempt. None of these need to be long.
 -->
+````
+
 # References
 
 Ahn, E., & Kang, H. (2023). Intention-to-treat versus as-treated versus per-protocol approaches to analysis. *Korean Journal of Anesthesiology*, *76*(6), 531–539. <https://doi.org/10.4097/kja.23278>
