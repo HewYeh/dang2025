@@ -172,7 +172,7 @@ Tensor <- Tensor[grepl("15", Tensor$COL), ]
 gamma(125)
 ```
 
-## Confirmatory Analysis
+### Confirmatory Analysis
 
 ```
 MainEffect <- t.test(DV ~ Condition, data = Tensor)
@@ -182,7 +182,7 @@ MainEffect <- t.test(DV ~ Condition, data = Tensor)
 
 A $t$-test was computed to assess whether the average positive affect score differed between the gratitude letter and events list conditions, $t(df)=XX.XX$, $p <or = .XX$, Hedges' $g = GG.GG$. There was/was not a significant difference such that the \_\_\_\_\_\_ group had higher mean positive affect scores than the \_\_\_\_\_ group.
 
-## Exploratory Analyses
+### Exploratory Analyses
 
 Using latent factor scores for positive affect and gratitude, construct a mediation model that tests whether gratitude may be a putative mediator.
 
