@@ -35,12 +35,47 @@
         type: jsPsychHtmlKeyboardResponse,
         stimulus: "Welcome to the study! We are happy you are here. Press any key to begin."
     }
+
+    var instructions = {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus:`<p>In the following screens, you will be asked some data about your age, race, gender, and ethnic backgorund. After that, you will be asked to respond to a open-ended prompt and respond to some other survey questions.
+            </p>`
+    }
+
+
+
+
+
+    
     // Add welcome trial to the timeline variable
     timeline.push(welcome)
-
+    timeline.push(instructions)
     // Start the experiment
     jsPsych.run(timeline);
 
 </script>
 
 </html>
+
+<!--   Welcome to this experiment! If you have questions about this study, please contact Hew Yeh (mayeh@ucsd.edu).
+
+            Project Description: Bria Long, PhD, and Hew Yeh, BS, are conducting a survey to look at ways of improving well-being.
+            You have been invited to participate in this study beacuse you are a UC San Diego student who is eligible to receive credits via the SONA system.
+            This project should take no more than 30 minutes to complete. We expect to collect data from roughly 200 participants.
+
+            What Will Happen: If you agree to participate, you will be taken to an anonymous site where you will be asked demogrpahical questions (e.g., race, ethnicity, gender, etc.). Then you will be asked a short series of questions.
+
+            Participation: If you choose to participate in this study, your participation is completely voluntary and you can choose to end the study or withdraw at any time by simply exiting the survey website.
+
+            Risks: I am not sure yet.
+
+            Confidentiality: All data is completely anonymous. We will not collect your name or any other identifiers (e.g., email, IP, etc.). Your data will be kept confidentially in a password-protected, encrypted computer in the HEAL Lab at UC San Diego. Only the lab director Karen Dobkins and her assistants will have access to the data files. Only aggregated results will be reported.
+            Some fields will be marked if you are able to type a response for brainstorming purposes but will not actually be saved.
+
+            If you would like more information about the precautionary measures taken to ensure that your data is anonymous and confidential, please contact mayeh@ucsd.edu.
+
+            Benefits: We anticipate that participants may gain knowledge.
+
+            Compensation: You will receive 0.5 credits for your participation.
+
+            Who to Contact With Questions: Questions can be directed -->
