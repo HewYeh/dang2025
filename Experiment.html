@@ -29,6 +29,9 @@
     // Initializing jsPsych
     var jsPsych = initJsPsych();
 
+    // Determine the Condition Randomly. Sample and form a list of 1 item. Pull the 0th item.
+    var ParticipantCondition = jsPsych.randomization.sampleWithoutReplacement(["EventList", "ExperimentalLetterWriting"], 1)[0];
+
     // Create Timeline
     var timeline = [];
 
@@ -55,10 +58,18 @@
             scale_width: 700
     };
 
-    var ExperimentalWriting = {
+    var ExperimentalLetterWriting = {
         type: jsPsychSurveyText,
         questions:[
             {prompt: "In our daily lives, we often thank people for both large and small things. However, it can sometimes be difficult to make time to express our gratitude more deeply. Today, we want you to write a letter of gratitude to someone who has done something for which you are extremely grateful. Please do not share your letter with this person or anyone else.", name: "GratitudeResponse", rows:10, columns:60, required:true}
+        ]
+
+    }
+
+    var EventList = {
+        type: jsPsychSurveyText,
+        questions:[
+            {prompt: "In life, there are events, both large and small, that end up affecting us. Think back over the past day and write down five events that somehow affected you.", name: "EventResponse", rows:10, columns:60, required:true}
         ]
 
     }
@@ -67,7 +78,13 @@
     timeline.push(welcome)
     timeline.push(instructions)
     timeline.push(PretestMood)
-    timeline.push(ExperimentalWriting)
+    if (ParticipantCondition == "ExperimentalLetterWriting"){
+        timeline.push(ExperimentalLetterWriting)
+    }
+    if (ParticipantCondition == "EventList"){
+        timeline.push(EventList)
+    }
+    
     
 
 
