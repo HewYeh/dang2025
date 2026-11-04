@@ -157,6 +157,22 @@ var subject_id = jsPsych.randomization.randomID(10);
         ], randomize_question_order:true, scale_width:700
     };
     
+    var LikertScale = ["Hardly Ever", "Some of the Time", "Often"]
+
+    var Lonely = {
+        type: jsPsychSurveyLikert,
+        preamble:"At this moment, to what degree are you feeling each of the following emotions?",
+        questions: [
+            {prompt: "Grateful", name:"Grateful", labels:LikertScale, required:true},
+            {prompt: "Appreciative", name:"Appreciative", labels:LikertScale, required:true},
+            {prompt: "Thankful", name:"Thankful", labels:LikertScale, required:true},
+            {prompt: "Happy", name:"Happy", labels:LikertScale, required:true},
+            {prompt: "Joyful", name:"Joyful", labels:LikertScale, required:true},
+            {prompt: "Pleased", name:"Pleased", labels:LikertScale, required:true},
+            {prompt: "Content", name:"Content", labels:LikertScale, required:true},
+            {prompt: "Satisfied", name:"Satisfied", labels:LikertScale, required:true}
+        ], randomize_question_order:true, scale_width:700
+    };  
 
     var AI_Captcha = {
         type: jsPsychSurveyText,
