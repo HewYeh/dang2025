@@ -157,20 +157,21 @@ var subject_id = jsPsych.randomization.randomID(10);
         ], randomize_question_order:true, scale_width:700
     };
     
-    var LikertScale = ["Hardly Ever", "Some of the Time", "Often"]
+    var LonelyLikertScale = ["Never", "Rarely", "Sometimes", "Often"]
 
-    var Lonely = {
+    // Items 3 and 6 are reverse coded
+    var UCLA_LonelinessScale_8 = {
         type: jsPsychSurveyLikert,
-        preamble:"At this moment, to what degree are you feeling each of the following emotions?",
+        preamble:"Click on the bubble to indicate how often each statement describes you",
         questions: [
-            {prompt: "Grateful", name:"Grateful", labels:LikertScale, required:true},
-            {prompt: "Appreciative", name:"Appreciative", labels:LikertScale, required:true},
-            {prompt: "Thankful", name:"Thankful", labels:LikertScale, required:true},
-            {prompt: "Happy", name:"Happy", labels:LikertScale, required:true},
-            {prompt: "Joyful", name:"Joyful", labels:LikertScale, required:true},
-            {prompt: "Pleased", name:"Pleased", labels:LikertScale, required:true},
-            {prompt: "Content", name:"Content", labels:LikertScale, required:true},
-            {prompt: "Satisfied", name:"Satisfied", labels:LikertScale, required:true}
+            {prompt: "I lack companionship", name:"UCLA1", labels:LonelyLikertScale, required:true},
+            {prompt: "There is no one I can turn to", name:"UCLA2", labels:LonelyLikertScale, required:true},
+            {prompt: "I am an outgoing person", name:"UCLA3", labels:LonelyLikertScale, required:true},
+            {prompt: "I feel left out", name:"UCLA4", labels:LonelyLikertScale, required:true},
+            {prompt: "I feel isolated from others", name:"UCLA5", labels:LonelyLikertScale, required:true},
+            {prompt: "I can find companionship when I want it", name:"UCLA6", labels:LonelyLikertScale, required:true},
+            {prompt: "I am unhappy being so withdrawn", name:"UCLA7", labels:LonelyLikertScale, required:true},
+            {prompt: "People are around me but not with me", name:"UCLA8", labels:LonelyLikertScale, required:true}
         ], randomize_question_order:true, scale_width:700
     };  
 
@@ -195,6 +196,7 @@ var subject_id = jsPsych.randomization.randomID(10);
     }
     
     timeline.push(PostTestPositiveAffectGratitudeEmotionMatrix)
+    timeline.push(UCLA_LonelinessScale_8)
     timeline.push(AI_Captcha)
     timeline.push(SONACredit)
 
