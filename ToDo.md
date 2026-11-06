@@ -1,0 +1,3 @@
+- [ ] Approval for Pilot A to begin data collection
+- [ ] Ensure that the responses for each measure are labeled so that you can actually analyze and reverse code the correct items for each latent variable
+- [ ] Make a data dictionary in a spreadsheet or something similar (Variable Name, Data Type, Description, Column Name).
