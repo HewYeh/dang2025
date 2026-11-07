@@ -94,10 +94,18 @@ By participating in this research you are indicating that you are at least 18 ye
           button_html: ['<button class="jspsych-btn btn-yes">%choice%</button>']
     };
 
-    var instructions = {
-        type: jsPsychHtmlKeyboardResponse,
-        stimulus: `<div style ="padding:40px; text-align:left; max-width:800px; margin: 0 auto"><p>In the following screens, you will be asked some data about your age, ethnoracial identity, and gender. After that, you will be asked to respond to a mixture of open-ended writing prompts and respond to some other survey questions. Press any key on your keyboard to begin.
-            </p></div>`
+    // var instructions = {
+    //     type: jsPsychHtmlKeyboardResponse,
+    //     stimulus: `<div style ="padding:40px; text-align:left; max-width:800px; margin: 0 auto"><p>In the following screens, you will be asked some data about your age, ethnoracial identity, and gender. After that, you will be asked to respond to a mixture of open-ended writing prompts and respond to some other survey questions. Press any key on your keyboard to begin.
+    //         </p></div>`
+
+    // Step 8: Instructions
+    var instructions {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: `<div style ="padding:40px; text-align:left; max-width:800px; margin: 0 auto"><p>In the following screens, you will be asked some data about your age, ethnoracial identity, and gender. After that, you will be asked to respond to a mixture of open-ended writing prompts and respond to some other survey questions.</p></div>`,
+          choices: ['Continue'],
+          button_html: ['<button class="jspsych-btn btn-yes">%choice%</button>']
+    
     }
 
     var Age = {
