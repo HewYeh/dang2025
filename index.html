@@ -71,7 +71,7 @@
     // Step 6: Welcome Message
     var Welcome = {
         type: jsPsychHtmlKeyboardResponse,
-        stimulus: "Welcome to the study! We are happy you are here. Press any key on your keyboard to begin."
+        stimulus: `<div style ="padding:40px; text-align:left; max-width:800px; margin: 0 auto">Welcome to the study! We are happy you are here. Press any key on your keyboard to begin.</div>`
     }
 
     // Step 7: Informed Consent
@@ -96,8 +96,8 @@ By participating in this research you are indicating that you are at least 18 ye
 
     var instructions = {
         type: jsPsychHtmlKeyboardResponse,
-        stimulus: `<p>In the following screens, you will be asked some data about your age, race, gender, and ethnic backgorund. After that, you will be asked to respond to a open-ended prompt and respond to some other survey questions. Press any key on your keyboard to begin.
-            </p>`
+        stimulus: `<div style ="padding:40px; text-align:left; max-width:800px; margin: 0 auto"><p>In the following screens, you will be asked some data about your age, ethnoracial identity, and gender. After that, you will be asked to respond to a mixture of open-ended writing prompts and respond to some other survey questions. Press any key on your keyboard to begin.
+            </p></div>`
     }
 
     var Age = {
