@@ -46,7 +46,10 @@
     // The only thing that was changed was the experiment_id to fit my ID from datapipe
     var jsPsych = initJsPsych({
         on_finish: function () {
+            // This on_finish was given to me by Mikka. HEW MAKE SURE YOU CHANGE THAT CREDIT TOKEN
             jsPsych.data.displayData();
+            window.location = "https://ucsd.sona-systems.com/webstudy_credit.aspx?experiment_id=3177&credit_token=cc999&survey_code="+id;
+            var id = jsPsych.data.getURLVariable('id');
         },
         extensions: [
             {
