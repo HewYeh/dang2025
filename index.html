@@ -3,7 +3,7 @@
 <!-- Credits
 - AI Transparency: Open AI's ChatGPT (GPT-6) (2026) and Gemini (2026) was used to verbally explain what the code does.
 - I used the Zettersten tutorial + Bria's data pipe tutorial.
-- Code has been written by me
+- Code has been written by me besides the functions noted that are written by Claude (2026).
 -->
 
 <head>
@@ -213,7 +213,16 @@ By participating in this research you are indicating that you are at least 18 ye
             { prompt: "I can find companionship when I want it", name: "UCLA6", labels: LonelyLikertScale, required: true },
             { prompt: "I am unhappy being so withdrawn", name: "UCLA7", labels: LonelyLikertScale, required: true },
             { prompt: "People are around me but not with me", name: "UCLA8", labels: LonelyLikertScale, required: true }
-        ], randomize_question_order: true, scale_width: 700
+        ], randomize_question_order: true, scale_width: 700,
+        // Claude Code wrote this on_finish function
+        on_finish: function(data) {
+            for (var name in data.response) {
+                data[name] = LonelyLikertScale[data.response[name]];
+        // Spread the response object into top-level columns
+        Object.assign(data, data.response);
+
+    }
+    }
     };
 
     var AI_Captcha = {
