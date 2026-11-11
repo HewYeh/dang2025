@@ -16,7 +16,7 @@ In Study 1, Dang et al. (2025) found that writing a private gratitude letter was
 
 ## Methods
 
-### Power Analysis for Key Confirmatory Test
+### Sample Size/Power Calculation for Key Confirmatory Test
 
 The original Dang et al. (2025) study compared post-test positive affect scores between a gratitude letter writing condition and an events list writing condition and obtained a Hedges' $g = 0.41$. This is the key effect we aim to replicate.
 
@@ -67,28 +67,29 @@ Power80 = pwr.t.test(d = ComputedCohens_d,
 
 At an alpha level of $\alpha =.05$, for 80% power ($1 - \beta = .80$), we are going to need `{r} round(Power80$n,0)` participants per group. In total, that will be `{r} ceiling( 2 * Power80$n )` participants.
 
-### Planned Sample
+For a balance of power and practicality, we will aim for a power level of at least 80% which will require 188 participants. An additional 10% margin will be collected in case of participant attrition for follow-up analyses which will result in collecting data until we reach `{r} ceiling(188*1.1)` participants. Considering that the study is an online survey experiment that takes less than 30 minutes, this should balance both practicality and statistical validity power concerns.
 
-For a balance of power and practicality, we will aim for a minimum power level of 80% which will require 188 participants. (# This should be feasible in a sample of SONA students especially since mine is an online survey experiment that is less than 30 minutes.)
+### Participants
 
-The participant pool will be undergraduates from the University of California San Diego. There likely will be no adverse effects of the study. However, if any are reported by participants, data collection will be stopped.
+The participant pool will be undergraduates from the University of California San Diego. There likely will be no adverse effects of the study. However, if any are reported by participants, data collection will be stopped immediately.
 
-While we will not exclude human participants, we do not want to include bots or responses from LLMs and as a result, invisible white text will be added into the prompt in an attempt to catch AI responses. It will ask the participant to compute the result of gamma(125) and discretely put that result in the response without decimal points (i.e., prompt injection). Responses that include the `{r} gamma(125)` will be row-wise deleted.
-
-Additionally, if a SONA sample is not possible for 188 people, we can use prolific instead. A way to increase our power would also be to have a prettest posttest design where we ask for state emotions before and after. This would allow us to compute the original effect and also compute the effect after regressing out prettest scores.
+While we will not exclude human participants, we do not want to include bots or responses from large language models, and artificial intelligence (AI) agents, and as a result, invisible white text will be added into the prompt in an attempt to catch AI responses. If a participant responds to this prompt, their data will be row-wise deleted.
 
 ### Materials
 
-Study materials include the jsPsych code used to run the experiment. Participants will also need access to a computer and an internet connection.
+Study materials include the jsPsych code used to run the experiment as well as the stimuli described below. Participants will also need access to a computer and an internet connection to complete the study.
 
 ### Procedure
 
-In the interest of replication, I will use the same instructions that were provided in the original study (Cunha et al., 2019; Dang et al., 2025; Emmons & McCullough, 2003; Walsh et al., 2022). Participants will be randomly assigned to two conditions and see the following directions:
+In the interest of replication, I will use the same instructions that were provided in the original study (Cunha et al., 2019; Dang et al., 2025; Emmons & McCullough, 2003; Walsh et al., 2022). Participants will be randomly assigned to two conditions and will see either of the following directions:
 
 - **Control Group: Events List (Cunha et al. 2019):** "In life, there are events, both large and small, that end up affecting us. Think back over the past day and write down five events that somehow affected you."
 - **Experimental Condition: Gratitude Letter (Walsh et al., 2022):** "In our daily lives, we often thank people for both large and small things. However, it can sometimes be difficult to make time to express our gratitude more deeply. Today, we want you to write a letter of gratitude to someone who has done something for which you are extremely grateful. Please do not share your letter with this person or anyone else."
 
-Participants will also be told: \> As you write, don’t worry about perfect grammar and spelling, and remember that anything you write will remain strictly confidential. Should an experimenter read this entry in the future, it will be identifiable only by a participant number and not by your name’. (Dang et al., 2025).
+Participants will also be told:
+\begin{quote}
+As you write, don’t worry about perfect grammar and spelling, and remember that anything you write will remain strictly confidential. Should an experimenter read this entry in the future, it will be identifiable only by a participant number and not by your name’. (Dang et al., 2025).
+\end{quote}
 
 After they finish the intervention, they will be asked to fill out a questionnaire that asks them about their state positive affect, some demographic questions, and will be thanked for their participation in this study. Participants will be awarded research credits that can be applied to fulfill course research participation requirements or confer extra credit.
 
@@ -173,122 +174,7 @@ GRAT        ON COND
 CONNECTION  ON COND
 ```
 
-````{=html}
-<!--
-
-::: callout-caution
-### This Section Was From Earlier Checkpoint. Can Skip Over This.
-
-***Relevance to Research Interests.*** In my personal research, I am interested in testing low-cost, accessible, and portable single-session interventions that can improve subjective well-being as well as uncover the mechanisms which underlie these changes to subjective well-being, particularly in student populations. Students represent a unique population with higher rates of depression and anxiety as well as potentially limited financial resources to seek help. My research seeks to thus find preventative practices that can be used to buffer against the stressors of big life changes, coursework, and future career uncertainty. This experiment by Dang et al. (2025) has found that privately writing a gratitude letter that does not get shared with anyone has a sizeable impact on subjective well-being across a variety of outcomes including increasing gratitude and positive affect, as well as reducing negative affect. Interventions such as these are precisely the kinds of interventions I hope to design, expand upon, and test due to its brevity and financial accessibility.
-:::
-
-***Description of Stimuli and Procedures/Challenges.*** The original Dang et al. (2025) experiment tested 7 different interventions; however, I am most interested in the effect that the gratitude letter (vs. writing an events list active control) has on state positive affect. There was a larger effect of the gratitude intervention when compared to only measuring state positive affect in the control (Hedges' *g* = .61); however, as Haoyu suggested, having an active control that would be able to control for the effects that writing may have on positive affect would strengthen our ability to conclude that it was the gratitude aspect of writing that letter than lead to increases in happiness. This effect (gratitude letter vs. writing a list of events) was smaller but still quite large (Hedges' *g* = .41).
-
-In the interest of replication, I will use the same instructions that were provided in the original study (Cunha et al., 2019; Dang et al., 2025; Emmons & McCullough, 2003; Walsh et al., 2022). Participants will be randomly assigned to two conditions and see the following directions:
-
-- **Control Group: Events List (Cunha et al. 2019):** "In life, there are events, both large and small, that end up affecting us. Think back over the past day and write down five events that somehow affected you."
-
-- **Experimental Condition: Gratitude Letter (Walsh et al., 2022):** "In our daily lives, we often thank people for both large and small things. However, it can sometimes be difficult to make time to express our gratitude more deeply. Today, we want you to write a letter of gratitude to someone who has done something for which you are extremely grateful. Please do not share your letter with this person or anyone else."
-
-Participants will also be told:
-
-> As you write, don’t worry about perfect grammar and spelling, and remember that anything you write will remain strictly confidential. Should an experimenter read this entry in the future, it will be identifiable only by a participant number and not by your name’. (Dang et al., 2025).
-
-Some potential challenges of replicating this study will be ensuring that participants actually complete the task, especially since data collection will occur online without supervision. To mitigate this, we will use `jsPsych` (de Leeuw et al., 2023) and prevent participants from using copy and paste functions. Of interesting note, the original Dang et al. (2025) study did not exclude any participants from their analyses which reflects an intent-to-treat analysis approach (Ahn & Kang, 2023) which analyzes the data under unideal circumstances including non-compliance to reflect real-world treatment effects. In the interest of strict replication, I will follow the same procedure. I also think this is more interesting because often times, these positive psychology interventions are aimed at a large scale population (e.g., public school administrators recommending these strategies to students). Thus, non-compliance due to the nature of the task actually is inseparable from the outcome associated with the intervention. Simply analyzing the treatment effect under ideal conditions will hide these potential outcomes.
-
-The key test in this study is a independent samples *t*-test. The Hedges' *g* will be a follow-up effect size calculation.
-
-### Reference List
-
-
-
-# Learning Goals
-
-Through this project, I hope to learn how to use jsPsych and SONA for data collection as well as get more familiarity with using Quarto to write academic reports. I also want to learn how to use R more (which I have begun to get better at since I have used it already in the power section). I think that this is a feasible project assuming that SONA has a sufficient amount of students because I have done similar projects in the past in undergrad (with less participants and no coding of the stimuli or data analysis) and those were completed quite reasonably fast.
-
-I also hope this project will give me another experience with pre-registering hypotheses and making my analysis scripts/data open (I will completely redact people's lists and letters that they write, though).
-
-*\*\*\*\**
-
-## Methods
-
-### Power Analysis
-
-### Planned Sample
-
-Aligned with the original study, we will analyze as an intent to treat and therefore not exclude participants. Aiming for 80% power, we will aim for 188 total participants with complete data. This should balance power and feasibility of collecting data.
-
-### Materials
-
-All materials - can quote directly from original article - just put the text in quotations and note that this was followed precisely. Or, quote directly and just point out exceptions to what was described in the original article.
-
-### Procedure
-
-Can quote directly from original article - just put the text in quotations and note that this was followed precisely. Or, quote directly and just point out exceptions to what was described in the original article.
-
-### Analysis Plan
-
-Can also quote directly, though it is less often spelled out effectively for an analysis strategy section. The key is to report an analysis strategy that is as close to the original - data cleaning rules, data exclusion rules, covariates, etc. - as possible.
-
-**Clarify key analysis of interest here** You can also pre-specify additional analyses you plan to do.
-
-### Differences from Original Study
-
-Explicitly describe known differences in sample, setting, procedure, and analysis plan from original study. The goal, of course, is to minimize those differences, but differences will inevitably occur. Also, note whether such differences are anticipated to make a difference based on claims in the original article or subsequent published research on the conditions for obtaining the effect.
-
-### Methods Addendum (Post Data Collection)
-
-You can comment this section out prior to final report with data collection.
-
-#### Actual Sample
-
-Sample size, demographics, data exclusions based on rules spelled out in analysis plan
-
-#### Differences from pre-data collection methods plan
-
-Any differences from what was described as the original plan, or “none”.
-
-## Results
-
-### Data preparation
-
-Data preparation following the analysis plan.
-
-```{r include=F}
-### Data Preparation
-
-#### Load Relevant Libraries and Functions
-
-#### Import data
-
-#### Data exclusion / filtering
-
-#### Prepare data for analysis - create columns etc.
-```
-
-### Confirmatory analysis
-
-The analyses as specified in the analysis plan.
-
-*Side-by-side graph with original graph is ideal here*
-
-### Exploratory analyses
-
-Any follow-up analyses desired (not required).
-
-## Discussion
-
-### Summary of Replication Attempt
-
-Open the discussion section with a paragraph summarizing the primary result from the confirmatory analysis and the assessment of whether it replicated, partially replicated, or failed to replicate the original result.
-
-### Commentary
-
-Add open-ended commentary (if any) reflecting (a) insights from follow-up exploratory analysis, (b) assessment of the meaning of the replication (or not) - e.g., for a failure to replicate, are the differences between original and present study ones that definitely, plausibly, or are unlikely to have been moderators of the result, and (c) discussion of any objections or challenges raised by the current and original authors about the replication attempt. None of these need to be long.
--->
-````
-
-# References
+## References
 
 Ahn, E., & Kang, H. (2023). Intention-to-treat versus as-treated versus per-protocol approaches to analysis. *Korean Journal of Anesthesiology*, *76*(6), 531–539. <https://doi.org/10.4097/kja.23278>
 
