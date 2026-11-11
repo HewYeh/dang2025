@@ -302,6 +302,10 @@ Diener, E., Oishi, S., & Lucas, R. E. (2002). Subjective well-being: The science
 
 Emmons, R. A., & McCullough, M. E. (2003). Counting blessings versus burdens: An experimental investigation of gratitude and subjective well-being in daily life. *Journal of Personality & Social Psychology*, *84*(2), 377–389. https://doi.org/10.1037/0022-3514.84.2.377
 
+Hedges, L. V. (1981). Distribution theory for Glass's estimator of effect size and related estimators. *Journal of Educational Statistics*, *6*(2), 107–128. https://doi.org/10.2307/1164588
+
+Hedges L. V. (2025). Effect sizes for experimental research. *The British Journal of Mathematical and Statistical Psychology*, *79*(1), 31–45. https://doi.org/10.1111/bmsp.12389
+
 Liu, X. S. (2024). Bias correction for Cohen's *d*. *The Journal of General Psychology*, *151*(1), 54–62. https://doi.org/10.1080/00221309.2023.2172545
 
 R Core Team. (2026). *R: A language and environment for statistical computing*. R Foundation for Statistical Computing. https://www.R-project.org/
