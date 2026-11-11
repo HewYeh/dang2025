@@ -10,17 +10,21 @@ format:
 
 ## Introduction
 
-Dang et al. (2025) sought to test 7 gratitude interventions that are used in positive psychology to improve subjective well-being. These interventions included intrapersonal, interpersonal, and gratitude-to-God interventions. While studies in the literature have examined these interventions before, such studies are heterogeneous in their selection of outcome measures for subjective well-being and only compare a few interventions against each other, making comparisons across excluded interventions difficult. By contrast, this study included a comprehensive battery of interventions and standardized outcome measures (i.e., state gratitude, state positive/negative affect, and life satisfaction). As a result, this experiment allows for a direct comparison between the efficacy of gratitude interventions and can inform what gratitude practices are most helpful for the general public to incorporate into their lives.
+Dang et al. (2025) sought to test 7 gratitude interventions that are used in positive psychology to improve subjective well-being. These interventions included intrapersonal, interpersonal, and gratitude-to-God interventions. While studies in the literature have examined these interventions before, such studies are heterogeneous in their selection of outcome measures for subjective well-being and only compare a few interventions against each other, making comparisons across excluded interventions difficult. By contrast, this study included a comprehensive battery of interventions and standardized outcome measures (i.e., state gratitude, state positive/negative affect, and life satisfaction). As a result, this experiment allows for a direct comparison of efficacy between the gratitude interventions and can inform what gratitude practices are most helpful for the general public to incorporate into their lives.
 
-In Study 1, Dang et al. (2025) found that writing a private gratitude letter was the most effective intervention in increasing positive affect. In this replication report, I wanted to replicate this finding and hoped to find a similarly large Hedges' $g$ of around $0.41$ when comparing this intervention to an active control. An important difference between this replication and the original study is that this effect was tested in a student population rather than US adults from Prolific. This was aimed to increase the generalizability of the original study and offer guidance for students to improve their well-being.
+In Study 1, Dang et al. (2025) found that writing a private gratitude letter was the most effective intervention in increasing positive affect. In this replication report, I wanted to replicate this finding and hoped to find a similarly large Hedges' $g$ of around $0.41$ when comparing this intervention to an active control. This replication study differs because we will test this effect in a student population as opposed to US adults from Prolific. This is aimed to increase the generalizability of the original study and offer guidance for students to improve their well-being. Furthermore, in case these interpersonal interventions caused increases to well-being because it reduces loneliness (rather than just improving gratitude), we also measure loneliness to include as a covariate to isolate the unique effect that gratitude has on improving well-being.
 
 ## Methods
 
-### Power Analysis
+### Power Analysis for Key Confirmatory Test
 
-The key effect size for this replication (gratitude letter vs. events list) was a Hedges' $g = 0.41$. Hedges' $g$ can be thought of as a bias-corrected form of Cohen's $d$ which is used because Cohen's $d$ is upwardly biased (especially in small samples). While the Dang et al. (2025) study reported the unbiased Hedges' $g$, many power analysis programs only offer sample size estimates based on Cohen's $d$. With larger samples, the difference between Hedges' $g$ and Cohen's $d$ becomes minimal as the $J(x)$ correction factor applied to Cohen's $d$ approaches 1 with large $n$ . However, for the sake of precision, the Hedges' $g$ was converted to a Cohen's $d$ for the power/sample size analysis. The conversion is explained below:
+The original Dang et al. (2025) study compared post-test positive affect scores between a gratitude letter writing condition and an events list writing condition and obtained a Hedges' $g = 0.41$. This is the key effect we aim to replicate.
 
-Using the Hedges' $g$ to Cohen's $d$ conversion, we can divide Hedges' $g$ by the $J(x)$ correction factor to recover Cohen's $d$, where $x=n_1+n_2-2$ for the correction factor $J(x)$. In Study 1, both conditions had exactly $n_1=n_2=126$ participants, therefore $x = 126+126-2=250$.
+Hedges' $g$ can be thought of as a bias-corrected form of Cohen's $d$ because Cohen's $d$ is upwardly biased (especially in small samples; Hedges, 2025; Liu, 2024). While the Dang et al. (2025) study reported the unbiased Hedges' $g$, many power analysis programs only offer sample size estimates based on Cohen's $d$. With larger samples, the difference between Hedges' $g$ and Cohen's $d$ becomes minimal as the $J(x)$ correction factor applied to Cohen's $d$ approaches 1 with large $n$ (Hedges, 1981, pp. 112–115)[^1]. However, for the sake of precision, the Hedges' $g$ was converted to a Cohen's $d$ for the power/sample size analysis. The conversion is explained below:
+
+[^1]: $J(x)$ is denoted as $c(m)$ in Hedges (1981).
+
+Because $g$ is the product of $J(x)\cdot d$, we can divide Hedges' $g$ by the $J(x)$ correction factor to recover Cohen's $d$, where $x=n_1+n_2-2$ for the correction factor $J(x)$. In Dang et al. (2025) Study 1, both conditions had exactly $n_1=n_2=126$ participants, therefore $x = 126+126-2=250$.
 
 $$
 \begin{aligned}
@@ -33,19 +37,17 @@ d&=g\times
 $$
 
 ```{r}
-# Calculate Correction Factor
+# Calculate Correction Factor and Assign it to J_250
 J_250 <- sqrt(125) * gamma(124.5) / gamma(125)
-J_250
+
+# Multiply g = 0.41 by the J(250) correction factor
+ComputedCohens_d <- 0.41 * J_250
 ```
 
-```{r}
-ComputedCohens_d = 0.41 * J_250
-ComputedCohens_d
-```
-
-Now that the Cohen's $d$ has been computed ($d$ = `{r} ComputedCohens_d`), we used the `pwr` package in R to perform a sample size analysis for 80%, 90%, and 95% power.
+Now that the Cohen's $d$ has been computed ($d$ = `{r} round(ComputedCohens_d, digits = 3)`...), we used the `pwr` package in R to perform a sample size analysis for 80% power.
 
 ```{r}
+#| output: false
 # Step 1: Set CRAN as the source to install `pwr`
 options(repos = c(CRAN = "https://cloud.r-project.org"))
 
@@ -54,11 +56,8 @@ install.packages("pwr")
 
 # Step 3: Load `pwr` into the current session
 library(pwr)
-```
 
-#### 80% Power
-
-```{r}
+# Step 4: Calculate Power
 Power80 = pwr.t.test(d = ComputedCohens_d,
            sig.level = .05,
            power = .80,
@@ -66,39 +65,7 @@ Power80 = pwr.t.test(d = ComputedCohens_d,
            alternative = "two.sided")
 ```
 
-```{r}
-Power80$n
-```
-
-At an alpha level of .05, for 80% power, we are going to need `{r} Power80$n` participants per group. In total, that will be `{r} ceiling( 2 * Power80$n )` participants.
-
-#### 90% Power
-
-```{r}
-Power90 = pwr.t.test(d = ComputedCohens_d,
-           sig.level = .05,
-           power = .90,
-           type = "two.sample",
-           alternative = "two.sided")
-```
-
-```{r}
-Power90$n
-```
-
-At an alpha level of .05, for 90% power, we are going to need `{r} Power90$n` participants per group. In total, that will be `{r} ceiling( 2 * Power90$n )` participants.
-
-#### 95% Power
-
-```{r}
-Power95 = pwr.t.test(d = ComputedCohens_d,
-           sig.level = .05,
-           power = .95,
-           type = "two.sample",
-           alternative = "two.sided")
-```
-
-At an alpha level of .05, for 95% power, we are going to need `{r} Power95$n` participants per group. In total, that will be `{r} ceiling( 2 * Power95$n )` participants.
+At an alpha level of $\alpha =.05$, for 80% power ($1 - \beta = .80$), we are going to need `{r} round(Power80$n,0)` participants per group. In total, that will be `{r} ceiling( 2 * Power80$n )` participants.
 
 ### Planned Sample
 
@@ -129,9 +96,9 @@ After they finish the intervention, they will be asked to fill out a questionnai
 
 #### State Positive Affect
 
-Positive affect will be assessed the same way as in the original study. Using a 7 point likert-scale from (1) *strongly disagree* to (7) *strongly agree*, participants rated how much they agree with five adjectives: "happy," "joyful," "pleased," "content," and "satisfied" (Dang et al., 2025). The original study demonstrated really high internal consistency for this measures, McDonald's Omega = .95.[^1] Positive affect was chosen as one dimension of subjective well-being to measure; however, theoretically speaking, negative affect and overall life satisfaction are other key components to subjective well-being (Diener et al., 2022).
+Positive affect will be assessed the same way as in the original study. Using a 7 point likert-scale from (1) *strongly disagree* to (7) *strongly agree*, participants rated how much they agree with five adjectives: "happy," "joyful," "pleased," "content," and "satisfied" (Dang et al., 2025). The original study demonstrated really high internal consistency for this measures, McDonald's Omega = .95.[^2] Positive affect was chosen as one dimension of subjective well-being to measure; however, theoretically speaking, negative affect and overall life satisfaction are other key components to subjective well-being (Diener et al., 2022).
 
-[^1]: McDonald's Omega describes the proportion of variance in the indicators that is explained by a general latent factor compared to the overall amount of variance in the indicators with the highest score being 1. $\omega = \dfrac{\left(\sum_{i=1} ^k\lambda_i\right)^2}{\left(\sum_{i=1}^k\lambda_{i}\right)^2+\left(\sum_{i=1}^k\varepsilon_i\right)}$
+[^2]: McDonald's Omega describes the proportion of variance in the indicators that is explained by a general latent factor compared to the overall amount of variance in the indicators with the highest score being 1. $\omega = \dfrac{\left(\sum_{i=1} ^k\lambda_i\right)^2}{\left(\sum_{i=1}^k\lambda_{i}\right)^2+\left(\sum_{i=1}^k\varepsilon_i\right)}$
 
 #### State Gratitude
 
@@ -334,6 +301,8 @@ de Leeuw, J. R., Gilbert, R. A., & Luchterhandt, B. (2023). jsPsych: Enabling an
 Diener, E., Oishi, S., & Lucas, R. E. (2002). Subjective well-being: The science of happiness and life satisfaction. *Handbook of Positive Psychology*, 463–473. <https://doi.org/10.1093/> oxfordhb/9780195187243.013.0017
 
 Emmons, R. A., & McCullough, M. E. (2003). Counting blessings versus burdens: An experimental investigation of gratitude and subjective well-being in daily life. *Journal of Personality & Social Psychology*, *84*(2), 377–389. https://doi.org/10.1037/0022-3514.84.2.377
+
+Liu, X. S. (2024). Bias correction for Cohen's *d*. *The Journal of General Psychology*, *151*(1), 54–62. https://doi.org/10.1080/00221309.2023.2172545
 
 R Core Team. (2026). *R: A language and environment for statistical computing*. R Foundation for Statistical Computing. https://www.R-project.org/
 
