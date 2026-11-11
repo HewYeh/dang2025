@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 <!-- Credits
-- AI Transparency: Open AI's ChatGPT (GPT-6) (2026) and Gemini (2026) was used to verbally explain what the code does.
-- I used the Zettersten tutorial + Bria's data pipe tutorial.
-- Code has been written by me besides the functions noted that are written by Claude (2026).
+- AI Transparency: Open AI's ChatGPT (GPT-6; 2026), Google's Gemini (2026; via Google Search), and Anthropic's Claude Sonnet 5.5 Medium (2026) were used to assist in debugging.
+- The base code for the HTML document formatting, initializing jsPsych, and initializing/running the timeline were from Dr. Martin Zettersten's jsPsych Tutorial.
+- Additional code was provided from Dr. Bria Long to connect the data to DataPipe.
+- Thank you to Mikka Hoffman for assisting with connecting my experiment to SONA.
 -->
 
 <head>
-    <title>Well-Being Intervention Replication Study (Dang et al., 2025)</title>
+    <title>Writing Study</title>
     <!--Load in the jsPsych Scripts. Scripts are needed so that the HTML content can change and respond to the user.-->
     <script src="https://unpkg.com/jspsych@8.0.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@2.0.0"></script>
@@ -34,10 +35,10 @@
     // Similar to a constructor but this is a func that returns an object rather than creating
     // an instance of a class
     // --------------------------------------------------------------------------------
-    //var jsPsych = initJsPsych()
     
-    // Initialize jsPsych Experiment Manager
+    // Step 1: Initialize jsPsych Experiment Manager; Connect to Data Pipe; Connect to SONA
     var jsPsych = initJsPsych({
+        // Code from Dr. Bria Long which sends our data through DataPipe to Google Drive
         extensions: [
             {
                 type: jsPsychExtensionPipe,
@@ -49,72 +50,73 @@
                 }
             }
         ],
+        // Mikka Hoffman assisted with this on_finish function to get it working with SONA
         on_finish: function () {
-            // Thank you to Mikka Hoffman for helping with connecting SONA to my study
             window.location = "https://ucsd.sona-systems.com/webstudy_credit.aspx?experiment_id=3182&credit_token=b4554c86513346c3a56462a33f7b60e1&survey_code=" + id;
         },
     });
     
+    // Step 2: Get the SONA ID from the URL that will be used for the on_finish function
     var id = jsPsych.data.getURLVariable('id');
+
+    // Step 3: Create a random ID which will be used to name the file when saved via datapipe (See Step 1 extensions)
     var subject_id = jsPsych.randomization.randomID(10);
     
 
-    // Step 2: Initialize the empty timeline (array that contains events) so we can push to here
+    // Step 4: Initialize empty array to serve as our timeline; You can then use timeline.push() to add events to the timeline
     var timeline = [];
     
-    // Step 5: Randomly Assign Condition
-    // Sample and form a list of 1 item. Pull the 0th item.
+    // Step 5: Randomly Assign Condition; From the two options, select 1 sample and form a list. Pull the 0th item from the list.
     var ParticipantCondition = jsPsych.randomization.sampleWithoutReplacement(["EventList", "ExperimentalLetterWriting"], 1)[0];
 
-    // Step 6: Welcome Message
+    
+    // Step 6: Informed Consent
+    var InformedConsent = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: `<div style ="padding:40px; text-align:left; max-width:800px; margin: 0 auto">
+            <h1>Welcome!</h1>
+            <p>You are being invited to participate in a research study titled “Reproducibility of Psychological Science and Instruction.” This study is being done by Dr. Bria Long from UC San Diego and associated graduate students in Experimental Methods course. You were selected to participate in this study because you are an adult in the U.S. and have been a represented population in previous psychology studies.<br><br>
+                
+                The purpose of this study is to better understand how well previously published studies in the psychological field replicate online and with different populations. Your participation in this research should last approximately 5-30 minutes  If you agree to take part in this study, you may be asked to view a set of stimuli, including pictures, sounds, written text, or videos and then giving some responses via key-presses, verbally, or with paper-and-pencil. We may also observe your choices or preferences among an array of stimuli.  These stimuli will be taken directly from or closely adapted from studies that already exist in the published psychological literature. Stimuli will include, e.g., pictures of objects and human faces, audio and video clips, short text passages, etc. None of the stimuli will be disturbing, threatening, or offensive. The online and in-person experiments described in this protocol will take no more than 30 minutes. An example game you might play would be to click on an image on the screen that matches a word you hear being said out loud. Your total expected time commitment for this study is between 5-30 minutes, and is specified in the study description.<br><br>
+                
+                Your participation in this study is completely voluntary and you can withdraw at any time. Choosing not to participate or withdrawing will result in no penalty or loss of benefits to which you are entitled. You are free to skip any question that you choose.<br><br>
+                
+                We will not be asking for any personally identifying information, and we will handle responses as confidentially as possible. Your SONA or Prolific IDs will never be tied to your responses on this survey. However, we cannot guarantee the confidentiality of information transmitted over the Internet. To minimize this risk, data containing anything that might be personally identifiable (e.g. Prolific IDs or IP addresses) will be encrypted on transfer and storage and will only be accessible to qualified lab personnel. We will be keeping data collected as part of this experiment indefinitely. This anonymized data (containing neither Prolific IDs nor IP addresses) may be shared with the scientific community or with other participants to be used as stimuli in future studies.<br><br>
+                
+                If you have questions about this project or if you have a research-related problem, you may contact the researcher(s),  Dr. Bria Long, brlong@ucsd.edu. If you have any questions concerning your rights as a research subject, you may contact the UC San Diego Office of IRB Administration at irb@ucsd.edu or 858-246-4777.<br><br>
+                
+                By participating in this research you are indicating that you are at least 18 years old, have read this consent form, and agree to participate in this research study. Please keep this consent form for your records.</p></div>`,
+                choices: ['I Agree'],
+                button_html: ['<button class="jspsych-btn btn-yes">%choice%</button>']
+            };
+
+            
+    // Step 7: Create Welcome Message
     var Welcome = {
         type: jsPsychHtmlKeyboardResponse,
         stimulus: `<div style ="padding:40px; text-align:left; max-width:800px; margin: 0 auto">Welcome to the study! We are happy you are here. Press any key on your keyboard to begin.</div>`
     }
 
-    // Step 7: Informed Consent
-    var InformedConsent = {
-          type: jsPsychHtmlButtonResponse,
-          stimulus: `<div style ="padding:40px; text-align:left; max-width:800px; margin: 0 auto">
-            <h1>Welcome!</h1>
-            <p>You are being invited to participate in a research study titled “Reproducibility of Psychological Science and Instruction.” This study is being done by Dr. Bria Long from UC San Diego and associated graduate students in Experimental Methods course. You were selected to participate in this study because you are an adult in the U.S. and have been a represented population in previous psychology studies.<br><br>
-
-The purpose of this study is to better understand how well previously published studies in the psychological field replicate online and with different populations. Your participation in this research should last approximately 5-30 minutes  If you agree to take part in this study, you may be asked to view a set of stimuli, including pictures, sounds, written text, or videos and then giving some responses via key-presses, verbally, or with paper-and-pencil. We may also observe your choices or preferences among an array of stimuli.  These stimuli will be taken directly from or closely adapted from studies that already exist in the published psychological literature. Stimuli will include, e.g., pictures of objects and human faces, audio and video clips, short text passages, etc. None of the stimuli will be disturbing, threatening, or offensive. The online and in-person experiments described in this protocol will take no more than 30 minutes. An example game you might play would be to click on an image on the screen that matches a word you hear being said out loud. Your total expected time commitment for this study is between 5-30 minutes, and is specified in the study description.<br><br>
-
-Your participation in this study is completely voluntary and you can withdraw at any time. Choosing not to participate or withdrawing will result in no penalty or loss of benefits to which you are entitled. You are free to skip any question that you choose.<br><br>
-
-We will not be asking for any personally identifying information, and we will handle responses as confidentially as possible. Your SONA or Prolific IDs will never be tied to your responses on this survey. However, we cannot guarantee the confidentiality of information transmitted over the Internet. To minimize this risk, data containing anything that might be personally identifiable (e.g. Prolific IDs or IP addresses) will be encrypted on transfer and storage and will only be accessible to qualified lab personnel. We will be keeping data collected as part of this experiment indefinitely. This anonymized data (containing neither Prolific IDs nor IP addresses) may be shared with the scientific community or with other participants to be used as stimuli in future studies.<br><br>
-
-If you have questions about this project or if you have a research-related problem, you may contact the researcher(s),  Dr. Bria Long, brlong@ucsd.edu. If you have any questions concerning your rights as a research subject, you may contact the UC San Diego Office of IRB Administration at irb@ucsd.edu or 858-246-4777.<br><br>
-
-By participating in this research you are indicating that you are at least 18 years old, have read this consent form, and agree to participate in this research study. Please keep this consent form for your records.</p></div>`,
-          choices: ['I Agree'],
-          button_html: ['<button class="jspsych-btn btn-yes">%choice%</button>']
-    };
-
-    // var instructions = {
-    //     type: jsPsychHtmlKeyboardResponse,
-    //     stimulus: `<div style ="padding:40px; text-align:left; max-width:800px; margin: 0 auto"><p>In the following screens, you will be asked some data about your age, ethnoracial identity, and gender. After that, you will be asked to respond to a mixture of open-ended writing prompts and respond to some other survey questions. Press any key on your keyboard to begin.
-    //         </p></div>`
-
     // Step 8: Instructions
     var instructions = {
         type: jsPsychHtmlButtonResponse,
         stimulus: `<div style ="padding:40px; text-align:left; max-width:800px; margin: 0 auto">
-        <p>In the following screens, you will be asked some data about your age, ethnoracial identity, and gender. After that, you will be asked to respond to a mixture of open-ended writing prompts and respond to some other survey questions.
+        <p>In the following screens, you will be asked to respond about your age, gender identity, and racial identity. After that, you will be asked to respond to a mixture of likert-scale survey questions and open-ended writing prompts.
         </p></div>`,
           choices: ['Continue'],
           button_html: ['<button class="jspsych-btn btn-yes">%choice%</button>']
     
     };
 
+    // Step 9: Age
     var Age = {
         type: jsPsychSurveyText,
         questions: [
             { prompt: "Please enter your age (in years).", name: "Age", rows: 5, columns: 50, required: true }
         ]
     }
-
+    
+    // Step 10: RacialEthnic Identity
     var RacialEthnic = {
         type: jsPsychSurvey,
         survey_json: {
@@ -130,6 +132,7 @@ By participating in this research you are indicating that you are at least 18 ye
         }
     };
 
+    //Step 11: Gender
     var Gender = {
         type: jsPsychSurvey,
         survey_json: {
@@ -205,7 +208,7 @@ By participating in this research you are indicating that you are at least 18 ye
             { prompt: "I am unhappy being so withdrawn", name: "UCLA7", labels: LonelyLikertScale, required: true },
             { prompt: "People are around me but not with me", name: "UCLA8", labels: LonelyLikertScale, required: true }
         ], randomize_question_order: true, scale_width: 700,
-        // Claude Code wrote this on_finish function
+        // This function for on_finish was written by Claude
         on_finish: function(data) {
             for (var name in data.response) {
                 data[name] = LonelyLikertScale[data.response[name]];
@@ -236,14 +239,9 @@ By participating in this research you are indicating that you are at least 18 ye
     if (ParticipantCondition == "EventList") {
         timeline.push(EventList)
     }
-
-    timeline.push(UCLA_LonelinessScale_8)
     timeline.push(PostTestPositiveAffectGratitudeEmotionMatrix)
+    timeline.push(UCLA_LonelinessScale_8)
     timeline.push(AI_Captcha)
-
-
-
-
 
     // Start the experiment
     jsPsych.run(timeline);
