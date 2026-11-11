@@ -35,6 +35,8 @@
     // an instance of a class
     // --------------------------------------------------------------------------------
     
+    // Step 1: Create Random Subject ID
+    var subject_id = jsPsych.randomization.randomID(10);
     
     // Initialize jsPsych Experiment Manager
     var jsPsych = initJsPsych({
@@ -56,8 +58,6 @@
         ]
     });
     
-    // Step 1: Create Random Subject ID
-    var subject_id = jsPsych.randomization.randomID(10);
 
     // Step 2: Initialize the empty timeline (array that contains events) so we can push to here
     var timeline = [];
