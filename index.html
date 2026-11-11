@@ -36,22 +36,12 @@
     // --------------------------------------------------------------------------------
     
     
-    // Step 1: Initializing jsPsych
-    var jsPsych = initJsPsych();
-
-    // Step 2: Initialize the empty timeline (array that contains events) so we can push to here
-    var timeline = [];
-
-    // Step 3: Create Participant ID (boilerplate from Dr. Bria Long for PSYC 201A Fall 2026)
-    // The only thing that was changed was the experiment_id to fit my ID from datapipe
+    // Initialize jsPsych Experiment Manager
     var jsPsych = initJsPsych({
         on_finish: function () {
-            // This on_finish was given to me by Mikka. HEW MAKE SURE YOU CHANGE THAT CREDIT TOKEN
-            jsPsych.data.displayData();
-            window.location = "https://ucsd.sona-systems.com/webstudy_credit.aspx?experiment_id=3177&credit_token=cc999&survey_code="+id;
+            var id = jsPsych.data.getURLVariables().id;
             // Thank you to Mikka Hoffman for helping with connecting SONA to my study
-            window.location = "https://ucsd.sona-systems.com/webstudy_credit.aspx?experiment_id=3182&credit_token=b4554c86513346c3a56462a33f7b60e1&survey_code="+id;
-            var id = jsPsych.data.getURLVariable('id');
+            window.location = "https://ucsd.sona-systems.com/webstudy_credit.aspx?experiment_id=3182" + "&credit_token=b4554c86513346c3a56462a33f7b60e1" + "&survey_code=" + id;
         },
         extensions: [
             {
@@ -65,10 +55,13 @@
             }
         ]
     });
-
-    // Step 4: Create a Subject ID
+    
+    // Step 1: Create Random Subject ID
     var subject_id = jsPsych.randomization.randomID(10);
 
+    // Step 2: Initialize the empty timeline (array that contains events) so we can push to here
+    var timeline = [];
+    
     // Step 5: Randomly Assign Condition
     // Sample and form a list of 1 item. Pull the 0th item.
     var ParticipantCondition = jsPsych.randomization.sampleWithoutReplacement(["EventList", "ExperimentalLetterWriting"], 1)[0];
@@ -151,13 +144,6 @@ By participating in this research you are indicating that you are at least 18 ye
             ]
         }
     };
-
-    var SONACredit = {
-        type: jsPsychSurveyText,
-        questions: [
-            { prompt: "Please enter your SONA ID below so we can award credit.", name: "SONA_ID", rows: 5, columns: 50, required: true }
-        ]
-    }
 
     var PretestMood = {
         type: jsPsychSurveyLikert,
@@ -254,8 +240,6 @@ By participating in this research you are indicating that you are at least 18 ye
     timeline.push(UCLA_LonelinessScale_8)
     timeline.push(PostTestPositiveAffectGratitudeEmotionMatrix)
     timeline.push(AI_Captcha)
-    timeline.push(SONACredit)
-
 
 
 
