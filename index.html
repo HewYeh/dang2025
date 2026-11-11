@@ -37,11 +37,11 @@
     
     // Step 1: Create Random Subject ID
     var subject_id = jsPsych.randomization.randomID(10);
-    
+
     // Initialize jsPsych Experiment Manager
     var jsPsych = initJsPsych({
         on_finish: function () {
-            var id = jsPsych.data.getURLVariables().id;
+            var id = jsPsych.data.getURLVariables('id');
             // Thank you to Mikka Hoffman for helping with connecting SONA to my study
             window.location = "https://ucsd.sona-systems.com/webstudy_credit.aspx?experiment_id=3182" + "&credit_token=b4554c86513346c3a56462a33f7b60e1" + "&survey_code=" + id;
         },
