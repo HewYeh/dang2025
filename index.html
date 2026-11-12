@@ -175,9 +175,8 @@
             { prompt: `<div style ="padding:40px; text-align:left; max-width:800px; margin: 0 auto">
                 <p>In life, there are events, both large and small, that end up affecting us. Think back over the past day and write down five events that somehow affected you.</p>
                 
-                <p>As you write, don’t worry about perfect grammar and spelling, and remember that anything you write will remain strictly confidential. Should an experimenter read this entry in the future, it will be identifiable only by a participant number and not by your name.</p>
-                
-                </div>`, name: "EventResponse", rows: 10, columns: 100, required: true }
+                <p>As you write, don’t worry about perfect grammar and spelling, and remember that anything you write will remain strictly confidential. Should an experimenter read this entry in the future, it will be identifiable only by a participant number and not by your name.</p></div>`,
+                name: "EventResponse", rows: 10, columns: 100, required: true }
         ]
 
     }
@@ -225,6 +224,26 @@
     }
     }
     };
+    
+    var StateLonelyLikertScale = ["Not at All 1", "2", "3", "4", "5", "6", "7 Very Much"]
+    var StateLonely = {
+        type: jsPsychSurveyLikert,
+        preamble: `<div style ="padding:40px; text-align:left; max-width:800px; margin: 0 auto">Click on the bubble that indicates how you feel:</div>`, questions: [
+            {prompt : "How lonely are you feeling?", name : "Lonely1", labels : StateLonelyLikertScale, required : true},
+            {prompt : "Compared to other people, how lonely do you think you are?", name : "Lonely2", labels : StateLonelyLikertScale, required : true},
+            {prompt : "To what extent do you feel lonely right now?", name : "Lonely3", labels : StateLonelyLikertScale, required : true}],
+        randomize_question_order : true, scale_width : 700,
+        on_finish: function(data) {
+            for (var name in data.response) {
+                data[name] = StateLonelyLikertScale[data.response[name]];
+        // Spread the response object into top-level columns
+        Object.assign(data, data.response);
+        }
+    }}
+    // Tentatively, this will be the new loneliness measure. It is shorter and a state based one from Choi et al. (2016) which was adapted from Shaver et al. (1985). It demonstrates good internal consistency with a cronbach's alpha of .92
+    // Shaver, P., Furman, W., & Buhrmester, D. (1985). Transition to college: Network changes, social skills, and loneliness. In S. Duck & D. Perlman (Eds.), Understanding personal relationships: An interdisciplinary approach (pp. 193–219). Sage Publications, Inc.
+
+    // Choi, J., Rangan, P., & Singh, S. N. (2016). Do cold images cause cold-heartedness? The impact of visual stimuli on the effectiveness of negative emotional charity appeals. Journal of Advertising, 45(4), 417-426.
 
     var AI_Captcha = {
         type: jsPsychSurveyText,
@@ -271,7 +290,8 @@
         timeline.push(EventList)
     }
     timeline.push(PostTestPositiveAffectGratitudeEmotionMatrix)
-    timeline.push(UCLA_LonelinessScale_8)
+    //timeline.push(UCLA_LonelinessScale_8)
+    timeline.push(StateLonely)
     timeline.push(AI_Captcha)
     timeline.push(Debrief)
 
