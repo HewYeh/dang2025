@@ -146,8 +146,7 @@ For the exploratory analyses involving structural equation modeling, I will use 
 
 The proposed model is outlined in Figure 1.
 
-**Figure 1**
-*Preregistered Structural Equation Model for Exploratory Analysis 1*
+**Figure 1** *Preregistered Structural Equation Model for Exploratory Analysis 1*
 
 ![](images/ProposedSEM.png)
 
@@ -155,7 +154,7 @@ The proposed model is outlined in Figure 1.
 
 There are a few key differences from the original study, making the present study a replication and extension. Firstly, I will only be two conditions and measuring one dependent variable. Additionally, rather than immediately measuring positive affect after the intervention, I will first measure state loneliness and state gratitude. Thinking about loneliness prior to measuring state positive affect, may attenuate positive affect scores; however, this was necessary for the exploratory mediation model to satisfy temporal precedence of the mediators. Additionally, participants for the original study were recruited from Prolific; however, the current study will recruit UC San Diego's undergraduate students to participate which will extend the findings to a student population.
 
-## Results
+<!--## Results
 
 ### Data Preparation
 
@@ -198,7 +197,6 @@ aThe original study demonstrates a dosage effect where interventions which broug
 
 We will run a structural equation model predicting latent positive affect scores using experimental condition while specifying latent state gratitude and latent state loneliness scores as putative mediators. By using latent factor scores, we also can avoid assuming that all items in each of the scales are equally informative and allow the natural covariance structure of the data to determine how heavily to weigh each item. Since condition is a categorical indicator, we will only standardize the coefficients with respect to the latent factor scores. Thus, each effect size represents the expected difference in latent factor scores in standardized units between the conditions.
 
-
 ```         
 Syntax for SEM
 
@@ -212,7 +210,7 @@ PA          ON GRAT COND CONNECTION
 GRAT        ON COND
 CONNECTION  ON COND
 ```
-
+-->
 ## References
 
 Ahn, E., & Kang, H. (2023). Intention-to-treat versus as-treated versus per-protocol approaches to analysis. *Korean Journal of Anesthesiology*, *76*(6), 531–539. <https://doi.org/10.4097/kja.23278>
