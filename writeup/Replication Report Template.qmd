@@ -126,25 +126,38 @@ On a scale from (1) *Strongly Disagree* to (7) *Strongly Agree*, participants ra
 
 #### ***Statistical Software and Analyses***
 
-Data analyses will be performed using the R programming language (R Core Team, 2026). Our key confirmatory test will be a $t$-test comparing average positive affect levels across the letter writing (experimental) vs. event writing (control) conditions. Using a alpha threshold of $\alpha = .05$ that was chosen during our power/sample size analysis, I will use the `t.test` function to compute the $t$-test test statistic. This function will also ouput a Cohen's $d$ which I will convert to Hedges' $g$ using Hedges' $J(x)$ correction where $x$ is the degrees of freedom for the $t$-test. This will represent the intent-to-treat effect that most closely matches Dang et al. (2025).
+#### Data Cleaning
 
-For the exploratory analysis that excludes participants who spend a total time of less than 2 standard deviations away from the median in the study, we will perform the same $t$-test procedure but filter the data first to exclude participants that do not meet the 2 standard deviation criteria.
+Data and code will be made publicly available. However, since the events and letters are quite personal and we promised participants confidentiality, we will remove participant responses to free-response questions (i.e., the written response to the event or letter writing condition). The only remaining information will be a newly randomly generated participant ID, their age, gender, ethnoracial identity, their scores across the likert scales, and how long they took to complete the study. Additionally, free-response answers to gender identity or ethnoracial identity will be recoded as "Other" unless at least 10 participants endorse a given response to protect participant privacy.
 
-For the exploratory analyses involving structural equation modeling, I will use lavaan (version 0.7-3; 2026, October 8th release), a popular and free R package to estimate multivariate models (e.g., path analysis) and perform latent variable analysis (e.g., confirmatory factor analysis, structural regression, and latent growth models; Rosseel, 2012).
+The original study used an intent-to-treat analysis (Ahn et al., 2023) which meant that they did not exclude any participants from the study. This is aimed to measure the generalizable real-world impact of an intervention and acknowledge that attrition and non-compliance are inseparable downstream effects of the intervention. Since this study is meant to inform us of qualities of real student populations, it is vital to understand the realistic intent-to-treat effect size as opposed to the effect size found in an artificially controlled setting. Due to these reasons and in the interest of replication, I will also use an intent-to-treat analysis for the key confirmatory test.
 
-Data and code will be made publicly available. However, since the events and letters are quite personal and we promised participants confidentiality, we will remove their responses to free-response questions (i.e., the written response to the event or letter writing condition). The only remaining information will be a newly randomly generated participant ID, their age, gender, ethnoracial identity, their scores across the likert scales, and how long they took to complete the study. Additionally, free-response answers to gender identity or ethnoracial identity will be recoded as "Other" unless at least 10 participants endorse a given response.
+##### ***Key Confirmatory Test:*** $t$-Test of Mean Positive Affect Scores
 
-The original study used an intent-to-treat analysis which meant that they did not exclude any participants from the study. This is aimed to measure the generalizable real-world impact of an intervention and acknowledge that attrition and non-compliance are inseparable downstream effects of the intervention. Since this study is meant to inform real student populations, it is vital to understand the realistic intent-to-treat effect size as opposed to the effect size found in an artificially controlled setting. Thus, I opted to also use an intent-to-treat analysis technique.
+Data analyses will be performed using the R programming language (R Core Team, 2026). Our key confirmatory test will be a $t$-test comparing average positive affect scores across the letter writing (experimental) vs. event writing (control) conditions. Using an alpha threshold of $\alpha = .05$ that was chosen during our power/sample size analysis, I will use the `t.test` function to compute the $t$-test test statistic and return a $p$-value. This function will also ouput a Cohen's $d$ which I will convert to Hedges' $g$ using Hedges' $J(x)$ correction where $x$ is the degrees of freedom for the $t$-test. This will represent the intent-to-treat effect that most closely matches Dang et al. (2025). In order to calculate positive affect scores, a simple arithmetic mean will be calculated. For the later exploratory analyses, positive affect scores will be calculated as a latent variable. For this first analysis, no participant will be excluded to calcualte the intent-to-treat effect.
+
+#### ***Exploratory Analysis A: Exclusion of Speeders***
+
+This first exploratory analysis excludes participants who spend a total time of less than 2 standard deviations away from the median in the study, we will perform the same $t$-test procedure as in the confirmatory test but filter the data first to exclude participants that do not meet the 2 standard deviation criteria.
+
+#### ***Exploratory Analysis 1: Estimating a Mediation Model With Structural Equation Modeling***
+
+For the exploratory analyses involving structural equation modeling, I will use lavaan (version 0.7-3; 2026, October 8th release), a popular and free R package to estimate multivariate models (e.g., path analysis) and perform latent variable analysis (e.g., confirmatory factor analysis, structural regression, and latent growth models; Rosseel, 2012). In this model, I will use state gratitude and state loneliness as latent variables that mediate the effect that condition have on positive affect. Missing data will be handled with FullInformation Maximum Likelihood (FIML) which handles missing data better than list-wise deletion or imputation. Additionally, we will specify the use of maximum likelihood with robust standard errors (MLR) which handles non-normality better than maximum likelihood estimation when estimating standard errors.
+
+The proposed model is outlined in Figure 1.
+
+**Figure 1**
+*Preregistered Structural Equation Model for Exploratory Analysis 1*
+
+![](images/ProposedSEM.png)
 
 #### Differences from Original Study
 
-Key differences from the original study mainly include using SONA for data collection among UC San Diego undergraduates and only having 2 conditions as opposed to the 11 in the original study.
+There are a few key differences from the original study, making the present study a replication and extension. Firstly, I will only be two conditions and measuring one dependent variable. Additionally, rather than immediately measuring positive affect after the intervention, I will first measure state loneliness and state gratitude. Thinking about loneliness prior to measuring state positive affect, may attenuate positive affect scores; however, this was necessary for the exploratory mediation model to satisfy temporal precedence of the mediators. Additionally, participants for the original study were recruited from Prolific; however, the current study will recruit UC San Diego's undergraduate students to participate which will extend the findings to a student population.
 
 ## Results
 
 ### Data Preparation
-
-Aligned with the Dang et al. (2025) paper analysis protocol, data will be analyzed without excluding participants to measure the intent-to-treat effect. Prior to running analyses, responses will be scanned for AI flags (viz., the gamma(125) AI catch). Participants that fail the AI check will be excluded entirely and be row-wise deleted. Individual responses will also be checked prior to dropping to ensure that responses did not actually contain that number for legitimate reasons.
 
 ```         
 library(dplyr)
@@ -157,8 +170,7 @@ Tensor <- Tensor[grepl("15", Tensor$COL), ]
 # Drop the appropriate participant right here.
 ```
 
-```{R}
-gamma(125)
+```         
 ```
 
 ### Confirmatory Analysis
@@ -167,6 +179,7 @@ gamma(125)
 MainEffect <- t.test(DV ~ Condition, data = Tensor)
 
 # Calulate Hedges' g using J(x) and Cohen's d
+MainEffect$
 ```
 
 A $t$-test was computed to assess whether the average positive affect score differed between the gratitude letter and events list conditions, $t(df)=XX.XX$, $p <or = .XX$, Hedges' $g = GG.GG$. There was/was not a significant difference such that the \_\_\_\_\_\_ group had higher mean positive affect scores than the \_\_\_\_\_ group.
@@ -185,7 +198,6 @@ aThe original study demonstrates a dosage effect where interventions which broug
 
 We will run a structural equation model predicting latent positive affect scores using experimental condition while specifying latent state gratitude and latent state loneliness scores as putative mediators. By using latent factor scores, we also can avoid assuming that all items in each of the scales are equally informative and allow the natural covariance structure of the data to determine how heavily to weigh each item. Since condition is a categorical indicator, we will only standardize the coefficients with respect to the latent factor scores. Thus, each effect size represents the expected difference in latent factor scores in standardized units between the conditions.
 
-![Proposed Structural Equation Model With Dual Putative Mediators. Measurement Paths are in Gray. Structural Paths are in Green.](PutativeMediation.png){fig-align="center"}
 
 ```         
 Syntax for SEM
