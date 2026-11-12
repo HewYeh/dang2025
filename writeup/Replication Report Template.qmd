@@ -116,7 +116,7 @@ On a scale from (1) *Strongly Disagree* to (7) *Strongly Agree*, participants ra
 
 #### ***State Positive Affect***
 
-On a scale from (1) *Strongly Disagree* to (7) *Strongly Agree*, participants rated how much they agreed with five adjectives: "happy," "joyful," "pleased," "content," and "satisfied" (Dang et al., 2025). The original study demonstrated high internal consistency for this measure (McDonald's $\omega$ = .95). Positive affect was chosen as one dimension of subjective well-being to measure; however, theoretically speaking, negative affect and overall life satisfaction are other key components to subjective well-being (Diener et al., 2022).
+On a scale from (1) *Strongly Disagree* to (7) *Strongly Agree*, participants rated how much they agreed with five adjectives: "happy," "joyful," "pleased," "content," and "satisfied" (Dang et al., 2025) with the order of the adjectives randomized. The original study demonstrated high internal consistency for this measure (McDonald's $\omega$ = .95). Positive affect was chosen as one dimension of subjective well-being to measure; however, theoretically speaking, negative affect and overall life satisfaction are other key components to subjective well-being (Diener et al., 2022).
 
 <!--This is where I left off.-->
 ### Analysis Plan
