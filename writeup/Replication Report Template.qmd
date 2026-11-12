@@ -1,5 +1,5 @@
 ---
-title: "Replication of _The Efficacy of Seven Gratitude Interventions for Promoting Subjective Well-Being_ by Dang et al. (2025, _Journal of Positive Psychology_)"
+title: "Replication of _The Efficacy of Seven Gratitude Interventions for Promoting Subjective Well-Being_ by Dang et al. (2025, *Journal of Positive Psychology*)"
 author: "Hew Yeh (mayeh@ucsd.edu)"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 format:
@@ -114,7 +114,7 @@ On a scale from (1) *Not at All* to (7) *Very Much*, participants indicated thei
 
 On a scale from (1) *Strongly Disagree* to (7) *Strongly Agree*, participants rated how much they agreed with three adjectives: "grateful," "appreciative," and "thankful" (Dang et al., 2025). The order of these items were randomized. This scale also demonstrated good internal consistency in the original study (McDonald's $\omega$ = .93).[^3]
 
-[^3]: McDonald's Omega describes the proportion of variance in the indicators that is explained by a general latent factor compared to the overall amount of variance in the indicators with the highest score being 1. $\omega = \dfrac{\left(\sum_{i=1} ^k\lambda_i\right)^2}{\left(\sum_{i=1}^k\lambda_{i}\right)^2+\left(\sum_{i=1}^k\varepsilon_i\right)}$
+[^3]: McDonald's Omega describes the proportion of variance in the indicators that is explained by a general latent factor compared to the overall amount of variance in the indicators with the highest score being 1. $\omega = \dfrac{\left(\sum_{i=1} ^k\lambda_i\right)^2}{\left(\sum_{i=1}^k\lambda_{i}\right)^2+\sum_{i=1}^k\psi_i}$, where $\psi:=1-\lambda_i^2$.
 
 #### ***State Positive Affect***
 
