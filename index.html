@@ -69,6 +69,11 @@
     // Step 5: Randomly Assign Condition; From the two options, select 1 sample and form a list. Pull the 0th item from the list.
     var ParticipantCondition = jsPsych.randomization.sampleWithoutReplacement(["EventList", "ExperimentalLetterWriting"], 1)[0];
 
+    // Save the subject ID and assigned condition as columns on every row of the data
+    jsPsych.data.addProperties({
+        subject_id: subject_id,
+        condition: ParticipantCondition
+    });
     
     // Step 6: Informed Consent
     var InformedConsent = {
