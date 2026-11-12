@@ -153,12 +153,19 @@
         type: jsPsychSurveyLikert,
         questions: [
             {
-                prompt: "How are you feeling right now?",
+                prompt: "How are you feeling right now?", name: "PretestMood",
                 labels: ['Very Bad', 'Bad', 'Somewhat Bad', 'Neutral', 'Somewhat Good', 'Good', 'Very Good'], required: true
             }
         ],
-        scale_width: 700
-    };
+        scale_width: 700,
+            on_finish: function(data) {
+            for (var name in data.response) {
+                data[name] = ['Very Bad', 'Bad', 'Somewhat Bad', 'Neutral', 'Somewhat Good', 'Good', 'Very Good'][data.response[name]];
+                data[name] = [data.response[name]];
+                Object.assign(data, data.response);
+                };
+            }
+    }
 
     // Step 13: Interventions
     var ExperimentalLetterWriting = {
@@ -199,8 +206,7 @@
         on_finish: function(data) {
             for (var name in data.response) {
                 data[name] = StateLonelyLikertScale[data.response[name]];
-        // Spread the response object into top-level columns
-        Object.assign(data, data.response);
+                Object.assign(data, data.response);
         }
     }}
 
@@ -214,7 +220,13 @@
             { prompt: "Grateful", name: "Grateful", labels: LikertScale, required: true },
             { prompt: "Appreciative", name: "Appreciative", labels: LikertScale, required: true },
             { prompt: "Thankful", name: "Thankful", labels: LikertScale, required: true }]
-            , randomize_question_order: true, scale_width: 700
+            , randomize_question_order: true, scale_width: 700,
+            on_finish: function(data) {
+            for (var name in data.response) {
+                data[name] = LikertScale[data.response[name]];
+                Object.assign(data, data.response);
+                };
+            }
     };
 
     // Step 16: Measure State Positive Affect
@@ -227,7 +239,13 @@
             { prompt: "Pleased", name: "Pleased", labels: LikertScale, required: true },
             { prompt: "Content", name: "Content", labels: LikertScale, required: true },
             { prompt: "Satisfied", name: "Satisfied", labels: LikertScale, required: true }
-        ], randomize_question_order: true, scale_width: 700
+        ], randomize_question_order: true, scale_width: 700,
+            on_finish: function(data) {
+            for (var name in data.response) {
+                data[name] = LikertScale[data.response[name]];
+                Object.assign(data, data.response);
+                };
+            }
     };
 
 

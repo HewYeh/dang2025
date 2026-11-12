@@ -112,18 +112,27 @@ On a scale from (1) *Not at All* to (7) *Very Much*, participants indicated thei
 
 #### ***State Gratitude***
 
-On a scale from (1) *Strongly Disagree* to (7) *Strongly Agree*, participants rated how much they agreed with three adjectives: "grateful," "appreciative," and "thankful" (Dang et al., 2025). The order of these items were randomized. This scale also demonstrated good internal consistency in the original study (McDonald's $\omega$ = .93).^[McDonald's Omega describes the proportion of variance in the indicators that is explained by a general latent factor compared to the overall amount of variance in the indicators with the highest score being 1. $\omega = \dfrac{\left(\sum_{i=1} ^k\lambda_i\right)^2}{\left(\sum_{i=1}^k\lambda_{i}\right)^2+\left(\sum_{i=1}^k\varepsilon_i\right)}$]
+On a scale from (1) *Strongly Disagree* to (7) *Strongly Agree*, participants rated how much they agreed with three adjectives: "grateful," "appreciative," and "thankful" (Dang et al., 2025). The order of these items were randomized. This scale also demonstrated good internal consistency in the original study (McDonald's $\omega$ = .93).[^3]
+
+[^3]: McDonald's Omega describes the proportion of variance in the indicators that is explained by a general latent factor compared to the overall amount of variance in the indicators with the highest score being 1. $\omega = \dfrac{\left(\sum_{i=1} ^k\lambda_i\right)^2}{\left(\sum_{i=1}^k\lambda_{i}\right)^2+\left(\sum_{i=1}^k\varepsilon_i\right)}$
 
 #### ***State Positive Affect***
 
 On a scale from (1) *Strongly Disagree* to (7) *Strongly Agree*, participants rated how much they agreed with five adjectives: "happy," "joyful," "pleased," "content," and "satisfied" (Dang et al., 2025) with the order of the adjectives randomized. The original study demonstrated high internal consistency for this measure (McDonald's $\omega$ = .95). Positive affect was chosen as one dimension of subjective well-being to measure; however, theoretically speaking, negative affect and overall life satisfaction are other key components to subjective well-being (Diener et al., 2022).
 
 <!--This is where I left off.-->
+
 ### Analysis Plan
 
 #### ***Statistical Software and Analyses***
 
-For the data analysis, I will use the R programming language (R Core Team, 2026). Aligned with the power analysis for sample size, I will set the alpha threshold to $\alpha = .05$ and use the `t.test` function to compute the $t$-test test statistic. This function will also output a Cohen's $d$. To calculate the Hedges' $g$ effect size, I will apply the Hedges correction $J(x)$ depending on the degrees of freedom that actually end up in the final analyses. Interestingly, the original study did not correct for multiple testing despite the enormous amount of pair-wise comparisons ($\alpha = .05$ was used across analyses). I will not need to worry about multiple testing in this case as I am only making one comparison/test.
+Data analyses will be performed using the R programming language (R Core Team, 2026). Our key confirmatory test will be a $t$-test comparing average positive affect levels across the letter writing (experimental) vs. event writing (control) conditions. Using a alpha threshold of $\alpha = .05$ that was chosen during our power/sample size analysis, I will use the `t.test` function to compute the $t$-test test statistic. This function will also ouput a Cohen's $d$ which I will convert to Hedges' $g$ using Hedges' $J(x)$ correction where $x$ is the degrees of freedom for the $t$-test. This will represent the intent-to-treat effect that most closely matches Dang et al. (2025).
+
+For the exploratory analysis that excludes participants who spend a total time of less than 2 standard deviations away from the median in the study, we will perform the same $t$-test procedure but filter the data first to exclude participants that do not meet the 2 standard deviation criteria.
+
+For the exploratory analyses involving structural equation modeling, I will use lavaan (version 0.7-3; 2026, October 8th release), a popular and free R package to estimate multivariate models (e.g., path analysis) and perform latent variable analysis (e.g., confirmatory factor analysis, structural regression, and latent growth models; Rosseel, 2012).
+
+Data and code will be made publicly available. However, since the events and letters are quite personal and we promised participants confidentiality, we will remove their responses to free-response questions (i.e., the written response to the event or letter writing condition). The only remaining information will be a newly randomly generated participant ID, their age, gender, ethnoracial identity, their scores across the likert scales, and how long they took to complete the study. Additionally, free-response answers to gender identity or ethnoracial identity will be recoded as "Other" unless at least 10 participants endorse a given response.
 
 The original study used an intent-to-treat analysis which meant that they did not exclude any participants from the study. This is aimed to measure the generalizable real-world impact of an intervention and acknowledge that attrition and non-compliance are inseparable downstream effects of the intervention. Since this study is meant to inform real student populations, it is vital to understand the realistic intent-to-treat effect size as opposed to the effect size found in an artificially controlled setting. Thus, I opted to also use an intent-to-treat analysis technique.
 
@@ -196,7 +205,6 @@ CONNECTION  ON COND
 
 Ahn, E., & Kang, H. (2023). Intention-to-treat versus as-treated versus per-protocol approaches to analysis. *Korean Journal of Anesthesiology*, *76*(6), 531–539. <https://doi.org/10.4097/kja.23278>
 
-
 Choi, J., Rangan, P., & Singh, S. N. (2016). Do cold images cause cold-heartedness? The impact of visual stimuli on the effectiveness of negative emotional charity appeals. *Journal of Advertising*, *45*(4), 417-426.
 
 Cunha, L. F., Pellanda, L. C., & Reppold, C. T. (2019). Positive psychology and gratitude interventions: A randomized clinical trial. *Frontiers in Psychology*, *10*. https://doi.org/10.3389/fpsyg.2019.00584
@@ -217,8 +225,9 @@ Liu, X. S. (2024). Bias correction for Cohen's *d*. *The Journal of General Psyc
 
 Qualtrics. (2026). *Response quality*. Qualtrics. Retrieved November 11, 2026, from https://www.qualtrics.com/support/survey-platform/survey-module/survey-checker/response-quality/
 
-
 R Core Team. (2026). *R: A language and environment for statistical computing*. R Foundation for Statistical Computing. https://www.R-project.org/
+
+Rosseel, Y. (2012). lavaan: An R package for structural equation modeling. *Journal of Statistical Software*, *48*(2), 1–36. https://doi.org/10.18637/jss.v048.i02
 
 Shaver, P., Furman, W., & Buhrmester, D. (1985). Transition to college: Network changes, social skills, and loneliness. In S. Duck & D. Perlman (Eds.), *Understanding personal relationships: An interdisciplinary approach* (pp. 193–219). Sage Publications, Inc.
 
