@@ -113,8 +113,14 @@
         type: jsPsychSurveyText,
         questions: [
             { prompt: "Please enter your age (in years).", name: "Age", rows: 5, columns: 50, required: true }
-        ]
+        ],
+        on_finish: function(data) {
+            for (var name in data.response) {
+                data[name] = data.response[name]
+                Object.assign(data, data.response);
+        }
     }
+}
     
     // Step 10: RacialEthnic Identity
     var RacialEthnic = {
@@ -128,9 +134,12 @@
                     choices: ['American Indian or Alaska Native', 'Asian', 'Black or African American', 'Native Hawaiian or Other Pacific Islander', 'White', 'Hispanic or Latino', 'North African', 'Middle Eastern', "I Prefer not to Answer"],
                     showOtherItem: true, isRequired: true
                 }
-            ]
+            ],
+        },
+        on_finish: function(data) {
+            Object.assign(data, data.response);
+            }
         }
-    };
 
     //Step 11: Gender
     var Gender = {
@@ -144,8 +153,12 @@
                     choices: ['Male', 'Female', 'Non-Binary', 'Transgender Male', 'Transgender Female', 'Prefer not to Disclose'],
                     showOtherItem: true, isRequired: true
                 }
-            ]
-        }
+            ],
+            
+        },
+        on_finish: function(data) {
+            Object.assign(data, data.response);
+            }
     };
 
     // Step 12: Measure Pretest Mood
