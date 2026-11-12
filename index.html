@@ -148,6 +148,7 @@
         }
     };
 
+    // Step 12: Measure Pretest Mood
     var PretestMood = {
         type: jsPsychSurveyLikert,
         questions: [
@@ -159,6 +160,7 @@
         scale_width: 700
     };
 
+    // Step 13: Interventions
     var ExperimentalLetterWriting = {
         type: jsPsychSurveyText,
         questions: [
@@ -168,7 +170,7 @@
         ]
 
     }
-
+    // Step 13: Continued
     var EventList = {
         type: jsPsychSurveyText,
         questions: [
@@ -180,55 +182,16 @@
         ]
 
     }
+    // Tentatively, this will be the new loneliness measure. It is shorter and a state based one from Choi et al. (2016) which was adapted from Shaver et al. (1985). It demonstrates good internal consistency with a cronbach's alpha of .92
+    // Shaver, P., Furman, W., & Buhrmester, D. (1985). Transition to college: Network changes, social skills, and loneliness. In S. Duck & D. Perlman (Eds.), Understanding personal relationships: An interdisciplinary approach (pp. 193–219). Sage Publications, Inc.
 
-    var LikertScale = ["Strongly Disagree 1", "2", "3", "4", "5", "6", "7 Strongly Agree"]
+    // Choi, J., Rangan, P., & Singh, S. N. (2016). Do cold images cause cold-heartedness? The impact of visual stimuli on the effectiveness of negative emotional charity appeals. Journal of Advertising, 45(4), 417-426.
 
-    var PostTestPositiveAffectGratitudeEmotionMatrix = {
-        type: jsPsychSurveyLikert,
-        preamble: `<div style ="padding:40px; text-align:left; max-width:800px; margin: 0 auto">At this moment, to what degree are you feeling each of the following emotions?</div>`,
-        questions: [
-            { prompt: "Grateful", name: "Grateful", labels: LikertScale, required: true },
-            { prompt: "Appreciative", name: "Appreciative", labels: LikertScale, required: true },
-            { prompt: "Thankful", name: "Thankful", labels: LikertScale, required: true },
-            { prompt: "Happy", name: "Happy", labels: LikertScale, required: true },
-            { prompt: "Joyful", name: "Joyful", labels: LikertScale, required: true },
-            { prompt: "Pleased", name: "Pleased", labels: LikertScale, required: true },
-            { prompt: "Content", name: "Content", labels: LikertScale, required: true },
-            { prompt: "Satisfied", name: "Satisfied", labels: LikertScale, required: true }
-        ], randomize_question_order: true, scale_width: 700
-    };
-
-    var LonelyLikertScale = ["Never", "Rarely", "Sometimes", "Often"]
-
-    // Items 3 and 6 are reverse coded
-    var UCLA_LonelinessScale_8 = {
-        type: jsPsychSurveyLikert,
-        preamble: `<div style ="padding:40px; text-align:left; max-width:800px; margin: 0 auto">Click on the bubble to indicate how often each statement describes you:</div>`,
-        questions: [
-            { prompt: "I lack companionship", name: "UCLA1", labels: LonelyLikertScale, required: true },
-            { prompt: "There is no one I can turn to", name: "UCLA2", labels: LonelyLikertScale, required: true },
-            { prompt: "I am an outgoing person", name: "UCLA3", labels: LonelyLikertScale, required: true },
-            { prompt: "I feel left out", name: "UCLA4", labels: LonelyLikertScale, required: true },
-            { prompt: "I feel isolated from others", name: "UCLA5", labels: LonelyLikertScale, required: true },
-            { prompt: "I can find companionship when I want it", name: "UCLA6", labels: LonelyLikertScale, required: true },
-            { prompt: "I am unhappy being so withdrawn", name: "UCLA7", labels: LonelyLikertScale, required: true },
-            { prompt: "People are around me but not with me", name: "UCLA8", labels: LonelyLikertScale, required: true }
-        ], randomize_question_order: true, scale_width: 700,
-        // This function for on_finish was written by Claude
-        on_finish: function(data) {
-            for (var name in data.response) {
-                data[name] = LonelyLikertScale[data.response[name]];
-        // Spread the response object into top-level columns
-        Object.assign(data, data.response);
-
-    }
-    }
-    };
-    
+    // Step 14: Measure State Loneliness
     var StateLonelyLikertScale = ["Not at All 1", "2", "3", "4", "5", "6", "7 Very Much"]
     var StateLonely = {
         type: jsPsychSurveyLikert,
-        preamble: `<div style ="padding:40px; text-align:left; max-width:800px; margin: 0 auto">Click on the bubble that indicates how you feel:</div>`, questions: [
+        preamble: `<div style ="padding:40px; text-align:left; max-width:800px; margin: 0 auto">Click on the bubble that best describes how you are feeling right now:</div>`, questions: [
             {prompt : "How lonely are you feeling?", name : "Lonely1", labels : StateLonelyLikertScale, required : true},
             {prompt : "Compared to other people, how lonely do you think you are?", name : "Lonely2", labels : StateLonelyLikertScale, required : true},
             {prompt : "To what extent do you feel lonely right now?", name : "Lonely3", labels : StateLonelyLikertScale, required : true}],
@@ -240,10 +203,33 @@
         Object.assign(data, data.response);
         }
     }}
-    // Tentatively, this will be the new loneliness measure. It is shorter and a state based one from Choi et al. (2016) which was adapted from Shaver et al. (1985). It demonstrates good internal consistency with a cronbach's alpha of .92
-    // Shaver, P., Furman, W., & Buhrmester, D. (1985). Transition to college: Network changes, social skills, and loneliness. In S. Duck & D. Perlman (Eds.), Understanding personal relationships: An interdisciplinary approach (pp. 193–219). Sage Publications, Inc.
 
-    // Choi, J., Rangan, P., & Singh, S. N. (2016). Do cold images cause cold-heartedness? The impact of visual stimuli on the effectiveness of negative emotional charity appeals. Journal of Advertising, 45(4), 417-426.
+    // Step 15: Measure State Gratitude
+    var LikertScale = ["Strongly Disagree 1", "2", "3", "4", "5", "6", "7 Strongly Agree"]
+
+    var PostTestGratitude = {
+        type: jsPsychSurveyLikert,
+        preamble: `<div style ="padding:40px; text-align:left; max-width:800px; margin: 0 auto">At this moment, to what degree are you feeling each of the following emotions?</div>`,
+        questions: [
+            { prompt: "Grateful", name: "Grateful", labels: LikertScale, required: true },
+            { prompt: "Appreciative", name: "Appreciative", labels: LikertScale, required: true },
+            { prompt: "Thankful", name: "Thankful", labels: LikertScale, required: true }]
+            , randomize_question_order: true, scale_width: 700
+    };
+
+    // Step 16: Measure State Positive Affect
+    var PostTestPositiveAffect = {
+        type: jsPsychSurveyLikert,
+        preamble: `<div style ="padding:40px; text-align:left; max-width:800px; margin: 0 auto">At this moment, to what degree are you feeling each of the following emotions?</div>`,
+        questions: [
+            { prompt: "Happy", name: "Happy", labels: LikertScale, required: true },
+            { prompt: "Joyful", name: "Joyful", labels: LikertScale, required: true },
+            { prompt: "Pleased", name: "Pleased", labels: LikertScale, required: true },
+            { prompt: "Content", name: "Content", labels: LikertScale, required: true },
+            { prompt: "Satisfied", name: "Satisfied", labels: LikertScale, required: true }
+        ], randomize_question_order: true, scale_width: 700
+    };
+
 
     var AI_Captcha = {
         type: jsPsychSurveyText,
@@ -272,7 +258,14 @@
 
             <p>Please do not share any details about this study with anyone else who may participate in the future. If future participants know the details of this study, that can impact their responses and the validity of our results.</p>
 
+            <p>Participating in research studies can sometimes bring up negative emotions and be uncomfortable. If you are in need of support, there are free and confidential resources available to you.
+                CAPS provides free psychological services to UCSD students. You can visit them at https://caps.ucsd.edu/. If you are in need of immediate support, you can call CAPS at 858-249-0030, or you can call/text the 988 National Suicide and Crisis Lifeline for live support in both English and Spanish.
+                </p>
+
+            <p>After this screen, you will see a screen that indicating that your data is saving. Once it is finished, you will be redirected to the SONA website to automatically receive your SONA credits.</p>
+
             <p>Press any key on the keyboard to finish this study.</p>
+
             </div>`
     }
 
@@ -289,15 +282,12 @@
     if (ParticipantCondition == "EventList") {
         timeline.push(EventList)
     }
-    timeline.push(PostTestPositiveAffectGratitudeEmotionMatrix)
-    //timeline.push(UCLA_LonelinessScale_8)
     timeline.push(StateLonely)
+    timeline.push(PostTestGratitude)
+    timeline.push(PostTestPositiveAffect)
     timeline.push(AI_Captcha)
     timeline.push(Debrief)
-
-    // Start the experiment
-    jsPsych.run(timeline);
-
+    jsPsych.run(timeline)
 </script>
 
 </html>
