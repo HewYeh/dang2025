@@ -20,21 +20,20 @@ University of California San Diego
 # Repository Structure
 ```
 .
-├── data
-│   └── .gitkeep
-├── original_paper
-│   ├── .gitkeep
-│   └── original_paper.pdf
-├── writeup
-│   ├── images
-│   ├── Replication_Report_Template.qmd
-│   └── .gitignore
-├── index.html
-├── LICENSE
-└── README.md
+┣━━ data
+┣━━ original_paper
+┃   ┗━━ original_paper.pdf
+┣━━ writeup
+┃   ┣━━ images
+┃   ┃   ┗━━ ProposedSEM.png
+┃   ┣━━ Replication Report Template.qmd
+┃   ┣━━ Replication-Report-Template.pdf
+┃   ┗━━ .gitignore
+┣━━ index.html
+┗━━ README.md
 ```
-Data is stored in `./data`, the original paper that this work is based on is available as a pdf in `./original_paper.pdf`. For the replication report, that is under the `writeup` folder.
-`index.html` is the HTML file which contains the JavaScript script (jsPsych) experiment for data collection.
+Data is stored in `./data`, the original paper that this work is based on is available as a pdf in `./original_paper/original_paper.pdf`. For the replication report, that is under the `./writeup` folder.
+`./index.html` is the HTML file which contains the JavaScript script (jsPsych) experiment for data collection.
 
 # License
 License: Creative Commons Attribution-NonCommercial (CC BY-NC)
