@@ -142,7 +142,7 @@ This first exploratory analysis excludes participants who spend a total time of 
 
 #### ***Exploratory Analysis 1: Estimating a Mediation Model With Structural Equation Modeling***
 
-For the exploratory analyses involving structural equation modeling, I will use lavaan (version 0.7-3; 2026, October 8th release), a popular and free R package to estimate multivariate models (e.g., path analysis) and perform latent variable analysis (e.g., confirmatory factor analysis, structural regression, and latent growth models; Rosseel, 2012). In this model, I will use state gratitude and state loneliness as latent variables that mediate the effect that condition have on positive affect. Missing data will be handled with FullInformation Maximum Likelihood (FIML) which handles missing data better than list-wise deletion or imputation. Additionally, we will specify the use of maximum likelihood with robust standard errors (MLR) which handles non-normality better than maximum likelihood estimation when estimating standard errors.
+For the exploratory analyses involving structural equation modeling, I will use lavaan (version 0.7-3; 2026, October 8th release), a popular and free R package to estimate multivariate models (e.g., path analysis) and perform latent variable analysis (e.g., confirmatory factor analysis, structural regression, and latent growth models; Rosseel, 2012). In this model, I will use state gratitude and state loneliness as latent variables that mediate the effect that condition have on positive affect. Missing data will be handled with FullInformation Maximum Likelihood (FIML) which handles missing data better than list-wise deletion or imputation. Additionally, we will specify the use of maximum likelihood with robust standard errors (MLR) which handles non-normality better than maximum likelihood estimation when estimating standard errors. This exploratory analysis will be estimated for the intent-to-treat effect (without excluding speeders) and with excluding speeders.
 
 The proposed model is outlined in Figure 1.
 
@@ -152,8 +152,9 @@ The proposed model is outlined in Figure 1.
 
 #### Differences from Original Study
 
-There are a few key differences from the original study, making the present study a replication and extension. Firstly, I will only be two conditions and measuring one dependent variable. Additionally, rather than immediately measuring positive affect after the intervention, I will first measure state loneliness and state gratitude. Thinking about loneliness prior to measuring state positive affect, may attenuate positive affect scores; however, this was necessary for the exploratory mediation model to satisfy temporal precedence of the mediators. Additionally, participants for the original study were recruited from Prolific; however, the current study will recruit UC San Diego's undergraduate students to participate which will extend the findings to a student population.
+There are a few key differences from the original study, making the present study a replication and extension. Firstly, I will only be two conditions and measuring one dependent variable. Additionally, rather than immediately measuring positive affect after the intervention, I will first measure state loneliness and state gratitude. Thinking about loneliness prior to measuring state positive affect may attenuate positive affect scores; however, this was necessary for the exploratory mediation model to satisfy temporal precedence of the mediators. Additionally, participants for the original study were recruited from Prolific; however, the current study will recruit UC San Diego's undergraduate students to participate which will extend the findings to a student population.
 
+````{=html}
 <!--## Results
 
 ### Data Preparation
@@ -211,6 +212,8 @@ GRAT        ON COND
 CONNECTION  ON COND
 ```
 -->
+````
+
 ## References
 
 Ahn, E., & Kang, H. (2023). Intention-to-treat versus as-treated versus per-protocol approaches to analysis. *Korean Journal of Anesthesiology*, *76*(6), 531–539. <https://doi.org/10.4097/kja.23278>
