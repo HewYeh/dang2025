@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
 <!-- Credits
-- AI Transparency: Open AI's ChatGPT (GPT-6; 2026), Google's Gemini (2026; via Google Search), and Anthropic's Claude Sonnet 5.5 Medium (2026) were used to assist in debugging.
+- AI Transparency: Open AI's ChatGPT (GPT-6; 2026), Google's Gemini (2026; via Google Search), and Anthropic's Claude Sonnet 5.5 Medium (2026) were used to assist in debugging. (Mainly finding typos, or leading me down false rabbit holes that were just a result of typos.)
 - The base code for the HTML document formatting, initializing jsPsych, and initializing/running the timeline were from Dr. Martin Zettersten's jsPsych Tutorial.
 - Additional code was provided from Dr. Bria Long to connect the data to DataPipe.
-- Thank you to Mikka Hoffman for assisting with connecting my experiment to SONA.
+- Thank you to Mikka Hoffman, a fellow psychology grad student at UCSD, for assisting with connecting my experiment to SONA.
 -->
 
 <head>
     <title>Writing Study</title>
+
     <!--Load in the jsPsych Scripts. Scripts are needed so that the HTML content can change and respond to the user.-->
     <script src="https://unpkg.com/jspsych@8.0.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@2.0.0"></script>
@@ -17,8 +18,8 @@
     <script src="https://unpkg.com/@jspsych/extension-pipe@0.2.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-survey@1.0.1"></script>
     <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.2.0"></script>
-    <!-- This is the style sheet and we are specifying that it is a stylesheet conotaining css code-->
-    <link href="https://unpkg.com/jspsych@8.0.0/css/jspsych.css" rel="stylesheet" type="text/css" />
+    <!-- This is the style sheet and we are specifying that it is a stylesheet containing css code. -->
+    <link href="https://unpkg.com/jspsych@8.0.0/css/jspsych.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://unpkg.com/@jspsych/plugin-survey@1.0.1/css/survey.css">
 </head>
 
@@ -26,28 +27,20 @@
 
 <script>
     // --------------------------------------------------------------------------------
-    // Hew's Helpful Heuristics on jsPsych bc this is new to me 😜
-    // jsPsych Code begins here
-    // initJsPsych() will initialize the object that manages the experiment.
-    // We store that reference in the var jsPsych.
-    // This is like Experiment experiment = new Experiment(); in Java
-    // Similar to a constructor but it is returning an object rather than an instance of a class.
-    // Similar to a constructor but this is a func that returns an object rather than creating
-    // an instance of a class
+    // Hew's Helpful Heuristics on jsPsych
+    // jsPsych Code begins here. initJsPsych() initializes the object that manages the
+    // experiment. We store the reference to this object in var jsPsych.
+    // It is like a constructor but it is a function that returns an object.
+    // This object serves as our experiment manager.
     // --------------------------------------------------------------------------------
     
     // Step 1: Initialize jsPsych Experiment Manager; Connect to Data Pipe; Connect to SONA
+    // Dr. Bria Long's Code helps connect DataPipe
     var jsPsych = initJsPsych({
-        // Code from Dr. Bria Long which sends our data through DataPipe to Google Drive
-        extensions: [
-            {
-                type: jsPsychExtensionPipe,
-                params: {
-                    experiment_id: "nGcgpS0QzCnK",
-                    filename: function () {
-                        return subject_id + ".csv";
-                    }
-                }
+        extensions: [{
+            type: jsPsychExtensionPipe,
+            params: {experiment_id: "nGcgpS0QzCnK",
+            filename: function () {return subject_id + ".csv";}}
             }
         ],
         // Mikka Hoffman assisted with this on_finish function to get it working with SONA
@@ -56,78 +49,76 @@
         },
     });
     
-    // Step 2: Get the SONA ID from the URL that will be used for the on_finish function
+    // Step 2: Get the SONA ID from the URL that will be used for the on_finish function redirect
     var id = jsPsych.data.getURLVariable('id');
 
-    // Step 3: Create a random ID which will be used to name the file when saved via datapipe (See Step 1 extensions)
+    // Step 3: Create a random ID which will be used to name the .csv file when saved via datapipe (See Step 1 extensions)
     var subject_id = jsPsych.randomization.randomID(10);
-    
 
-    // Step 4: Initialize empty array to serve as our timeline; You can then use timeline.push() to add events to the timeline
+    // Step 4: Initialize empty array to serve as our timeline; You can then use timeline.push() to add events to the timeline.
     var timeline = [];
     
     // Step 5: Randomly Assign Condition; From the two options, select 1 sample and form a list. Pull the 0th item from the list.
     var ParticipantCondition = jsPsych.randomization.sampleWithoutReplacement(["EventList", "ExperimentalLetterWriting"], 1)[0];
 
-    // Save the subject ID and assigned condition as columns on every row of the data
+    // Step 6: Save subject ID and condition as a variable in the data set for easier data analysis
     jsPsych.data.addProperties({
         subject_id: subject_id,
         condition: ParticipantCondition
     });
     
-    // Step 6: Informed Consent
+    // Step 7: Informed Consent
     var InformedConsent = {
         type: jsPsychHtmlButtonResponse,
         stimulus: `<div style ="padding:40px; text-align:left; max-width:800px; margin: 0 auto">
             <h1>Welcome!</h1>
+
             <p>You are being invited to participate in a research study titled “Reproducibility of Psychological Science and Instruction.” This study is being done by Dr. Bria Long from UC San Diego and associated graduate students in Experimental Methods course. You were selected to participate in this study because you are an adult in the U.S. and have been a represented population in previous psychology studies.<br><br>
                 
-                The purpose of this study is to better understand how well previously published studies in the psychological field replicate online and with different populations. Your participation in this research should last approximately 5-30 minutes  If you agree to take part in this study, you may be asked to view a set of stimuli, including pictures, sounds, written text, or videos and then giving some responses via key-presses, verbally, or with paper-and-pencil. We may also observe your choices or preferences among an array of stimuli.  These stimuli will be taken directly from or closely adapted from studies that already exist in the published psychological literature. Stimuli will include, e.g., pictures of objects and human faces, audio and video clips, short text passages, etc. None of the stimuli will be disturbing, threatening, or offensive. The online and in-person experiments described in this protocol will take no more than 30 minutes. An example game you might play would be to click on an image on the screen that matches a word you hear being said out loud. Your total expected time commitment for this study is between 5-30 minutes, and is specified in the study description.<br><br>
-                
-                Your participation in this study is completely voluntary and you can withdraw at any time. Choosing not to participate or withdrawing will result in no penalty or loss of benefits to which you are entitled. You are free to skip any question that you choose.<br><br>
-                
-                We will not be asking for any personally identifying information, and we will handle responses as confidentially as possible. Your SONA or Prolific IDs will never be tied to your responses on this survey. However, we cannot guarantee the confidentiality of information transmitted over the Internet. To minimize this risk, data containing anything that might be personally identifiable (e.g. Prolific IDs or IP addresses) will be encrypted on transfer and storage and will only be accessible to qualified lab personnel. We will be keeping data collected as part of this experiment indefinitely. This anonymized data (containing neither Prolific IDs nor IP addresses) may be shared with the scientific community or with other participants to be used as stimuli in future studies.<br><br>
-                
-                If you have questions about this project or if you have a research-related problem, you may contact the researcher(s), Hew Yeh (mayeh@ucsd.edu) or  Dr. Bria Long (brlong@ucsd.edu). If you have any questions concerning your rights as a research subject, you may contact the UC San Diego Office of IRB Administration at irb@ucsd.edu or 858-246-4777.<br><br>
-                
-                By participating in this research you are indicating that you are at least 18 years old, have read this consent form, and agree to participate in this research study. Please keep this consent form for your records.</p></div>`,
-                choices: ['I Agree'],
-                button_html: ['<button class="jspsych-btn btn-yes">%choice%</button>']
-            };
+            The purpose of this study is to better understand how well previously published studies in the psychological field replicate online and with different populations. Your participation in this research should last approximately 5-30 minutes  If you agree to take part in this study, you may be asked to view a set of stimuli, including pictures, sounds, written text, or videos and then giving some responses via key-presses, verbally, or with paper-and-pencil. We may also observe your choices or preferences among an array of stimuli.  These stimuli will be taken directly from or closely adapted from studies that already exist in the published psychological literature. Stimuli will include, e.g., pictures of objects and human faces, audio and video clips, short text passages, etc. None of the stimuli will be disturbing, threatening, or offensive. The online and in-person experiments described in this protocol will take no more than 30 minutes. An example game you might play would be to click on an image on the screen that matches a word you hear being said out loud. Your total expected time commitment for this study is between 5-30 minutes, and is specified in the study description.<br><br>
+            
+            Your participation in this study is completely voluntary and you can withdraw at any time. Choosing not to participate or withdrawing will result in no penalty or loss of benefits to which you are entitled. You are free to skip any question that you choose.<br><br>
+            
+            We will not be asking for any personally identifying information, and we will handle responses as confidentially as possible. Your SONA or Prolific IDs will never be tied to your responses on this survey. However, we cannot guarantee the confidentiality of information transmitted over the Internet. To minimize this risk, data containing anything that might be personally identifiable (e.g. Prolific IDs or IP addresses) will be encrypted on transfer and storage and will only be accessible to qualified lab personnel. We will be keeping data collected as part of this experiment indefinitely. This anonymized data (containing neither Prolific IDs nor IP addresses) may be shared with the scientific community or with other participants to be used as stimuli in future studies.<br><br>
+            
+            If you have questions about this project or if you have a research-related problem, you may contact the researcher(s), Hew Yeh (mayeh@ucsd.edu) or  Dr. Bria Long (brlong@ucsd.edu). If you have any questions concerning your rights as a research subject, you may contact the UC San Diego Office of IRB Administration at irb@ucsd.edu or 858-246-4777.<br><br>
+            
+            By participating in this research you are indicating that you are at least 18 years old, have read this consent form, and agree to participate in this research study. Please keep this consent form for your records.</p></div>`,
+        choices: ['I Agree'],
+        button_html: ['<button class="jspsych-btn btn-yes">%choice%</button>']
+    };
 
             
-    // Step 7: Create Welcome Message
+    // Step 8: Create Welcome Message
     var Welcome = {
         type: jsPsychHtmlKeyboardResponse,
-        stimulus: `<div style ="padding:40px; text-align:left; max-width:800px; margin: 0 auto">Welcome to the study! We are happy you are here. Press any key on your keyboard to begin.</div>`
-    }
+        stimulus: `<div style ="padding:40px; text-align:left; max-width:800px; margin: 0 auto"> Welcome to the study! We are happy you are here. Press any key on your keyboard to begin.</div>`
+    };
 
-    // Step 8: Instructions
-    var instructions = {
+    // Step 9: Instructions
+    var Instructions = {
         type: jsPsychHtmlButtonResponse,
         stimulus: `<div style ="padding:40px; text-align:left; max-width:800px; margin: 0 auto">
         <p>In the following screens, you will be asked to respond about your age, gender identity, and racial identity. After that, you will be asked to respond to a mixture of likert-scale survey questions and open-ended writing prompts.
         </p></div>`,
-          choices: ['Continue'],
-          button_html: ['<button class="jspsych-btn btn-yes">%choice%</button>']
+        choices: ['Continue'],
+        button_html: ['<button class="jspsych-btn btn-yes">%choice%</button>']
     
     };
 
-    // Step 9: Age
+    // Step 10: Demographics > Age
     var Age = {
         type: jsPsychSurveyText,
-        questions: [
-            { prompt: "Please enter your age (in years).", name: "Age", rows: 5, columns: 50, required: true }
-        ],
+        questions: [{prompt: "Please enter your age (in years).", name: "Age", rows: 5, columns: 50, required: true}],
         on_finish: function(data) {
             for (var name in data.response) {
                 data[name] = data.response[name]
                 Object.assign(data, data.response);
+            }
         }
-    }
-}
+    };
     
-    // Step 10: RacialEthnic Identity
+    // Step 11: RacialEthnic Identity
     var RacialEthnic = {
         type: jsPsychSurvey,
         survey_json: {
@@ -143,10 +134,10 @@
         },
         on_finish: function(data) {
             Object.assign(data, data.response);
-            }
         }
+    };
 
-    //Step 11: Gender
+    //Step 12: Gender
     var Gender = {
         type: jsPsychSurvey,
         survey_json: {
@@ -163,10 +154,10 @@
         },
         on_finish: function(data) {
             Object.assign(data, data.response);
-            }
+        }
     };
 
-    // Step 12: Measure Pretest Mood
+    // Step 13: Measure Pretest Mood
     var PretestMood = {
         type: jsPsychSurveyLikert,
         questions: [
@@ -177,15 +168,15 @@
         ],
         scale_width: 700,
             on_finish: function(data) {
-            for (var name in data.response) {
-                data[name] = ['Very Bad', 'Bad', 'Somewhat Bad', 'Neutral', 'Somewhat Good', 'Good', 'Very Good'][data.response[name]];
-                data[name] = [data.response[name]];
-                Object.assign(data, data.response);
-                };
-            }
-    }
+                for (var name in data.response) {
+                    data[name] = ['Very Bad', 'Bad', 'Somewhat Bad', 'Neutral', 'Somewhat Good', 'Good', 'Very Good'][data.response[name]];
+                    data[name] = [data.response[name]];
+                    Object.assign(data, data.response);
+                    }
+                }
+    };
 
-    // Step 13: Interventions
+    // Step 14A: Interventions Experimental Letter Writing
     var ExperimentalLetterWriting = {
         type: jsPsychSurveyText,
         questions: [
@@ -196,8 +187,9 @@
                 </div>`, name: "GratitudeResponse", rows: 10, columns: 100, required: true }
         ]
 
-    }
-    // Step 13: Continued
+    };
+
+    // Step 14B: Intervention EventList
     var EventList = {
         type: jsPsychSurveyText,
         questions: [
@@ -208,13 +200,9 @@
                 name: "EventResponse", rows: 10, columns: 100, required: true }
         ]
 
-    }
-    // Tentatively, this will be the new loneliness measure. It is shorter and a state based one from Choi et al. (2016) which was adapted from Shaver et al. (1985). It demonstrates good internal consistency with a cronbach's alpha of .92
-    // Shaver, P., Furman, W., & Buhrmester, D. (1985). Transition to college: Network changes, social skills, and loneliness. In S. Duck & D. Perlman (Eds.), Understanding personal relationships: An interdisciplinary approach (pp. 193–219). Sage Publications, Inc.
-
-    // Choi, J., Rangan, P., & Singh, S. N. (2016). Do cold images cause cold-heartedness? The impact of visual stimuli on the effectiveness of negative emotional charity appeals. Journal of Advertising, 45(4), 417-426.
-
-    // Step 14: Measure State Loneliness
+    };
+    
+    // Step 15: Measure State Loneliness
     var StateLonelyLikertScale = ["Not at All 1", "2", "3", "4", "5", "6", "7 Very Much"]
     var StateLonely = {
         type: jsPsychSurveyLikert,
@@ -227,29 +215,29 @@
             for (var name in data.response) {
                 data[name] = StateLonelyLikertScale[data.response[name]];
                 Object.assign(data, data.response);
+            }
         }
-    }}
+    };
 
-    // Step 15: Measure State Gratitude
+    // Step 16: Measure State Gratitude
     var LikertScale = ["Strongly Disagree 1", "2", "3", "4", "5", "6", "7 Strongly Agree"]
-
     var PostTestGratitude = {
         type: jsPsychSurveyLikert,
         preamble: `<div style ="padding:40px; text-align:left; max-width:800px; margin: 0 auto">At this moment, to what degree are you feeling each of the following emotions?</div>`,
         questions: [
             { prompt: "Grateful", name: "Grateful", labels: LikertScale, required: true },
             { prompt: "Appreciative", name: "Appreciative", labels: LikertScale, required: true },
-            { prompt: "Thankful", name: "Thankful", labels: LikertScale, required: true }]
-            , randomize_question_order: true, scale_width: 700,
-            on_finish: function(data) {
+            { prompt: "Thankful", name: "Thankful", labels: LikertScale, required: true }],
+            randomize_question_order: true, scale_width: 700,
+        on_finish: function(data) {
             for (var name in data.response) {
                 data[name] = LikertScale[data.response[name]];
                 Object.assign(data, data.response);
-                };
-            }
+                }
+        }
     };
 
-    // Step 16: Measure State Positive Affect
+    // Step 17: Measure State Positive Affect
     var PostTestPositiveAffect = {
         type: jsPsychSurveyLikert,
         preamble: `<div style ="padding:40px; text-align:left; max-width:800px; margin: 0 auto">At this moment, to what degree are you feeling each of the following emotions?</div>`,
@@ -258,17 +246,17 @@
             { prompt: "Joyful", name: "Joyful", labels: LikertScale, required: true },
             { prompt: "Pleased", name: "Pleased", labels: LikertScale, required: true },
             { prompt: "Content", name: "Content", labels: LikertScale, required: true },
-            { prompt: "Satisfied", name: "Satisfied", labels: LikertScale, required: true }
-        ], randomize_question_order: true, scale_width: 700,
-            on_finish: function(data) {
+            { prompt: "Satisfied", name: "Satisfied", labels: LikertScale, required: true }],
+            randomize_question_order: true, scale_width: 700,
+        on_finish: function(data) {
             for (var name in data.response) {
                 data[name] = LikertScale[data.response[name]];
                 Object.assign(data, data.response);
-                };
-            }
+            };
+        }
     };
 
-
+    // Step 18: AI Captcha
     var AI_Captcha = {
         type: jsPsychSurveyText,
         questions: [
@@ -276,7 +264,7 @@
         ]
     }
 
-    // Step 7: Create Welcome Message
+    // Step 19: Debrief
     var Debrief = {
         type: jsPsychHtmlKeyboardResponse,
         stimulus: `<div style ="padding:40px; text-align:left; max-width:800px; margin: 0 auto">
@@ -286,7 +274,7 @@
 
             <p>You participated in a study that replicated a prior psychological study which compared various positive psychology gratitude interventions aimed to increase subjective well-being. While it has been shown that these gratitude writing interventions are effective for US adults in increasing subjective well-being, it was still unclear how strong of a positive impact these interventions would have on university students and what potential mechanisms may drive changes in subjective well-being.</p>
             
-            <p>During the study, you provided demographic information, responded to questions regarding your mood, affect, gratitude, and loneliness. You also responded to a writing prompt that was selected from the positive psychology literature. Using the responses to the mood, affect, gratitude, and loneliness prompts, we can see which interventions were the most effective. These results can then help identify effective, affordable, portable, and quick exercises for students to practice in the long-term to improve their well-being.</p>
+            <p>During the study, you provided demographic information, responded to questions regarding your mood, affect, gratitude, and loneliness. You also responded to a writing prompt that was selected from the positive psychology literature. Using the responses to the mood, affect, gratitude, and loneliness prompts, we can see which prompts were the most effective. These results can then help identify effective, affordable, portable, and quick exercises for students to practice in the long-term to improve their well-being.</p>
 
             <p>We hope that this study improves your understanding of how writing exercises may lead to improvements in well-being as well as how these prompts can be recommended to students at a larger scale to improve community-wide well-being.</p>
 
@@ -299,20 +287,18 @@
             
             <h3>Mental Health Resources</h3>
             <p>Participating in research studies can sometimes bring up negative emotions and be uncomfortable. If you are in need of support, there are free and confidential resources available to you.
-                CAPS provides free psychological services to UCSD students. You can visit them at https://caps.ucsd.edu/. If you are in need of immediate support, you can call CAPS at 858-249-0030, or you can call/text the 988 National Suicide and Crisis Lifeline for live support in both English and Spanish.
-                </p>
+            CAPS provides free psychological services to UCSD students. You can visit them at https://caps.ucsd.edu/. If you are in need of immediate support, you can call CAPS at 858-249-0030, or you can call/text the 988 National Suicide and Crisis Lifeline for live support in both English and Spanish.</p>
             
-                <h3>Finishing the Study and SONA Credits</h3>
+            <h3>Finishing the Study and SONA Credits</h3>
             <p>After this screen, you will see a screen that indicating that your data is saving. Once it is finished, you will be automatically redirected to the SONA website to automatically receive your SONA credits.</p>
-                <p>Thank you once again for participating and helping us advance our understanding of well-being practices. Please have a wonderful rest of your day!</p>
+            <p>Thank you once again for participating and helping us advance our understanding of well-being practices. Please have a wonderful rest of your day and a great week! 🌈🌷✨</p>
             <p>Press any key on the keyboard to finish this study.</p>
-
             </div>`
     }
 
     timeline.push(InformedConsent)
     timeline.push(Welcome)
-    timeline.push(instructions)
+    timeline.push(Instructions)
     timeline.push(Age)
     timeline.push(Gender)
     timeline.push(RacialEthnic)
