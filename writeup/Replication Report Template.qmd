@@ -10,9 +10,9 @@ format:
 
 ## Introduction
 
-Dang et al. (2025) sought to test 7 gratitude interventions that are used in positive psychology to improve subjective well-being. These interventions included intrapersonal, interpersonal, and gratitude-to-God interventions. While studies in the literature have examined these interventions before, such studies are heterogeneous in their selection of outcome measures for subjective well-being and only compare a few interventions against each other, making comparisons across excluded interventions difficult. By contrast, this study included a comprehensive battery of interventions and standardized outcome measures (i.e., state gratitude, state positive/negative affect, and life satisfaction). As a result, this experiment allows for a direct comparison of efficacy between the gratitude interventions and can inform what gratitude practices are most helpful for the general public to incorporate into their lives.
+Dang et al. (2025) sought to test 7 gratitude interventions that are used in positive psychology to improve subjective well-being. These interventions included intrapersonal, interpersonal, and gratitude-to-God interventions. While studies in the literature have examined these interventions before, such studies are heterogeneous in their selection of outcome measures for subjective well-being and only compare a few interventions against each other, making comparisons across excluded interventions difficult. In contrast, this study included a comprehensive battery of interventions and standardized outcome measures (i.e., state gratitude, state positive/negative affect, and life satisfaction). As a result, the experiment allows for a direct comparison of efficacy between the gratitude interventions and can inform what gratitude practices are most helpful for the general public to incorporate into their lives.
 
-In Study 1, Dang et al. (2025) found that writing a private gratitude letter was the most effective intervention in increasing positive affect. In this replication report, I wanted to replicate this finding and hoped to find a similarly large Hedges' $g$ of around $0.41$ when comparing this intervention to an active control. This replication study differs because we will test this effect in a student population as opposed to US adults from Prolific. This is aimed to increase the generalizability of the original study and offer guidance for students to improve their well-being. Furthermore, in case these interpersonal interventions caused increases to well-being because it reduces loneliness (rather than just improving gratitude), we also measure loneliness to include as a covariate to isolate the unique effect that gratitude has on improving well-being.
+In Study 1, Dang et al. (2025) found that writing a private gratitude letter was the most effective intervention in increasing positive affect. In this replication report, I wanted to replicate this finding and hoped to find a similarly large Hedges' $g$ of around $0.41$ when comparing this intervention to an active control. This replication study differs because we will test this effect in a student population as opposed to US adults from Prolific. This is aimed to increase the generalizability of the original study and offer guidance for students to improve their well-being. Furthermore, in case these interpersonal interventions caused increases to well-being because it reduces loneliness (rather than just improving gratitude), we also measure state loneliness to include as a parallel mediator with gratitude to isolate the unique effect that gratitude has on improving well-being.
 
 ## Methods
 
@@ -67,34 +67,37 @@ Power80 = pwr.t.test(d = ComputedCohens_d,
 
 At an alpha level of $\alpha =.05$, for 80% power ($1 - \beta = .80$), we are going to need `{r} round(Power80$n,0)` participants per group. In total, that will be `{r} ceiling( 2 * Power80$n )` participants.
 
-For a balance of power and practicality, we will aim for a power level of at least 80% which will require 188 participants. An additional 10% margin will be collected in case of participant attrition for follow-up analyses which will result in collecting data until we reach `{r} ceiling(188*1.1)` participants. Considering that the study is an online survey experiment that takes less than 30 minutes, this should balance both practicality and statistical validity power concerns.
+For a balance of power and practicality, we will aim for a power level of at least 80% which will require 188 participants. An additional 10% margin will be collected in case of participant attrition for follow-up analyses which will result in collecting data until we reach `{r} ceiling(188*1.1)` participants. Considering that the study is an online survey experiment that takes less than 30 minutes, this should balance both practicality as well as statistical validity and power concerns. Data collection will have to end before the end of the Fall 2026 term.
 
 ### Participants
 
-The participant pool will be undergraduates from the University of California San Diego. There likely will be no adverse effects of the study. However, if any are reported by participants, data collection will be stopped immediately.
-
-While we will not exclude human participants, we do not want to include bots or responses from large language models, and artificial intelligence (AI) agents, and as a result, invisible white text will be added into the prompt in an attempt to catch AI responses. If a participant responds to this prompt, their data will be row-wise deleted.
+Participants will be recruited from the University of California San Diego. There will likely be no adverse effects of the study. However, if any are reported by participants, data collection will stop immediately. The researchers will reconvene and discuss whether it is appropriate to end the study entirely.
 
 ### Materials & Procedure
 
 Study materials include the jsPsych code (de Leeuw et al., 2023) used to run the experiment as well as the stimuli described below. Participants will also need access to a computer and an internet connection to complete the study.
 
-After reading an informed consent form, consenting participants were welcomed into the study. They first filled out demographic information about their age, gender identity, and racial identity. Proceeding after that, participants answer a 1-item mood question and then are randomized to participate in either the events list or gratitude letter condition. Directly after, participants were asked to respond to questions that assessed post-intervention loneliness, gratitude, and positive affect. Lonliness was measured in one block with items randomized. Gratitude and positive affect were assessed simultaneously in an emotion matrix with their pooled items randomized like in the original study. Lastly, participants are thanked for their participation in the study and are debriefed on the study's aims and background literature.
+After reading an informed consent form, consenting participants are welcomed into the study. They first fill out demographic information about their age, gender identity, and racial identity. Proceeding after that, participants answer a 1-item mood question and then are randomized to participate in either the events list or gratitude letter condition. Directly after, participants are asked to respond to questions that assessed state loneliness, state gratitude, and state positive affect. Each construct is measured in its own block; however, within each block, the order of the items are randomized. Participants then pass an AI Captcha. Lastly, participants will be thanked for their participation in the study and are debriefed on the study's aims and informs participants about the study design and what prior literature informed this study. At the completion of the study, the experiment website will redirect students to Sona, where participants are automatically awarded research credits[^2] that can be used to fulfill course research participation requirements or confer extra credit in their courses.
 
-In the interest of replication, I will use the same instructions that were provided in the original study (Cunha et al., 2019; Dang et al., 2025; Emmons & McCullough, 2003; Walsh et al., 2022). After participants are randomly assigned to a condition, they will see the following directions:
+[^2]: In this case, it will be 0.25 SONA credits for a roughly 30-minute study.
 
-- **Experimental Condition: Gratitude Letter (Walsh et al., 2022):** "In our daily lives, we often thank people for both large and small things. However, it can sometimes be difficult to make time to express our gratitude more deeply. Today, we want you to write a letter of gratitude to someone who has done something for which you are extremely grateful. Please do not share your letter with this person or anyone else."
-- **Control Group: Events List (Cunha et al. 2019):** "In life, there are events, both large and small, that end up affecting us. Think back over the past day and write down five events that somehow affected you."
+In the interest of replication, I will use the same instructions that were provided in the original study for the conditions (Cunha et al., 2019; Dang et al., 2025; Emmons & McCullough, 2003; Walsh et al., 2022). After participants are randomly assigned to a condition, they will see either of the following directions:
+
+**Gratitude Letter (Walsh et al., 2022):** "In our daily lives, we often thank people for both large and small things. However, it can sometimes be difficult to make time to express our gratitude more deeply. Today, we want you to write a letter of gratitude to someone who has done something for which you are extremely grateful. Please do not share your letter with this person or anyone else.
+
+Think of the people – partners, parents, siblings, relatives, friends, neighbors, mentors, and so on – who have been especially generous and thoughtful towards you. For example, you may feel grateful to a parent who has always been there for you, or to a friend who helped you through a hard time.
+
+Now we would like you to pick ONE person who helped you, and write a letter of gratitude to them. However, this letter is really for you to express your thoughts—it is not to convey your gratitude directly to the other person. In fact, we do not want you to share your letter with anyone at all. You will type this letter out on the text box provided.
+
+To give you some ideas of what to write, you could describe the kind act(s) this person did for you and how the kind act(s) affected your life. You could also describe what you are doing now and how you often remember their efforts."
+
+**Control Group: Events List (Cunha et al. 2019):** "In life, there are events, both large and small, that end up affecting us. Think back over the past day and write down five events that somehow affected you."
 
 Participants will also be told the following instructions from the original study (Dang et al., 2025):
 
 \begin{quote}
 As you write, don’t worry about perfect grammar and spelling, and remember that anything you write will remain strictly confidential. Should an experimenter read this entry in the future, it will be identifiable only by a participant number and not by your name.
 \end{quote}
-
-After participants finish the intervention, they will be asked to fill out a questionnaire that asks them about their state gratitude, state loneliness, and state positive affect. The order of items within each block are randomized. Next, participants are asked to pass a prompt injection AI captcha. Lastly, participants will be debriefed about the study goals and be given on-campus mental health resources. Finally, participants were thanked for their participation and awarded research credits[^2] that can be used to fulfill course research participation requirements or confer extra credit.
-
-[^2]: In this case, it will be 0.25 SONA credits for a roughly 30-minute study.
 
 ### Measures
 
@@ -104,11 +107,11 @@ Participants were asked to indicate their age, gender identity, and racial ident
 
 #### ***Mood***
 
-At pre-test, participants were asked a 1-item question "How are you feeling right now?" with responses ranging from (1) *Very Bad* to (7) *Very Good*.
+At pre-test, participants are asked a 1-item question "How are you feeling right now?" with responses ranging from (1) *Very Bad* to (7) *Very Good*. This is a measure that was not present in the original study. However, due to the large sample size required, we will collect this data to allow us to control for baseline mood without measuring people's positive affect scores in the same way twice. This should increase our statistical power by controlling for people's baselines in case we do not get the ideal number of participants we had planned for.
 
 #### ***State Loneliness***
 
-On a scale from (1) *Not at All* to (7) *Very Much*, participants indicated their agreement with the following questions: "How lonely are you feeling? Compared to other people, how lonely do you think you are? To what extent do you feel lonely right now?" Question order was randomized. This state measure of loneliness was originally used by Choi et al. (2016) as an adapted version of a measure used by Shaver et al. (1985) and demonstrated good internal consistency in the Choi et al. (2016) study (Cronbach's $\alpha=.92$). It was important that this measure of loneliness was a *state* measure as opposed to a *trait* measure as we wanted to see if momentary fluctuations in loneliness as a result of our intervention may explain some of the effect that our writing conditions had on positive affect.
+On a scale from (1) *Not at All* to (7) *Very Much*, participants indicated their agreement with the following questions: "How lonely are you feeling? Compared to other people, how lonely do you think you are? To what extent do you feel lonely right now?" This state measure of loneliness was originally used by Choi et al. (2016) as an adapted version of a measure used by Shaver et al. (1985) and demonstrated good internal consistency in the Choi et al. (2016) study (Cronbach's $\alpha=.92$). It is important that this measure of loneliness was a *state* measure as opposed to a *trait* measure as we wanted to see if momentary fluctuations in loneliness as a result of our intervention may explain some of the effect that our writing conditions had on positive affect.
 
 #### ***State Gratitude***
 
@@ -118,31 +121,62 @@ On a scale from (1) *Strongly Disagree* to (7) *Strongly Agree*, participants ra
 
 #### ***State Positive Affect***
 
-On a scale from (1) *Strongly Disagree* to (7) *Strongly Agree*, participants rated how much they agreed with five adjectives: "happy," "joyful," "pleased," "content," and "satisfied" (Dang et al., 2025) with the order of the adjectives randomized. The original study demonstrated high internal consistency for this measure (McDonald's $\omega$ = .95). Positive affect was chosen as one dimension of subjective well-being to measure; however, theoretically speaking, negative affect and overall life satisfaction are other key components to subjective well-being (Diener et al., 2022).
+On a scale from (1) *Strongly Disagree* to (7) *Strongly Agree*, participants rated how much they agreed with five adjectives: "happy," "joyful," "pleased," "content," and "satisfied" (Dang et al., 2025), with the order of the adjectives randomized. The original study demonstrated high internal consistency for this measure (McDonald's $\omega$ = .95). Positive affect was chosen as one dimension of subjective well-being to measure; however, theoretically speaking, negative affect and overall life satisfaction are other key components to subjective well-being (Diener et al., 2022).
 
-<!--This is where I left off.-->
-
-### Analysis Plan
-
-#### ***Statistical Software and Analyses***
+### Statistical Analysis Plan
 
 #### Data Cleaning
 
 Data and code will be made publicly available. However, since the events and letters are quite personal and we promised participants confidentiality, we will remove participant responses to free-response questions (i.e., the written response to the event or letter writing condition). The only remaining information will be a newly randomly generated participant ID, their age, gender, ethnoracial identity, their scores across the likert scales, and how long they took to complete the study. Additionally, free-response answers to gender identity or ethnoracial identity will be recoded as "Other" unless at least 10 participants endorse a given response to protect participant privacy.
 
-The original study used an intent-to-treat analysis (Ahn et al., 2023) which meant that they did not exclude any participants from the study. This is aimed to measure the generalizable real-world impact of an intervention and acknowledge that attrition and non-compliance are inseparable downstream effects of the intervention. Since this study is meant to inform us of qualities of real student populations, it is vital to understand the realistic intent-to-treat effect size as opposed to the effect size found in an artificially controlled setting. Due to these reasons and in the interest of replication, I will also use an intent-to-treat analysis for the key confirmatory test.
+The original study used an intent-to-treat analysis (Ahn et al., 2023, Dang et al., 2025), which meant that they did not exclude any participants from the study. This is aimed to measure the generalizable real-world impact of an intervention and acknowledge that attrition and non-compliance are inseparable downstream effects of the intervention. Since this study is meant to inform us about real student populations, it is vital to understand the realistic intent-to-treat effect size as opposed to the effect size found in an artificially controlled setting. Due to these reasons and in the interest of replication, I will also use an intent-to-treat analysis for the key confirmatory test.
 
-##### ***Key Confirmatory Test:*** $t$-Test of Mean Positive Affect Scores
+In order to prevent bot responses, invisible white text prompt injection is used in an attempt to catch AI responses. If a participant responds to the prompt, their data will be row-wise deleted.
 
-Data analyses will be performed using the R programming language (R Core Team, 2026). Our key confirmatory test will be a $t$-test comparing average positive affect scores across the letter writing (experimental) vs. event writing (control) conditions. Using an alpha threshold of $\alpha = .05$ that was chosen during our power/sample size analysis, I will use the `t.test` function to compute the $t$-test test statistic and return a $p$-value. This function will also ouput a Cohen's $d$ which I will convert to Hedges' $g$ using Hedges' $J(x)$ correction where $x$ is the degrees of freedom for the $t$-test. This will represent the intent-to-treat effect that most closely matches Dang et al. (2025). In order to calculate positive affect scores, a simple arithmetic mean will be calculated. For the later exploratory analyses, positive affect scores will be calculated as a latent variable. For this first analysis, no participant will be excluded to calcualte the intent-to-treat effect.
+#### ***Key Confirmatory Test:*** $t$***-Test of Mean Positive Affect Scores Across Condition***
 
-#### ***Exploratory Analysis A: Exclusion of Speeders***
+Confirmatory analyses will be performed using the R programming language (R Core Team, 2026). Our key confirmatory test will be a $t$-test comparing average positive affect scores across the letter writing (experimental) vs. event writing (control) conditions. Using an alpha threshold of $\alpha = .05$ that was chosen during our power/sample size analysis, I will use the `t.test` function to compute the $t$-test test statistic and return a $p$-value. I will also use the `rstatix` package to compute a Cohen's $d$ which I will convert to Hedges' $g$ using Hedges' $J(x)$ correction where $x$ is the degrees of freedom for the $t$-test. This will represent the intent-to-treat effect that most closely matches Dang et al. (2025). In order to calculate positive affect scores, a simple arithmetic mean will be calculated across its items.
 
-This first exploratory analysis excludes participants who spend a total time of less than 2 standard deviations away from the median in the study, we will perform the same $t$-test procedure as in the confirmatory test but filter the data first to exclude participants that do not meet the 2 standard deviation criteria.
+For the later exploratory analyses, positive affect scores will be calculated as a latent variable. For this first analysis, no participant will be excluded to calculate the intent-to-treat effect (besides suspected bot/AI responses) and no latent variables will be used.
 
-#### ***Exploratory Analysis 1: Estimating a Mediation Model With Structural Equation Modeling***
+#### ***Exploratory Analysis 1: Exclusion of Speeders***
 
-For the exploratory analyses involving structural equation modeling, I will use lavaan (version 0.7-3; 2026, October 8th release), a popular and free R package to estimate multivariate models (e.g., path analysis) and perform latent variable analysis (e.g., confirmatory factor analysis, structural regression, and latent growth models; Rosseel, 2012). In this model, I will use state gratitude and state loneliness as latent variables that mediate the effect that condition have on positive affect. Missing data will be handled with FullInformation Maximum Likelihood (FIML) which handles missing data better than list-wise deletion or imputation. Additionally, we will specify the use of maximum likelihood with robust standard errors (MLR) which handles non-normality better than maximum likelihood estimation when estimating standard errors. This exploratory analysis will be estimated for the intent-to-treat effect (without excluding speeders) and with excluding speeders.
+While the intent-to-treat analysis shows a real-world response to the intervention, since we have the data, we can also calculate the effect while excluding people who may have sped past the study. This effect size can be interpreted as the effect of the intervention under more ideal conditions. For this exploratory analysis, participants who spent a total time in the study of less than 2 standard deviations under the median will be excluded. This exclusion criteria is used commonly in survey research and is the criteria that Qualtrics typically uses to identify participants who completed a survey abnormally fast (often called "speeders"; Qualtrics, 2026). This is to test whether the observed intent-to-treat effect is attenuated by participants who speed past the intervention without giving it much thought.
+
+For Exploratory Analysis 1, we will run the same $t$-test procedure as the Key Confirmatory Test but exclude participants who spent a total time in the study that is less than 2 standard deviations below the median time spent in the study.
+
+#### ***Exploratory Analysis 2: Estimating a Parallel Mediation Model Using Structural Equation Modeling***
+
+For the exploratory analyses involving structural equation modeling (SEM), I will use lavaan (version 0.7-3; 2026, October 8th release), a popular and free R package to estimate multivariate models (e.g., path analysis) and perform latent variable analysis (e.g., confirmatory factor analysis, structural regression, and latent growth models; Rosseel, 2012). In this first analysis, I will use state gratitude and state loneliness as latent variables that mediate the effect that condition has on state positive affect (which will also be a latent variable).
+
+Missing data will be handled with Full Information Maximum Likelihood (FIML) which handles missing data better than list-wise deletion or data imputation. Additionally, we will specify the use of maximum likelihood with robust standard errors (MLR) which handles non-normality better than maximum likelihood estimation when estimating standard errors. This exploratory analysis will be estimated for the intent-to-treat effect (without excluding speeders) and will use pre-test mood as an observed variable that is covaried along all paths.
+
+The SEM will be estimated in two steps:
+
+1.  In the first step, we calculate the total effect of Condition on State Positive Affect while controlling for pre-test mood.
+2.  And in the second step, we add the mediators.
+3.  Indirect effects will be calculated using bootstrapped standard errors. If possible, we specify 10,000 iterations.
+
+**Exploratory Analysis 2 Model A: Total Effect of Condition on State Positive Affect While Controlling for Pretest Mood**
+
+```         
+StatePositiveAffect BY Happy Joyful Pleased Content Satisfied
+StatePositiveAffect ON Condition PretestMood
+```
+
+**Exploratory Analysis 2 Model B: Estimating the Parallel Mediation Model**
+
+```         
+# Measurement
+StateGratitude        BY Grateful Appreciative Thankful
+StatePositiveAffect   BY Happy Joyful Pleased Content Satisfied
+StateLoneliness       BY Loneliness1 Loneliness2 Loneliness3
+
+# Structural Regression
+StatePositiveAffect   ON StateGratitude StateLoneliness Condition PretestMood
+StateGratitude        ON Condition PretestMood
+StateLoneliness       ON Condition PretestMood
+```
 
 The proposed model is outlined in Figure 1.
 
@@ -150,69 +184,63 @@ The proposed model is outlined in Figure 1.
 
 ![](images/ProposedSEM.png)
 
-#### Differences from Original Study
+#### Differences from Original Study in Analysis
 
-There are a few key differences from the original study, making the present study a replication and extension. Firstly, I will only be two conditions and measuring one dependent variable. Additionally, rather than immediately measuring positive affect after the intervention, I will first measure state loneliness and state gratitude. Thinking about loneliness prior to measuring state positive affect may attenuate positive affect scores; however, this was necessary for the exploratory mediation model to satisfy temporal precedence of the mediators. Additionally, participants for the original study were recruited from Prolific; however, the current study will recruit UC San Diego's undergraduate students to participate which will extend the findings to a student population.
+There are a few key differences from the original study, making the present study a replication and extension. Firstly, I will only be testing two conditions and measuring one dependent variable. Additionally, rather than immediately measuring positive affect after the intervention, I will first measure state loneliness and state gratitude. Thinking about loneliness prior to measuring state positive affect may attenuate positive affect scores; however, this was necessary for the exploratory mediation model to satisfy temporal precedence of the mediators. Additionally, participants for the original study were recruited from Prolific; however, the current study will recruit UC San Diego's undergraduate students to participate, which will extend the findings to a student population.
 
-````{=html}
-<!--## Results
-
-### Data Preparation
+### Analysis Code for Confirmatory Test
 
 ```         
+%pip install pandas numpy rpy2
+import pandas as pd
+import numpy as np
+
+# Load rpy2 R to Python Extension Bridge
+%load_ext rpy2.ipython
+
+# Filtering Out AI Captcha. Only keep participants who did not respond to the captcha.
+Tensor = Tensor[Tensor['AI_Captcha'] == ""]
+
+# Because we have not collected data, I will simulate the test.
+```
+
+```{r}
+#| output: false
 library(dplyr)
-Tensor <- read_csv("")
+# Simulate data. Shift data by the approximate difference in means. (Hedges' g = .41)
+EventsData <- rnorm(n = 94, m = 0, sd = 1)
+LetterData <- rnorm(n = 94, m = .41, sd = 1)
 
-# Look at the rows that have these in there to drop
-Tensor <- Tensor[grepl("1.5", Tensor$COL), ]
-Tensor <- Tensor[grepl("15", Tensor$COL), ]
-
-# Drop the appropriate participant right here.
+StackedData <- stack(list(Event = EventsData, Letter = LetterData))
+StackedData <- rename(StackedData, "PositiveAffectScores" = "values")
+StackedData <- rename(StackedData, "Condition" = "ind")
+StackedData
 ```
 
-```         
+```{r}
+#| output: false
+KeyResults <- t.test(PositiveAffectScores ~ Condition,
+                     alternative = "two.sided",
+                     var.equal = TRUE,
+                     data = StackedData)
 ```
 
-### Confirmatory Analysis
+*t*(`r round(KeyResults$parameter)`) = `r round(KeyResults$statistic, 2)`, *p* = `r round(KeyResults$p.value, 3)` .
 
-```         
-MainEffect <- t.test(DV ~ Condition, data = Tensor)
+```{r}
 
-# Calulate Hedges' g using J(x) and Cohen's d
-MainEffect$
+install.packages("rstatix")
+library(rstatix)
+
+#Degrees of Freedom
+DegFr = as.numeric(KeyResults$parameter)
+J_Correction = gamma(DegFr/2) / (sqrt(DegFr/2)*gamma((DegFr-1)/2))
+
+CohenD <- cohens_d(PositiveAffectScores ~ Condition, data = StackedData, var.equal = TRUE)
+
+HedgesG <- J_Correction * CohenD$effsize
+HedgesG
 ```
-
-A $t$-test was computed to assess whether the average positive affect score differed between the gratitude letter and events list conditions, $t(df)=XX.XX$, $p <or = .XX$, Hedges' $g = GG.GG$. There was/was not a significant difference such that the \_\_\_\_\_\_ group had higher mean positive affect scores than the \_\_\_\_\_ group.
-
-### Exploratory Analyses
-
-#### Exploratory Analysis 1: Excluding Unreasonably Fast Responses
-
-While the intent-to-treat analyis shows a real-world repsonse to the intervention, since we have the data, we can also calculate the effect while excluding people who may have sped past in the study. This effect size will be interpretted as the effect of the intervention under ideal conditions. For this analysis, participants who spent a total time in the study of less than 2 standard deviations under the median will be exlucded. This exclusion criteria is used commonly in survey research and is the criteria that Qualtrics typically uses to identify participants who completed the task abnormally fast (often called "speeders"; Qualtrics, 2026). This is to test whether the observed intent-to-treat effect is attenuated by participants who speed past the intervention and questions without giving it much thought.
-
-#### Exploratory Analysis 2: Putative Mediation
-
-aThe original study demonstrates a dosage effect where interventions which brough about greater amounts of gratitude also led to higher levels of positive affect. This raises the question of whether increasing gratitutde (the goal of the intervention) is the mechanism that leads to increases in positive affect. As a result, I will construct a mediation model that tests whether gratitude may be a putative mediator and if this explains the effect beyond making someone feel more connected when writing a letter by also adding loneliness as another putative mediator[^4].
-
-[^4]: This strategy suffers from some issues in causal inference especially since loneliness was measured after positive affect as we were worried that the items used to measure loneliness would negatively affect people's level of positive affect. In the spirit of replication, we also needed to measure gratitude and positive affect directly after the intervention to match the original study. Future studies should attempt to rule out alternative casusal possibilities such as increases in positive affect leading to greater gratitude and a reduced sense of loneliness.
-
-We will run a structural equation model predicting latent positive affect scores using experimental condition while specifying latent state gratitude and latent state loneliness scores as putative mediators. By using latent factor scores, we also can avoid assuming that all items in each of the scales are equally informative and allow the natural covariance structure of the data to determine how heavily to weigh each item. Since condition is a categorical indicator, we will only standardize the coefficients with respect to the latent factor scores. Thus, each effect size represents the expected difference in latent factor scores in standardized units between the conditions.
-
-```         
-Syntax for SEM
-
-# Measurement 
-PA          BY PA1 PA2 PA3 PA4 PA5
-GRAT        BY GRAT1 GRAT2 GRAT3
-CONNECTION  BY ITEMS
-
-# Structural Regression
-PA          ON GRAT COND CONNECTION
-GRAT        ON COND
-CONNECTION  ON COND
-```
--->
-````
 
 ## References
 
@@ -232,7 +260,7 @@ Emmons, R. A., & McCullough, M. E. (2003). Counting blessings versus burdens: An
 
 Hedges, L. V. (1981). Distribution theory for Glass's estimator of effect size and related estimators. *Journal of Educational Statistics*, *6*(2), 107–128. https://doi.org/10.2307/1164588
 
-Hedges L. V. (2025). Effect sizes for experimental research. *The British Journal of Mathematical and Statistical Psychology*, *79*(1), 31–45. https://doi.org/10.1111/bmsp.12389
+Hedges, L. V. (2025). Effect sizes for experimental research. *The British Journal of Mathematical and Statistical Psychology*, *79*(1), 31–45. https://doi.org/10.1111/bmsp.12389
 
 Liu, X. S. (2024). Bias correction for Cohen's *d*. *The Journal of General Psychology*, *151*(1), 54–62. https://doi.org/10.1080/00221309.2023.2172545
 
