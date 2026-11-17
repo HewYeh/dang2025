@@ -65,7 +65,7 @@ Power80 = pwr.t.test(d = ComputedCohens_d,
            alternative = "two.sided")
 ```
 
-At an alpha level of $\alpha =.05$, for 80% power ($1 - \beta = .80$), we are going to need `{r} round(Power80$n,0)` participants per group. In total, that will be `{r} ceiling( 2 * Power80$n )` participants.
+With the use of a two-tailed test, at an alpha level of $\alpha =.05$, for 80% power ($1 - \beta = .80$), we are going to need `{r} round(Power80$n,0)` participants per group. In total, that will be `{r} ceiling( 2 * Power80$n )` participants.
 
 For a balance of power and practicality, we will aim for a power level of at least 80% which will require 188 participants. An additional 10% margin will be collected in case of participant attrition for follow-up analyses which will result in collecting data until we reach `{r} ceiling(188*1.1)` participants. Considering that the study is an online survey experiment that takes less than 30 minutes, this should balance both practicality as well as statistical validity and power concerns. Data collection will have to end before the end of the Fall 2026 term.
 
@@ -117,7 +117,7 @@ On a scale from (1) *Not at All* to (7) *Very Much*, participants indicated thei
 
 On a scale from (1) *Strongly Disagree* to (7) *Strongly Agree*, participants rated how much they agreed with three adjectives: "grateful," "appreciative," and "thankful" (Dang et al., 2025). The order of these items were randomized. This scale also demonstrated good internal consistency in the original study (McDonald's $\omega$ = .93).[^3]
 
-[^3]: McDonald's Omega describes the proportion of variance in the indicators that is explained by a general latent factor compared to the overall amount of variance in the indicators with the highest score being 1. $\omega = \dfrac{\left(\sum_{i=1} ^k\lambda_i\right)^2}{\left(\sum_{i=1}^k\lambda_{i}\right)^2+\sum_{i=1}^k\psi_i}$, where $\psi:=1-\lambda_i^2$.
+[^3]: McDonald's Omega describes the proportion of variance in the indicators that is explained by a general latent factor compared to the overall amount of variance in the indicators with the highest score being 1. $\omega = \dfrac{\left(\sum_{i=1} ^k\lambda_i\right)^2}{\left(\sum_{i=1}^k\lambda_{i}\right)^2+\sum_{i=1}^k\psi_i}$, where $\psi_i:=1-\lambda_i^2$.
 
 #### ***State Positive Affect***
 
@@ -147,7 +147,7 @@ For Exploratory Analysis 1, we will run the same $t$-test procedure as the Key C
 
 #### ***Exploratory Analysis 2: Estimating a Parallel Mediation Model Using Structural Equation Modeling***
 
-For the exploratory analyses involving structural equation modeling (SEM), I will use lavaan (version 0.7-3; 2026, October 8th release), a popular and free R package to estimate multivariate models (e.g., path analysis) and perform latent variable analysis (e.g., confirmatory factor analysis, structural regression, and latent growth models; Rosseel, 2012). In this first analysis, I will use state gratitude and state loneliness as latent variables that mediate the effect that condition has on state positive affect (which will also be a latent variable).
+For the exploratory analyses involving structural equation modeling (SEM), I will use lavaan (version 0.7-3; 2026, October 8th release), a popular and free R package to estimate multivariate models (e.g., path analysis) and perform latent variable analysis (e.g., confirmatory factor analysis, structural regression, and latent growth models; Rosseel, 2012). In this analysis, I will use state gratitude and state loneliness as latent variables that mediate the effect that condition has on state positive affect (which will also be a latent variable).
 
 Missing data will be handled with Full Information Maximum Likelihood (FIML) which handles missing data better than list-wise deletion or data imputation. Additionally, we will specify the use of maximum likelihood with robust standard errors (MLR) which handles non-normality better than maximum likelihood estimation when estimating standard errors. This exploratory analysis will be estimated for the intent-to-treat effect (without excluding speeders) and will use pre-test mood as an observed variable that is covaried along all paths.
 
@@ -188,7 +188,7 @@ The proposed model is outlined in Figure 1.
 
 #### Differences from Original Study in Analysis
 
-There are a few key differences from the original study, making the present study a replication and extension. Firstly, I will only be testing two conditions and measuring one dependent variable. Additionally, rather than immediately measuring positive affect after the intervention, I will first measure state loneliness and state gratitude. Thinking about loneliness prior to measuring state positive affect may attenuate positive affect scores; however, this was necessary for the exploratory mediation model to satisfy temporal precedence of the mediators. Furthermore, rather than having the full 20-item emotion matrix that the original researchers used, I separated the measurements into three blocks. The order of the blocks (loneliness, gratitude, and positive affect) are the same across participants; however, the order in which each individual item within the block appears is random.Lastly, participants for the original study were recruited from Prolific; however, the current study will recruit UC San Diego's undergraduate students to participate, which will extend the findings to a student population.
+There are a few key differences from the original study, making the present study a replication and extension. Firstly, I will only be testing two conditions and measuring one dependent variable. Additionally, rather than immediately measuring positive affect after the intervention, I will first measure state loneliness and state gratitude. Thinking about loneliness prior to measuring state positive affect may attenuate positive affect scores; however, this was necessary for the exploratory mediation model to satisfy temporal precedence of the mediators. Furthermore, rather than having the full 20-item emotion matrix that the original researchers used, I separated the measurements into three blocks. The order of the blocks (loneliness, gratitude, and positive affect) are the same across participants; however, the order in which each individual item within the block appears is random. Lastly, participants for the original study were recruited from Prolific; however, the current study will recruit University of Califonia San Diego undergraduate students to participate, which will extend the findings to a student population.
 
 ### Analysis Code for Confirmatory Test
 
@@ -201,7 +201,7 @@ import numpy as np
 %load_ext rpy2.ipython
 
 # Filtering Out AI Captcha. Only keep participants who did not respond to the captcha.
-Tensor = Tensor[Tensor['AI_Captcha'] == ""]
+Tensor = Tensor[Tensor['AI_CAPTCHA'] == ""]
 
 # Because we have not collected data, I will simulate the test.
 ```
