@@ -191,40 +191,12 @@ The proposed model is outlined in Figure 1.
 There are a few key differences from the original study, making the present study a replication and extension. Firstly, I will only be testing two conditions and measuring one dependent variable. Additionally, rather than immediately measuring positive affect after the intervention, I will first measure state loneliness and state gratitude. Thinking about loneliness prior to measuring state positive affect may attenuate positive affect scores; however, this was necessary for the exploratory mediation model to satisfy temporal precedence of the mediators. Furthermore, rather than having the full 20-item emotion matrix that the original researchers used, I separated the measurements into three blocks. The order of the blocks (loneliness, gratitude, and positive affect) are the same across participants; however, the order in which each individual item within the block appears is random. Lastly, participants for the original study were recruited from Prolific; however, the current study will recruit University of Califonia San Diego undergraduate students to participate, which will extend the findings to a student population.
 
 ### Analysis Code for Confirmatory Test
-
-```         
-%pip install pandas numpy rpy2
-import pandas as pd
-import numpy as np
-
-# Load rpy2 R to Python Extension Bridge
-%load_ext rpy2.ipython
-
-# Filtering Out AI Captcha. Only keep participants who did not respond to the captcha.
-Tensor = Tensor[Tensor['AI_CAPTCHA'] == ""]
-
-# Because we have not collected data, I will simulate the test.
-```
-
 ```{r}
-#| output: false
-library(dplyr)
-# Simulate data. Shift data by the approximate difference in means. (Hedges' g = .41)
-EventsData <- rnorm(n = 94, m = 0, sd = 1)
-LetterData <- rnorm(n = 94, m = .41, sd = 1)
-
-StackedData <- stack(list(Event = EventsData, Letter = LetterData))
-StackedData <- rename(StackedData, "PositiveAffectScores" = "values")
-StackedData <- rename(StackedData, "Condition" = "ind")
-StackedData
-```
-
-```{r}
-#| output: false
-KeyResults <- t.test(PositiveAffectScores ~ Condition,
+ProcessedData <- read.csv("../data/ProcessedData.csv")
+KeyResults <- t.test(PositiveAffect_AveragedScore ~ Condition,
                      alternative = "two.sided",
                      var.equal = TRUE,
-                     data = StackedData)
+                     data = ProcessedData)
 ```
 
 *t*(`r round(KeyResults$parameter)`) = `r round(KeyResults$statistic, 2)`, *p* = `r round(KeyResults$p.value, 3)` .
@@ -238,7 +210,7 @@ library(rstatix)
 DegFr = as.numeric(KeyResults$parameter)
 J_Correction = gamma(DegFr/2) / (sqrt(DegFr/2)*gamma((DegFr-1)/2))
 
-CohenD <- cohens_d(PositiveAffectScores ~ Condition, data = StackedData, var.equal = TRUE)
+CohenD <- cohens_d(PositiveAffect_AveragedScore ~ Condition, data = ProcessedData, var.equal = TRUE)
 
 HedgesG <- J_Correction * CohenD$effsize
 HedgesG
