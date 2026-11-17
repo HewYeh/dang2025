@@ -180,13 +180,15 @@ StateLoneliness       ON Condition PretestMood
 
 The proposed model is outlined in Figure 1.
 
-**Figure 1** *Preregistered Structural Equation Model for Exploratory Analysis 1*
+**Figure 1**
+
+*Preregistered Structural Equation Model for Exploratory Analysis 2*
 
 ![](images/ProposedSEM.png)
 
 #### Differences from Original Study in Analysis
 
-There are a few key differences from the original study, making the present study a replication and extension. Firstly, I will only be testing two conditions and measuring one dependent variable. Additionally, rather than immediately measuring positive affect after the intervention, I will first measure state loneliness and state gratitude. Thinking about loneliness prior to measuring state positive affect may attenuate positive affect scores; however, this was necessary for the exploratory mediation model to satisfy temporal precedence of the mediators. Additionally, participants for the original study were recruited from Prolific; however, the current study will recruit UC San Diego's undergraduate students to participate, which will extend the findings to a student population.
+There are a few key differences from the original study, making the present study a replication and extension. Firstly, I will only be testing two conditions and measuring one dependent variable. Additionally, rather than immediately measuring positive affect after the intervention, I will first measure state loneliness and state gratitude. Thinking about loneliness prior to measuring state positive affect may attenuate positive affect scores; however, this was necessary for the exploratory mediation model to satisfy temporal precedence of the mediators. Furthermore, rather than having the full 20-item emotion matrix that the original researchers used, I separated the measurements into three blocks. The order of the blocks (loneliness, gratitude, and positive affect) are the same across participants; however, the order in which each individual item within the block appears is random.Lastly, participants for the original study were recruited from Prolific; however, the current study will recruit UC San Diego's undergraduate students to participate, which will extend the findings to a student population.
 
 ### Analysis Code for Confirmatory Test
 
