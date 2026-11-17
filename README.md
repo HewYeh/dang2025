@@ -20,6 +20,8 @@ University of California San Diego
 # Repository Structure
 ```
 .
+┣━━ DataProcessing
+┃   ┗━━ DataProcessingScript.ipynb
 ┣━━ data
 ┣━━ original_paper
 ┃   ┗━━ original_paper.pdf
@@ -32,7 +34,7 @@ University of California San Diego
 ┣━━ index.html
 ┗━━ README.md
 ```
-Data is stored in `./data`, the original paper that this work is based on is available as a pdf in `./original_paper/original_paper.pdf`. For the replication report, that is under the `./writeup` folder.
+`./DataProcessing` holds the Jupyter notebook that was used to format the pre-processed data from jsPsych. `./data` holds the cleaned data, the original paper that this work is based on is available as a pdf in `./original_paper/original_paper.pdf`. For the replication report, that is under the `./writeup` folder. The `.qmd` file contains the R scripts for the main analyses.
 `./index.html` is the HTML file which contains the JavaScript script (jsPsych) experiment for data collection.
 
 # License
