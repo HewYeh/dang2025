@@ -169,9 +169,7 @@
         scale_width: 700,
             on_finish: function(data) {
                 for (var name in data.response) {
-                    data[name] = ['Very Bad', 'Bad', 'Somewhat Bad', 'Neutral', 'Somewhat Good', 'Good', 'Very Good'][data.response[name]];
-                    data[name] = [data.response[name]];
-                    Object.assign(data, data.response);
+                    data[name] = data.response[name] + 1; // review: save 1 (Very Bad) to 7 (Very Good); the plugin counts from 0
                     }
                 }
     };
@@ -213,8 +211,7 @@
         randomize_question_order : true, scale_width : 700,
         on_finish: function(data) {
             for (var name in data.response) {
-                data[name] = StateLonelyLikertScale[data.response[name]];
-                Object.assign(data, data.response);
+                data[name] = data.response[name] + 1; // review: save 1 to 7; the plugin counts from 0
             }
         }
     };
@@ -231,8 +228,7 @@
             randomize_question_order: true, scale_width: 700,
         on_finish: function(data) {
             for (var name in data.response) {
-                data[name] = LikertScale[data.response[name]];
-                Object.assign(data, data.response);
+                data[name] = data.response[name] + 1; // review: save 1 to 7; the plugin counts from 0
                 }
         }
     };
@@ -250,8 +246,7 @@
             randomize_question_order: true, scale_width: 700,
         on_finish: function(data) {
             for (var name in data.response) {
-                data[name] = LikertScale[data.response[name]];
-                Object.assign(data, data.response);
+                data[name] = data.response[name] + 1; // review: save 1 to 7; the plugin counts from 0
             };
         }
     };
