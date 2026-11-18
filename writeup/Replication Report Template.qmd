@@ -191,8 +191,16 @@ The proposed model is outlined in Figure 1.
 There are a few key differences from the original study, making the present study a replication and extension. Firstly, I will only be testing two conditions and measuring one dependent variable. Additionally, rather than immediately measuring positive affect after the intervention, I will first measure state loneliness and state gratitude. Thinking about loneliness prior to measuring state positive affect may attenuate positive affect scores; however, this was necessary for the exploratory mediation model to satisfy temporal precedence of the mediators. Furthermore, rather than having the full 20-item emotion matrix that the original researchers used, I separated the measurements into three blocks. The order of the blocks (loneliness, gratitude, and positive affect) are the same across participants; however, the order in which each individual item within the block appears is random. Lastly, participants for the original study were recruited from Prolific; however, the current study will recruit University of Califonia San Diego undergraduate students to participate, which will extend the findings to a student population.
 
 ### Analysis Code for Confirmatory Test
+
 ```{r}
-ProcessedData <- read.csv("../data/ProcessedData.csv")
+install.packages("assertthat")
+library(assertthat)
+ProcessedData <- read.csv("./data/ProcessedData.csv")
+
+assert_that(ncol(ProcessedData)==20)
+```
+
+```{r}
 KeyResults <- t.test(PositiveAffect_AveragedScore ~ Condition,
                      alternative = "two.sided",
                      var.equal = TRUE,
@@ -214,6 +222,24 @@ CohenD <- cohens_d(PositiveAffect_AveragedScore ~ Condition, data = ProcessedDat
 
 HedgesG <- J_Correction * CohenD$effsize
 HedgesG
+```
+
+**Figure 2**
+
+*Average Positive Affect Scores Across Conditions (Gratitude Letter vs. Event List)*
+
+```{r}
+boxplot(PositiveAffect_AveragedScore ~ Condition, data = ProcessedData, main = 'Average Positive Affect Scores by Group', ylab = 'Average Positive Affect', col = c("lightblue", "lightgreen"))
+```
+
+**Figure 3**
+
+*Average Gratitude Across Conditions (Gratitude Letter vs. Event List)*
+
+```{r}
+# Gratitude will be the composite (averaged) score of its indicators
+ProcessedData$Gratitude_AveragedScore <- rowMeans(ProcessedData[,c("Grateful", "Appreciative", "Thankful")])
+boxplot(Gratitude_AveragedScore ~ Condition, data = ProcessedData, main = 'Average Positive Affect Scores by Group', ylab = 'Average Positive Affect', col = c("lightblue", "lightgreen"))
 ```
 
 ## References
