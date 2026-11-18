@@ -242,6 +242,24 @@ ProcessedData$Gratitude_AveragedScore <- rowMeans(ProcessedData[,c("Grateful", "
 boxplot(Gratitude_AveragedScore ~ Condition, data = ProcessedData, main = 'Average Positive Affect Scores by Group', ylab = 'Average Positive Affect', col = c("lightblue", "lightgreen"))
 ```
 
+** Figure 4**
+
+*Average Positive Affect Across Conditions (Gratitude Letter vs. Event List)
+```{r}
+install.packages("ggplot2")
+library(ggplot2)
+
+ggplot(ProcessedData, aes(x = Condition, y = PositiveAffect_AveragedScore, color = Condition, shape = Condition)) +
+  geom_jitter(width = 0.15, size = 2.5, alpha = 0.8) +
+  labs(
+    title = "Positive Affect Scores Across Condition",
+    x = "Condition",
+    y = "Positive Affect (Composite Score)",
+    color = "Condition",
+    shape = "Condition"
+  ) +
+  theme_minimal()
+```
 ## References
 
 Ahn, E., & Kang, H. (2023). Intention-to-treat versus as-treated versus per-protocol approaches to analysis. *Korean Journal of Anesthesiology*, *76*(6), 531–539. <https://doi.org/10.4097/kja.23278>
