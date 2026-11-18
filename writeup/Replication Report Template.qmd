@@ -195,7 +195,7 @@ There are a few key differences from the original study, making the present stud
 ```{r}
 install.packages("assertthat")
 library(assertthat)
-ProcessedData <- read.csv("./data/ProcessedData.csv")
+ProcessedData <- read.csv("../data/ProcessedData.csv")
 
 assert_that(ncol(ProcessedData)==20)
 ```
