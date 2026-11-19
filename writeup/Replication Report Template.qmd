@@ -239,12 +239,11 @@ boxplot(PositiveAffect_AveragedScore ~ Condition, data = ProcessedData, main = '
 ```{r}
 # Gratitude will be the composite (averaged) score of its indicators
 ProcessedData$Gratitude_AveragedScore <- rowMeans(ProcessedData[,c("Grateful", "Appreciative", "Thankful")])
-boxplot(Gratitude_AveragedScore ~ Condition, data = ProcessedData, main = 'Average Positive Affect Scores by Group', ylab = 'Average Positive Affect', col = c("lightblue", "lightgreen"))
+boxplot(Gratitude_AveragedScore ~ Condition, data = ProcessedData, main = 'Average Gratitude Scores by Condition', ylab = 'Average Gratitude', col = c("lightblue", "lightgreen"))
 ```
 
-** Figure 4**
-
-*Average Positive Affect Across Conditions (Gratitude Letter vs. Event List)
+**Figure 4**
+*Average Positive Affect Across Conditions (Gratitude Letter vs. Event List)*
 ```{r}
 install.packages("ggplot2")
 library(ggplot2)
