@@ -8,108 +8,6 @@ format:
     toc_depth: 3
 ---
 
-```{r lockfile, include=FALSE}
-renv::use(
-  abind         = "abind@1.4-8",
-  assertthat    = "assertthat@0.2.1",
-  backports     = "backports@1.5.1",
-  base64enc     = "base64enc@0.1-6",
-  boot          = "boot@1.3-32",
-  broom         = "broom@1.0.13",
-  bslib         = "bslib@0.12.0",
-  cachem        = "cachem@1.1.0",
-  car           = "car@3.1-5",
-  carData       = "carData@3.0-6",
-  cli           = "cli@3.6.6",
-  colorspace    = "colorspace@2.1-4",
-  corrplot      = "corrplot@0.95",
-  cowplot       = "cowplot@1.2.0",
-  cpp11         = "cpp11@0.5.5",
-  Deriv         = "Deriv@4.3.6",
-  digest        = "digest@0.6.39",
-  doBy          = "doBy@4.7.2",
-  dplyr         = "dplyr@1.2.1",
-  evaluate      = "evaluate@1.0.5",
-  farver        = "farver@2.1.2",
-  fastmap       = "fastmap@1.2.0",
-  fontawesome   = "fontawesome@0.5.3",
-  forecast      = "forecast@9.0.2",
-  Formula       = "Formula@1.2-6",
-  fracdiff      = "fracdiff@1.5-4",
-  fs            = "fs@2.1.0",
-  generics      = "generics@0.1.4",
-  ggplot2       = "ggplot2@4.0.4",
-  glue          = "glue@1.8.1",
-  gtable        = "gtable@0.3.6",
-  here          = "here@1.0.2",
-  highr         = "highr@0.12",
-  htmltools     = "htmltools@0.5.9",
-  isoband       = "isoband@0.3.0",
-  jquerylib     = "jquerylib@0.1.4",
-  jsonlite      = "jsonlite@2.0.0",
-  knitr         = "knitr@1.52",
-  labeling      = "labeling@0.4.3",
-  lattice       = "lattice@0.22-9",
-  lifecycle     = "lifecycle@1.0.5",
-  lme4          = "lme4@2.1-0",
-  lmtest        = "lmtest@0.9-40",
-  magrittr      = "magrittr@2.0.5",
-  MASS          = "MASS@7.3-65",
-  Matrix        = "Matrix@1.7-5",
-  MatrixModels  = "MatrixModels@0.5-4",
-  memoise       = "memoise@2.0.1",
-  mgcv          = "mgcv@1.9-4",
-  mime          = "mime@0.13",
-  minqa         = "minqa@1.2.8",
-  modelr        = "modelr@0.1.11",
-  nlme          = "nlme@3.1-169",
-  nloptr        = "nloptr@2.2.1",
-  nnet          = "nnet@7.3-20",
-  numDeriv      = "numDeriv@2016.8-1.1",
-  pbkrtest      = "pbkrtest@0.5.5",
-  pillar        = "pillar@1.11.1",
-  pkgconfig     = "pkgconfig@2.0.3",
-  purrr         = "purrr@1.2.2",
-  pwr           = "pwr@1.3-0",
-  quantreg      = "quantreg@6.1",
-  R6            = "R6@2.6.1",
-  rappdirs      = "rappdirs@0.3.4",
-  rbibutils     = "rbibutils@2.4.1",
-  RColorBrewer  = "RColorBrewer@1.1-3",
-  Rcpp          = "Rcpp@1.1.2",
-  RcppArmadillo = "RcppArmadillo@15.6.2-1",
-  RcppEigen     = "RcppEigen@0.3.4.0.2",
-  Rdpack        = "Rdpack@2.6.6",
-  reformulas    = "reformulas@0.4.4",
-  renv          = "renv@1.3.1",
-  rlang         = "rlang@1.3.0",
-  rmarkdown     = "rmarkdown@2.32",
-  rprojroot     = "rprojroot@2.1.1",
-  rstatix       = "rstatix@1.1.0",
-  S7            = "S7@0.2.2",
-  sass          = "sass@0.4.10",
-  scales        = "scales@1.4.0",
-  SparseM       = "SparseM@1.84-2",
-  stringi       = "stringi@1.8.9",
-  stringr       = "stringr@1.6.0",
-  survival      = "survival@3.8-6",
-  tibble        = "tibble@3.3.1",
-  tidyr         = "tidyr@1.3.2",
-  tidyselect    = "tidyselect@1.2.1",
-  timeDate      = "timeDate@4052.112",
-  tinytex       = "tinytex@0.61",
-  urca          = "urca@1.3-4",
-  utf8          = "utf8@1.2.6",
-  vctrs         = "vctrs@0.7.3",
-  viridisLite   = "viridisLite@0.4.3",
-  withr         = "withr@3.0.3",
-  xfun          = "xfun@0.61",
-  yaml          = "yaml@2.3.12",
-  zoo           = "zoo@1.9-1"
-)
-```
-
-
 ## Introduction
 
 Dang et al. (2025) sought to test 7 gratitude interventions that are used in positive psychology to improve subjective well-being. These interventions included intrapersonal, interpersonal, and gratitude-to-God interventions. While studies in the literature have examined these interventions before, such studies are heterogeneous in their selection of outcome measures for subjective well-being and only compare a few interventions against each other, making comparisons across excluded interventions difficult. In contrast, this study included a comprehensive battery of interventions and standardized outcome measures (i.e., state gratitude, state positive/negative affect, and life satisfaction). As a result, the experiment allows for a direct comparison of efficacy between the gratitude interventions and can inform what gratitude practices are most helpful for the general public to incorporate into their lives.
@@ -146,7 +44,7 @@ J_250 <- sqrt(125) * gamma(124.5) / gamma(125)
 ComputedCohens_d <- 0.41 * J_250
 ```
 
-Now that the Cohen's $d$ has been computed ($d$ = `r .QuartoInlineRender(round(ComputedCohens_d, digits = 3))`...), we used the `pwr` package in R to perform a sample size analysis for 80% power.
+Now that the Cohen's $d$ has been computed ($d$ = `{r} round(ComputedCohens_d, digits = 3)`...), we used the `pwr` package in R to perform a sample size analysis for 80% power.
 
 ```{r}
 #| output: false
@@ -167,9 +65,9 @@ Power80 = pwr.t.test(d = ComputedCohens_d,
            alternative = "two.sided")
 ```
 
-With the use of a two-tailed test, at an alpha level of $\alpha =.05$, for 80% power ($1 - \beta = .80$), we are going to need `r .QuartoInlineRender(round(Power80$n,0))` participants per group. In total, that will be `r .QuartoInlineRender(ceiling( 2 * Power80$n ))` participants.
+With the use of a two-tailed test, at an alpha level of $\alpha =.05$, for 80% power ($1 - \beta = .80$), we are going to need `{r} round(Power80$n,0)` participants per group. In total, that will be `{r} ceiling( 2 * Power80$n )` participants.
 
-For a balance of power and practicality, we will aim for a power level of at least 80% which will require 188 participants. An additional 10% margin will be collected in case of participant attrition for follow-up analyses which will result in collecting data until we reach `r .QuartoInlineRender(ceiling(188*1.1))` participants. Considering that the study is an online survey experiment that takes less than 30 minutes, this should balance both practicality as well as statistical validity and power concerns. Data collection will have to end before the end of the Fall 2026 term.
+For a balance of power and practicality, we will aim for a power level of at least 80% which will require 188 participants. An additional 10% margin will be collected in case of participant attrition for follow-up analyses which will result in collecting data until we reach `{r} ceiling(188*1.1)` participants. Considering that the study is an online survey experiment that takes less than 30 minutes, this should balance both practicality as well as statistical validity and power concerns. Data collection will have to end before the end of the Fall 2026 term.
 
 ### Participants
 
@@ -296,14 +194,8 @@ There are a few key differences from the original study, making the present stud
 
 ```{r}
 install.packages("assertthat")
-install.packages("here")
 library(assertthat)
-library("here")
-
-# ReadCSV wants a file
-# The package `here` is going to create the full directory path from User to where we are now
-# You can move your analysis file anywhere without changing paths
-ProcessedData <- read.csv(file = here('data/ProcessedData.csv'))
+ProcessedData <- read.csv("../data/ProcessedData.csv")
 
 assert_that(ncol(ProcessedData)==20)
 ```
@@ -398,14 +290,3 @@ Rosseel, Y. (2012). lavaan: An R package for structural equation modeling. *Jour
 Shaver, P., Furman, W., & Buhrmester, D. (1985). Transition to college: Network changes, social skills, and loneliness. In S. Duck & D. Perlman (Eds.), *Understanding personal relationships: An interdisciplinary approach* (pp. 193–219). Sage Publications, Inc.
 
 Walsh, L. C., Regan, A., Twenge, J. M., & Lyubomirsky, S. (2022). What is the optimal way to give thanks? comparing the effects of gratitude expressed privately, one-to-one via text, or publicly on social media. *Affective Science*, *4*(1), 82–91. https://doi.org/10.1007/s42761-022-00150-5
-
-
-```{r}
-install.packages("renv")
-library(renv)
-
-renv::embed('Replication Report Template.qmd')
-renv::init()
-renv::snapshot()
-```
-
