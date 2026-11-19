@@ -29,8 +29,8 @@ University of California San Diego
 ┣━━ writeup
 ┃   ┣━━ images
 ┃   ┃   ┗━━ ProposedSEM.png
-┃   ┣━━ Replication Report Template.qmd
-┃   ┣━━ Replication-Report-Template.pdf
+┃   ┣━━ ReplicationReportTemplate.qmd
+┃   ┣━━ ReplicationReportTemplate.pdf
 ┃   ┗━━ .gitignore
 ┣━━ index.html
 ┗━━ README.md
